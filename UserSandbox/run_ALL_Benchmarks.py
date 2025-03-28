@@ -2,7 +2,9 @@
 """
 Run all the Benchmarks Literature in one push
 
-Inside Benchmark>> Literature folder
+Inside Benchmark>> Literature folder >> Internal Benchmark
+@dpal, fkoenderink
+
 """
 print('!!! RUNNING ALL BENCHMARKS in ONE GO !!!')
 #%%
