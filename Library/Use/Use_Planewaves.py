@@ -287,17 +287,19 @@ def CartesianField(theta,phi,scoeff,pcoeff,rlist,k0,nstack,dstack):
     EcartSy=S[0,:,:]*yhat[1,:,:]
     EcartSz=0.0  # by construction of yhat
 
-    HcartSx=S[1,:,:]*xhat[0,:,:] 
-    HcartSy=S[1,:,:]*xhat[1,:,:] 
-    HcartSz=S[2,:,:] 
+
+# Magnetic field H is in units H = Z0 * H_SI; (Z = Z0/n) .... scale by n for medium with refractive index n
+    HcartSx=S[1,:,:]*xhat[0,:,:] * nin
+    HcartSy=S[1,:,:]*xhat[1,:,:] * nin
+    HcartSz=S[2,:,:] * nin
     
     EcartPx=P[0,:,:]*xhat[0,:,:]
     EcartPy=P[0,:,:]*xhat[1,:,:] 
     EcartPz=P[1,:,:] 
   
-    HcartPx=P[2,:,:]*yhat[0,:,:]
-    HcartPy=P[2,:,:]*yhat[1,:,:]
-    HcartPz=0.0  
+    HcartPx=P[2,:,:]*yhat[0,:,:] * nin
+    HcartPy=P[2,:,:]*yhat[1,:,:] * nin
+    HcartPz=0.0 * nin
     
  #  Stuff the result in a huge array. E and H = 6 coeffic. Array (6, Ntheta, Npos)   
     EH=np.array([EcartSx+EcartPx, EcartSy+EcartPy,EcartSz+EcartPz,
