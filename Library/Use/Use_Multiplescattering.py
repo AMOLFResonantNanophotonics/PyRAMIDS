@@ -39,7 +39,7 @@ def dipolelayerchecker(rdipvecs,nstack,dstack):
 
 def Planewavedriving(theta,phi,s,p,rdip,k0,nstack,dstack):
     EH=pw.CartesianField(theta, phi, s, p, rdip, k0, nstack, dstack)
-    inputintensity=(np.array(np.abs(s))**2+np.array(np.abs(p))**2)*nstack[0]
+    inputintensity=(np.array(np.abs(s))**2+np.array(np.abs(p))**2)*nstack[0]*0.5
     return np.squeeze(EH), inputintensity
 
 
