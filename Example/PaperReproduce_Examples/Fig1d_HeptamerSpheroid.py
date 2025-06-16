@@ -139,7 +139,9 @@ class DrudeSigar():
         static_polarizability = self.static_polarizability_tensor(omega)
         
 
-        return np.matmul(self.rotation_6x6(self.angle),np.matmul(alpha_radiative_tensor(omega,static_polarizability,self.nsur),inv(self.rotation_6x6(self.angle))))
+        # return np.matmul(self.rotation_6x6(self.angle),np.matmul(alpha_radiative_tensor(omega,static_polarizability,self.nsur),inv(self.rotation_6x6(self.angle))))
+        return np.matmul(self.rotation_6x6(self.angle), np.matmul(static_polarizability, inv(self.rotation_6x6(self.angle))))
+
 
 
 #%%
@@ -173,7 +175,7 @@ def generate_heptamer_rdip(radius, z_position):
 #%%
 
 
-Nk = 301
+Nk = 151
 lamlist = np.linspace(450, 700, Nk)  # Wavelengths in nm
 
 om = 2.0 * np.pi*3E17 / lamlist  # Convert wavelength to angular frequency

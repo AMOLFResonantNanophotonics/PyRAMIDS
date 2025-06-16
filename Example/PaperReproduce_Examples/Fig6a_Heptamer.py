@@ -123,7 +123,9 @@ class DrudePancake():
        ##Add dynamic correction, no depolarizations##
        static_polarizability = self.static_polarizability_tensor(omega)
       
-       return alpha_radiative_tensor(omega,static_polarizability,self.nsur)
+       # return alpha_radiative_tensor(omega,static_polarizability,self.nsur)
+       return static_polarizability
+
 
 
 #%%
@@ -157,8 +159,8 @@ def generate_heptamer_rdip(radius, z_position):
 #%%
 
 
-Nk = 201
-lamlist = np.linspace(250, 850, Nk)  # Wavelengths in nm
+Nk = 101
+lamlist = np.linspace(380, 820, Nk)  # Wavelengths in nm
 
 om = 2.0 * np.pi*3E17 / lamlist  # Convert wavelength to angular frequency
 klist = 2.0 * np.pi / lamlist  # Free-space wavevector
@@ -191,7 +193,7 @@ nAu = np.sqrt(epsilon_Au)  # Convert permittivity to refractive index
 # # rdip = generate_heptamer_rdip(100, -r_outside)
 
 height = 25
-rdip = generate_heptamer_rdip(100, -height/2)
+rdip = generate_heptamer_rdip(90, -height/2)
 
 
 theta=np.array([0.00])
@@ -215,7 +217,7 @@ for i, lam in enumerate(lamlist):
     k0 = 2*np.pi/ lam
     
     nstack = [1., 1.5, nAu[i],  1.5]
-    dstack = [50, 60]
+    dstack = [70, 70]
 
     diplayer, Ndip=ms.dipolelayerchecker(rdip ,nstack,dstack)
 
@@ -224,7 +226,7 @@ for i, lam in enumerate(lamlist):
     # alphalist[0,:] = ms.Rayleighspherepolarizability(nAu[i],nstack[diplayer], V_centre)
     
     alphalist = 0.0j*np.tile(np.eye(6), (Ndip, 1, 1))
-    alphalist[0,:] = DrudePancake(eps_inf, wp_Au, g_Au, 1, 50, height).dynamic_polarizability_tensor(om[i])
+    alphalist[0,:] = DrudePancake(eps_inf, wp_Au, g_Au, 1, 55, height).dynamic_polarizability_tensor(om[i])
     alphalist[1:,:] = DrudePancake(eps_inf, wp_Au, g_Au, 1, 35, height).dynamic_polarizability_tensor(om[i])
 
     invalpha = ms.invalphadynamicfromstatic(alphalist, rdip, diplayer, k0, nstack, dstack)
