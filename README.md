@@ -1,8 +1,8 @@
-PyRAMIDS
+# PyRAMIDS
 
 A Python package for modeling electromagnetic sources and scatterers in complex stratified multilayer stacks
 
-Overview
+## Overview
 
 PyRAMIDS is a research-oriented Python package for modeling radiation, local density of states (LDOS), magnetoelectric dipoles, and multiple scattering in planar stratified media.
 
