@@ -122,7 +122,7 @@ UserSandbox/       # Custom simulation workspace for users
 Manual/            # Code PDF documentation
 ```
 
-PyRAMIDS follows a layered folder implementation architecture consisting of a **Core modules** and a **Use modules**.
+PyRAMIDS follows a layered folder implementation architecture consisting of **Core module** and **Use module**.
 
 >> The **Core module** contains the low-level mathematical implementations (S-matrix, Green functions, LDOS integrands, radiation kernels) and provides direct access for advanced users who wish to inspect, modify, or extend the formalism.
 >> The **Use module** provides high-level, user-facing interfaces for standard simulation workflows, including coordinate handling, validation, and convenience wrappers.
