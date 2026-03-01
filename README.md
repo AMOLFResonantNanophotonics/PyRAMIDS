@@ -160,7 +160,7 @@ The **Internal\_Consistency** subdirectory cross-checks independent formulations
 - LDOS-like quantities compared across radiation-pattern integration, ImG-LDOS, and scattered Green-tensor routes
 - Dyadic Green tensor checks against analytical free-space limits, reflected-interface terms, and mirrored-geometry symmetry/sign behavior
 - Optical-theorem consistency in multiple scattering for plane-wave-driven dipole arrays in layered structures
-- Rotational consistency of pseudochiral dipole definitions via Stokes \(S_3\) radiation maps in upper/lower hemispheres
+- Rotational consistency of pseudochiral dipole definitions via Stokes \($S_3$\) radiation maps in upper/lower hemispheres
 ---
 
 ## Authors
