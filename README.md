@@ -40,7 +40,7 @@ The implementation combines a stable S-matrix formalism with a rigorous 6x6 dyad
 - Complex Fresnel coefficients for arbitrary multilayer stacks
 - Reflectance, transmittance, absorptance
 - Layer-resolved absorption and local field distributions
-- Guided-mode and evanescent wave physics at large \( $\text{k}_{\parallel}$ \)
+- Guided-mode and evanescent-wave physics at large $k_{\parallel}$
 
 > Applications:
 > Mirrors, LED stacks, photovoltaic layers, dielectric cavities.
@@ -50,9 +50,9 @@ The implementation combines a stable S-matrix formalism with a rigorous 6x6 dyad
 
 - Angle-resolved far-field emission  
 - s–p polarization basis and Cartesian basis    
-- Radiative LDOS extraction - via angular integration
+- Radiative LDOS extraction via angular integration
 - Back-focal-plane (Fourier plane) imaging simulations  
-- Stokes polarimetry (\($S_0$\)- \($S_3$\))
+- Stokes polarimetry ($S_0$–$S_3$)
 
 > Applications:
 > Emitter calibration, high-NA objective benchmarking, COMSOL/FDTD validation, LED outcoupling analysis.
@@ -62,14 +62,15 @@ The implementation combines a stable S-matrix formalism with a rigorous 6x6 dyad
 
 ---
 ### 3. Local Density of States (LDOS) Framework.
-LDOS is computed from the imaginary part of the dyadic Green function (ImG definition formalism; aka Amos & Barnes): $\[
+LDOS is computed from the imaginary part of the dyadic Green function (ImG definition formalism; Amos \& Barnes):
+$$
 \rho \propto \mathbf{e}_d^T \cdot \mathrm{Im}\,G(\mathbf{r},\mathbf{r}) \cdot \mathbf{e}_d
-\]$
+$$
 
 - Electric and Magnetic LDOS  
 - Magnetoelectric (chiral / bianisotropic) LDOS  (for mixed p-m dipoles)
-- Total LDOS via complex-contour integration over \( $\text{k}_{\parallel}$ \)  
-- \( $\text{k}_{\parallel}$ \)-resolved modal analysis  
+- Total LDOS via complex-contour integration over $k_{\parallel}$  
+- $k_{\parallel}$-resolved modal analysis  
 - LDOS for arbitrary dipole orientations via combination of the canonical components
 
 ### 4. Dyadic Green Function Engine
@@ -94,7 +95,7 @@ LDOS is computed from the imaginary part of the dyadic Green function (ImG defin
 - Coupled-dipole formalism in layered media  
 - Excitation by plane-wave illumination or local dipole sources
 - Dynamic polarizability dressing including radiation damping
-- Extinction and scattering cross-section via work $\( \mathrm{Re}[\mathbf{j}^* \cdot \mathbf{E}] \)$ and angular far-field integration respectively.  
+- Extinction via work $\mathrm{Re}[\mathbf{j}^* \cdot \mathbf{E}]$; scattering cross sections via angular far-field integration  
 - Full electric–electric, magnetic–magnetic, and cross magnetoelectric polarizability blocks (supporting Kerker, Huygens, and split-ring–type dipolar scatterers)
 
 > Applications:
@@ -102,29 +103,30 @@ LDOS is computed from the imaginary part of the dyadic Green function (ImG defin
 > Orders of magnitude faster than full-wave FEM/FDTD for large device finite-footprints.
 
 ---
-## Folders architecture
+## Folder structure
 
 ```
 Library/
     Core/          # S-matrix, Green function, LDOS integrands, radiation kernels
-    Utility/       # Argument checking, coordinate wrappers, visualization, DE optimizer
+    Util/          # Argument checking, coordinate wrappers, visualization, DE optimizer
     Use/           # High-level user interfaces
 
 Benchmarks/
     Literature/    # Reproduction of seminal results from the published nanophotonics literature
     Internal_Consistency/  # Cross-validation tests
 
-Examples/          # Reproducible figures and workflows
+Example/           # Reproducible figures and workflows
 UserSandbox/       # Custom simulation workspace for users
-Manual/            # Code PDF documentation
+Manual.pdf         # PDF documentation
 ```
 
-PyRAMIDS follows a layered folder implementation architecture consisting of **Core module** and **Use module**.
+PyRAMIDS follows a layered folder implementation architecture consisting of **Core**, **Util**, and **Use** modules.
 
->> The **Core module** contains the low-level mathematical implementations (S-matrix, Green functions, LDOS integrands, radiation kernels) and provides direct access for advanced users who wish to inspect, modify, or extend the formalism.
->> The **Use module** provides high-level, user-facing interfaces for standard simulation workflows, including coordinate handling, validation, and convenience wrappers.
->> The **Core module** uses a slab-centric representation, when using the **User module**, users interact with global stack coordinates.
->> In this user convention, $z$ = 0 corresponds to the first interface between the substrate and the stack, with positive $z$ pointing toward the superstrate.
+- The **Core** module contains low-level mathematical implementations (S-matrix, Green functions, LDOS integrands, radiation kernels) and provides direct access for advanced users who wish to inspect, modify, or extend the formalism.
+- The **Util** module contains argument checking, coordinate rewrapping, visualization, and optimization utilities used by high-level interfaces.
+- The **Use** module provides high-level, user-facing interfaces for standard simulation workflows, including coordinate handling, validation, and convenience wrappers.
+- The **Core** module uses a slab-centric representation; in the **Use** layer, users interact with global stack coordinates.
+- In this user convention, $z = 0$ corresponds to the first interface between the substrate and the stack, with positive $z$ pointing toward the superstrate.
 
 ---
 ## Installation
@@ -142,14 +144,14 @@ Validated development environment:
 Install dependencies:
 
 ```bash
-pip install package==version
+pip install numpy==1.26.4 scipy==1.15.1 numba==0.60.0 matplotlib==3.9.2
 ```
 
-Other versions are typically compatible, but only with the above, the package have been formally validated.
+Other versions are typically compatible, but only the versions above have been formally validated.
 
 ---
 ## Benchmarks and Validation
-The **Literature** subdirectory reproduces seminal results from various published nanophotonic literature.
+The **Literature** subdirectory reproduces seminal results from published nanophotonics literature.
 
 The **Internal\_Consistency** subdirectory cross-checks independent formulations of the same physical quantities:
 
@@ -157,7 +159,9 @@ The **Internal\_Consistency** subdirectory cross-checks independent formulations
 - LDOS-like quantities compared across radiation-pattern integration, ImG-LDOS, and scattered Green-tensor routes
 - Dyadic Green tensor checks against analytical free-space limits, reflected-interface terms, and mirrored-geometry symmetry/sign behavior
 - Optical-theorem consistency in multiple scattering for plane-wave-driven dipole arrays in layered structures
-- Rotational consistency of pseudochiral dipole definitions via Stokes \($S_3$\) radiation maps in upper/lower hemispheres
+- Rotational consistency of pseudochiral dipole definitions via Stokes $S_3$ radiation maps in upper/lower hemispheres
+
+These checks ensure physical consistency and numerical robustness across the framework.
 ---
 
 ## Authors
