@@ -65,8 +65,6 @@ $\[
 \rho \propto \mathbf{e}_d^T \cdot \mathrm{Im}\,G(\mathbf{r},\mathbf{r}) \cdot \mathbf{e}_d
 \]$
 
-Implemented features (aka Amos & Barnes):
-
 - Electric LDOS  
 - Magnetic LDOS  
 - Magnetoelectric (chiral / bianisotropic) LDOS  (for mixed p-m dipoles)
@@ -88,21 +86,21 @@ Implemented features (aka Amos & Barnes):
 - Source and detector are required to lie **in the same layer** for this Green implementation (enforced by input checks).
 
 > Applications:
-> Drexhage experiments, Purcell engineering, materials quantum efficiency extraction, LEDs and photovoltaics.
+> Drexhage experiments, Purcell engineering, extraction of emitter quantum efficiency from LDOS fits, LEDs and photovoltaics.
 
 ---
 ### 5. Multiple Scattering of Dipolar Particles
 
 - Coupled-dipole formalism in layered media  
-- Radiation damping corrections (dynamic polarizability dressing)  
+- Dynamic polarizability dressing including radiation damping
 - Extinction via work $\( \mathrm{Re}[\mathbf{j}^* \cdot \mathbf{E}] \)$  
-- Scattering cross sections via far-field integration  
+- Scattering cross sections via angular far-field integration  
 - Optical theorem validation  
-- Electric, magnetic, and magnetoelectric polarizabilities  
+- Full electric–electric, magnetic–magnetic, and cross magnetoelectric polarizability blocks (supporting Kerker, Huygens, and split-ring–type dipolar scatterers)
 
 > Applications:
-> Metasurface design, layered nanoantenna arrays, fast co-optimization with multilayers.
-> (Orders of magnitude faster than full-wave FEM/FDTD in large footprints).
+> Metasurface design, layered nanoantenna arrays, and inverse (co-)optimization of multilayer stacks with embedded scatterers.
+> Orders of magnitude faster than full-wave FEM/FDTD for large device finite-footprints.
 
 ---
 ## Folders architecture
@@ -114,15 +112,15 @@ Library/
     Use/           # High-level user interfaces
 
 Benchmarks/
-    Literature/            # Reproduction of seminal LDOS and radiation papers
+    Literature/    # Reproduction of seminal results from the published nanophotonics literature
     Internal_Consistency/  # Cross-validation tests
 
 Examples/          # Reproducible figures and workflows
-UserSandbox/       # Custom simulation workspace
+UserSandbox/       # Custom simulation workspace for users
 Manual/            # Code PDF documentation
 ```
 
-Internally, the code uses a slab-centric representation, while users interact with global stack coordinates.
+Internally, the code uses a slab-centric representation, while users interact with global stack coordinates. In the user convention, z = 0 corresponds to the first interface between the substrate and the stack, with positive z pointing toward the superstrate.
 
 ---
 ## Installation
@@ -135,7 +133,7 @@ Validated development environment:
 - NumPy 1.26.4  
 - SciPy 1.15.1  
 - Numba 0.60.0  
-- Matplotlib  
+- Matplotlib 3.9.2
 
 Install dependencies:
 
@@ -143,7 +141,7 @@ Install dependencies:
 pip install package==version
 ```
 
-Other versions are typically compatible, but only the above have been formally validated.
+Other versions are typically compatible, but only with the above, the package have been formally validated.
 
 ---
 ## Benchmarks and Validation
