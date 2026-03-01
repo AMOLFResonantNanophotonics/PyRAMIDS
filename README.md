@@ -85,9 +85,9 @@ LDOS is computed from the imaginary part of the dyadic Green function (ImG defin
 > Applications:
 > Drexhage experiments, Purcell engineering, extraction of emitter quantum efficiency from LDOS fits, LEDs and photovoltaics.
 
-**Current scope / assumptions:**
+**Note:**
 - If a query point falls in a layer with refractive index not real-positive, the wrapper returns 0 and issues a warning (to avoid unphysical outputs).
-- Source and detector must lie in the same layer for this Green implementation.
+- Source and detector must lie in the same layer for this Green implementation (current scope).
 
 ---
 ### 5. Multiple Scattering of Dipolar Particles
