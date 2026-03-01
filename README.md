@@ -52,7 +52,7 @@ The implementation combines a stable S-matrix formalism with a rigorous 6x6 dyad
 - s–p polarization basis and Cartesian basis    
 - Radiative LDOS extraction - via angular integration
 - Back-focal-plane (Fourier plane) imaging simulations  
-- Stokes polarimetry (S0–S3)
+- Stokes polarimetry (\($S_0$\)- \($S_3$\))
 
 > Applications:
 > Emitter calibration, high-NA objective benchmarking, COMSOL/FDTD validation, LED outcoupling analysis.
@@ -66,8 +66,7 @@ LDOS is computed from the imaginary part of the dyadic Green function (ImG defin
 \rho \propto \mathbf{e}_d^T \cdot \mathrm{Im}\,G(\mathbf{r},\mathbf{r}) \cdot \mathbf{e}_d
 \]$
 
-- Electric LDOS  
-- Magnetic LDOS  
+- Electric and Magnetic LDOS  
 - Magnetoelectric (chiral / bianisotropic) LDOS  (for mixed p-m dipoles)
 - Total LDOS via complex-contour integration over \( $\text{k}_{\parallel}$ \)  
 - \( $\text{k}_{\parallel}$ \)-resolved modal analysis  
@@ -95,9 +94,7 @@ LDOS is computed from the imaginary part of the dyadic Green function (ImG defin
 - Coupled-dipole formalism in layered media  
 - Excitation by plane-wave illumination or local dipole sources
 - Dynamic polarizability dressing including radiation damping
-- Extinction via work $\( \mathrm{Re}[\mathbf{j}^* \cdot \mathbf{E}] \)$  
-- Scattering cross sections via angular far-field integration  
-- Optical theorem validation  
+- Extinction via work $\( \mathrm{Re}[\mathbf{j}^* \cdot \mathbf{E}] \)$, Scattering cross sections via angular far-field integration  
 - Full electric–electric, magnetic–magnetic, and cross magnetoelectric polarizability blocks (supporting Kerker, Huygens, and split-ring–type dipolar scatterers)
 
 > Applications:
