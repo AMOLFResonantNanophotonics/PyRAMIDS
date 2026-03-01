@@ -44,7 +44,7 @@ The implementation follows the S-matrix formalism combined with a rigorous dyadi
 - Reflectance, transmittance, absorptance
 - Layer-resolved absorption and energy balance
 - Local field distributions inside stacks
-- Guided-mode and evanescent wave physics at large $\($ k$_{\parallel}$ $\)$
+- Guided-mode and evanescent wave physics at large \($\text{k}_{\parallel}$ \)
 
 ---
 
@@ -62,8 +62,8 @@ Implemented features:
 - Magnetic LDOS  
 - Magnetoelectric (chiral / bianisotropic) LDOS  
 - Total and radiative LDOS separation  
-- Complex-contour integration over $\($ k$_{\parallel}$ $\)$  
-- $\($ k$_{\parallel}$ $\)$-resolved modal analysis  
+- Complex-contour integration over \($\text{k}_{\parallel}$ \)  
+- \($\text{k}_{\parallel}$ \)-resolved modal analysis  
 - Guided-mode and surface-polariton contributions  
 
 This enables direct insight into Purcell enhancement, guided-mode coupling, and non-radiative channels.
