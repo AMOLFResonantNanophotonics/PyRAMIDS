@@ -345,8 +345,8 @@ S2_down=S2_down_px+S2_down_py+S2_down_pz
 S3_down=S3_down_px+S3_down_py+S3_down_pz
 
 #%%
-vector.BFPplotpassportS(theta_u,phi_u, S0_up,  S1_up,  S2_up,  S3_up,   nstack[-1],'fluorescence isotropic')
-vector.BFPplotpassportS(theta_d,-phi_d,S0_down,S1_down,S2_down,S3_down, nstack[0], 'fluorescence isotropic') 
+vector.BFPplotpassportStokes(theta_u,phi_u, S0_up,  S1_up,  S2_up,  S3_up,   nstack[-1],'fluorescence isotropic')
+vector.BFPplotpassportStokes(theta_d,-phi_d,S0_down,S1_down,S2_down,S3_down, nstack[0], 'fluorescence isotropic') 
 
 
 print('The lower and upper hemispheres exhibit exactly rotated due to the perspective change when viewed from the origin')

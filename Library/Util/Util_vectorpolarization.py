@@ -226,68 +226,68 @@ def BFPplotpassport(theta,phi,Es,Ep,nrefr,title=' ',basis='cartesian', plot = Tr
 
 
 
-# def BFPplotpassportS(theta,phi,S0,S1,S2,S3,nrefr,title=' ') :
-#     check.checkBFPinput(theta,phi,S0,S1)
-#     khat,shat,phat=cc.spherical2cartesian(theta,phi)
-#     kx = khat[0]*nrefr 
-#     ky = khat[1]*nrefr
+def BFPplotpassportStokes(theta,phi,S0,S1,S2,S3,nrefr,title=' ') :
+    check.checkBFPinput(theta,phi,S0,S1)
+    khat,shat,phat=cc.spherical2cartesian(theta,phi)
+    kx = khat[0]*nrefr 
+    ky = khat[1]*nrefr
     
     
     
-#     fig,ax=plt.subplots(2,2,figsize=(15,12))
-#     s=S0.max()
-#     pcm = ax[0][0].pcolormesh(kx,ky,S0,vmin=0,vmax=s,cmap='inferno', shading='gouraud')
-#     ax[0][0].set_title('S0',fontsize = 18)
-#     ax[0][0].set_aspect('equal')
-#     ax[0][0].set_xlim([-nrefr,nrefr])
-#     ax[0][0].set_ylim([-nrefr,nrefr])
-#     ax[0][0].set_xlabel('k$_{x}$/k$_{0}$',fontsize = 18)
-#     ax[0][0].set_ylabel('k$_{y}$/k$_{0}$',fontsize = 18)
-#     cbar = fig.colorbar(pcm, ax=ax[0][0], shrink=0.9)
-#     cbar.ax.tick_params(labelsize=16)
+    fig,ax=plt.subplots(2,2,figsize=(15,12))
+    s=S0.max()
+    pcm = ax[0][0].pcolormesh(kx,ky,S0,vmin=0,vmax=s,cmap='inferno', shading='gouraud')
+    ax[0][0].set_title('S0',fontsize = 18)
+    ax[0][0].set_aspect('equal')
+    ax[0][0].set_xlim([-nrefr,nrefr])
+    ax[0][0].set_ylim([-nrefr,nrefr])
+    ax[0][0].set_xlabel('k$_{x}$/k$_{0}$',fontsize = 18)
+    ax[0][0].set_ylabel('k$_{y}$/k$_{0}$',fontsize = 18)
+    cbar = fig.colorbar(pcm, ax=ax[0][0], shrink=0.9)
+    cbar.ax.tick_params(labelsize=16)
     
-#     s = np.max(S1/S0)
-#     pcm = ax[0][1].pcolormesh(kx,ky,S1/S0,vmin=-s,vmax=s,cmap='bwr', shading='gouraud')
-#     ax[0][1].set_title('S1/S0',fontsize = 18) 
-#     ax[0][1].set_aspect('equal')
-#     ax[0][1].set_xlim([-nrefr,nrefr])
-#     ax[0][1].set_ylim([-nrefr,nrefr])
-#     cbar = fig.colorbar(pcm, ax=ax[0][1], shrink=0.9)
-#     cbar.ax.tick_params(labelsize=16)
+    s = np.max(S1/S0)
+    pcm = ax[0][1].pcolormesh(kx,ky,S1/S0,vmin=-s,vmax=s,cmap='bwr', shading='gouraud')
+    ax[0][1].set_title('S1/S0',fontsize = 18) 
+    ax[0][1].set_aspect('equal')
+    ax[0][1].set_xlim([-nrefr,nrefr])
+    ax[0][1].set_ylim([-nrefr,nrefr])
+    cbar = fig.colorbar(pcm, ax=ax[0][1], shrink=0.9)
+    cbar.ax.tick_params(labelsize=16)
 
-#     s = np.max(S2/S0)
-#     pcm = ax[1][0].pcolormesh(kx,ky,S2/S0,vmin=-s,vmax=s,cmap='bwr', shading='gouraud')
-#     ax[1][0].set_title('S2/S0',fontsize = 18) 
-#     ax[1][0].set_aspect('equal')
-#     ax[1][0].set_xlim([-nrefr,nrefr])
-#     ax[1][0].set_ylim([-nrefr,nrefr])
-#     cbar = fig.colorbar(pcm, ax=ax[1][0], shrink=0.9)
-#     cbar.ax.tick_params(labelsize=16)
+    s = np.max(S2/S0)
+    pcm = ax[1][0].pcolormesh(kx,ky,S2/S0,vmin=-s,vmax=s,cmap='bwr', shading='gouraud')
+    ax[1][0].set_title('S2/S0',fontsize = 18) 
+    ax[1][0].set_aspect('equal')
+    ax[1][0].set_xlim([-nrefr,nrefr])
+    ax[1][0].set_ylim([-nrefr,nrefr])
+    cbar = fig.colorbar(pcm, ax=ax[1][0], shrink=0.9)
+    cbar.ax.tick_params(labelsize=16)
     
-#     s = np.max(S3/S0)
-#     pcm = ax[1][1].pcolormesh(kx,ky,S3,vmin=-s,vmax=s,cmap='bwr', shading='gouraud')
-#     ax[1][1].set_title('S3/S0',fontsize = 18) 
-#     ax[1][1].set_aspect('equal')
-#     ax[1][1].set_xlim([-nrefr,nrefr])
-#     ax[1][1].set_ylim([-nrefr,nrefr])
-#     cbar = fig.colorbar(pcm, ax=ax[1][1], shrink=0.9)
-#     cbar.ax.tick_params(labelsize=16)
+    s = np.max(S3/S0)
+    pcm = ax[1][1].pcolormesh(kx,ky,S3,vmin=-s,vmax=s,cmap='bwr', shading='gouraud')
+    ax[1][1].set_title('S3/S0',fontsize = 18) 
+    ax[1][1].set_aspect('equal')
+    ax[1][1].set_xlim([-nrefr,nrefr])
+    ax[1][1].set_ylim([-nrefr,nrefr])
+    cbar = fig.colorbar(pcm, ax=ax[1][1], shrink=0.9)
+    cbar.ax.tick_params(labelsize=16)
 
-#     # ax[0][1].contourf(kx,ky,epsilon,vmin=-0.5,vmax=0.5,cmap='coolwarm',levels=50)
-#     # ax[0][1].set_title('ellipticity')
-#     # ax[0][1].set_aspect('equal')
-#     # ax[0][1].set_xlim([-nrefr,nrefr])
-#     # ax[0][1].set_ylim([-nrefr,nrefr])
+    # ax[0][1].contourf(kx,ky,epsilon,vmin=-0.5,vmax=0.5,cmap='coolwarm',levels=50)
+    # ax[0][1].set_title('ellipticity')
+    # ax[0][1].set_aspect('equal')
+    # ax[0][1].set_xlim([-nrefr,nrefr])
+    # ax[0][1].set_ylim([-nrefr,nrefr])
 
-#     # ax[0][2].contourf(kx,ky,alpha,vmin=-np.pi/2,vmax=np.pi/2,cmap='hsv',levels=50)
-#     # ax[0][2].set_title('ellipse orientation')
-#     # ax[0][2].set_aspect('equal')
-#     # ax[0][2].set_xlim([-nrefr,nrefr])
-#     # ax[0][2].set_ylim([-nrefr,nrefr])
+    # ax[0][2].contourf(kx,ky,alpha,vmin=-np.pi/2,vmax=np.pi/2,cmap='hsv',levels=50)
+    # ax[0][2].set_title('ellipse orientation')
+    # ax[0][2].set_aspect('equal')
+    # ax[0][2].set_xlim([-nrefr,nrefr])
+    # ax[0][2].set_ylim([-nrefr,nrefr])
     
-#     fig.suptitle(title,fontsize='large')
+    fig.suptitle(title,fontsize='large')
 
-#     plt.show()
+    plt.show()
  
-#     return
+    return
 
