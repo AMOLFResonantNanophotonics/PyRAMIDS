@@ -26,9 +26,8 @@ The framework addresses the following fundamental problem:
 > - What is the total emitted or scattered power?  
 > - How is this power distributed across guided and radiative channels?  
 > - What is the angular and polarimetric far-field signature?  
-> - How do multiple dipolar scatterers interact self-consistently within the stack?
 
-The implementation combines a stable S-matrix formalism with a rigorous 6×6 dyadic Green-function framework, as detailed in the accompanying manuscript and mathematical Supplement.
+The implementation combines a stable S-matrix formalism with a rigorous 6x6 dyadic Green-function framework, as detailed in the accompanying main manuscript and detailed mathematical Supplement.
 
 ---
 
@@ -105,7 +104,7 @@ Implemented features (aka Amos & Barnes):
 > (Orders of magnitude faster than full-wave FEM/FDTD in large footprints).
 
 ---
-## Architecture
+## Folders architecture
 
 ```
 Library/
