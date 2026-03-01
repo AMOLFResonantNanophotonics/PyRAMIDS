@@ -1,10 +1,9 @@
 # PyRAMIDS
 
 **A Python package for Radiation, Magnetoelectric Interactions, and Dipoles in Stratified Layers**
----
 
-## Intended Use
 
+### Intended Use
 PyRAMIDS is a simulation framework for nanophotonics and electromagnetic modeling in planar multilayer structures. It can serve both as a teaching tool and as a research platform.
 
 It is designed for:
@@ -18,7 +17,6 @@ It is designed for:
 - Inverse-design and optimization studies  
 
 ---
-
 ## Scientific Scope
 
 PyRAMIDS implements a Green-function based angular spectrum formulation for electromagnetic sources and dipole scatterers in arbitrary 1D multilayer stacks.
@@ -31,10 +29,12 @@ The framework addresses the following fundamental problem:
 > - How do multiple dipolar scatterers interact self-consistently within the stack?
 
 The implementation combines a stable S-matrix formalism with a rigorous 6×6 dyadic Green-function framework, as detailed in the accompanying manuscript and mathematical Supplement.
+
 ---
 
 ## Core Engines
 
+---
 ### 1. S-Matrix Solver – Plane-wave response.
 
 - Stable Redheffer star-product implementation
@@ -48,7 +48,6 @@ The implementation combines a stable S-matrix formalism with a rigorous 6×6 dya
 > Mirrors, LED stacks, photovoltaic layers, dielectric cavities.
 
 ---
-
 ### 2. Radiation Pattern - angular information.
 
 - Angle-resolved far-field emission  
@@ -63,7 +62,6 @@ The implementation combines a stable S-matrix formalism with a rigorous 6×6 dya
 
 
 ---
-
 ### 3. Local Density of States (LDOS) Framework.
 
 LDOS is computed via the imaginary part of the dyadic Green function:
@@ -93,10 +91,6 @@ Implemented features (aka Amos & Barnes):
 > Drexhage experiments, Purcell engineering, materials quantum efficiency extraction, LEDs and photovoltaics.
 
 ---
-
-
----
-
 ### 5. Multiple Scattering of Dipolar Particles
 
 - Coupled-dipole formalism in layered media  
@@ -111,7 +105,6 @@ Implemented features (aka Amos & Barnes):
 > (Orders of magnitude faster than full-wave FEM/FDTD in large footprints).
 
 ---
-
 ## Architecture
 
 ```
@@ -126,13 +119,12 @@ Benchmarks/
 
 Examples/          # Reproducible figures and workflows
 UserSandbox/       # Custom simulation workspace
-Manual/            # Folder structure PDF documentation
+Manual/            # Code PDF documentation
 ```
 
 Internally, the code uses a slab-centric representation, while users interact with global stack coordinates.
 
 ---
-
 ## Installation
 
 PyRAMIDS is implemented in Python.
@@ -154,7 +146,6 @@ pip install package==version
 Other versions are typically compatible, but only the above have been formally validated.
 
 ---
-
 ## Benchmarks and Validation
 
 The repository includes:
@@ -169,7 +160,6 @@ These tests ensure physical consistency and numerical robustness.
 
 
 ---
-
 ## Authors
 
 **Debapriya Pal**  
@@ -183,13 +173,12 @@ Amsterdam 1098 XG, The Netherlands
 Contact: f.koenderink@amolf.nl  
 
 ---
-
 ## Citation
 
 If you use PyRAMIDS in your research, please cite:
 
 Pal, D. & Koenderink, A. F.  
 *PyRAMIDS — A Python package for Radiation, Magnetoelectric Interactions, and Dipoles in Stratified Layers*
----
 
+---
 ## License
