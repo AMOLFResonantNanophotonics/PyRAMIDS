@@ -79,9 +79,12 @@ LDOS is computed from the imaginary part of the dyadic Green function (ImG defin
 - Free-space dyadic contribution is evaluated explicitly (`Core_Greenslab.FreeDyadG`)
 - Explicit electric/magnetic cross-coupling blocks
 
-**Current scope / assumptions:**
+<sub>
+Current scope / assumptions:
+
 - If a query point falls in a layer with refractive index not real-positive, the wrapper returns 0 and issues a warning (to avoid unphysical outputs).
-- Source and detector are required to lie **in the same layer** for this Green implementation (enforced by input checks).
+- Source and detector are required to lie in the same layer for this Green implementation (enforced by input checks).
+</sub>
 
 > Applications:
 > Drexhage experiments, Purcell engineering, extraction of emitter quantum efficiency from LDOS fits, LEDs and photovoltaics.
