@@ -178,7 +178,7 @@ These tests ensure physical consistency and numerical robustness.
 Department of Physics of Information in Matter  
 Center for Nanophotonics  
 NWO-I Institute AMOLF  
-Amsterdam 1098 XK, The Netherlands  
+Amsterdam 1098 XG, The Netherlands  
 
 Contact: f.koenderink@amolf.nl  
 
