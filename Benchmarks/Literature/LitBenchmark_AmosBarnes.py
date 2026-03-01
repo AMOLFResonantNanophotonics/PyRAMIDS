@@ -15,6 +15,14 @@ if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
 
+def savefig(folderpath, filename):
+    if not os.path.exists(folderpath):
+        os.makedirs(folderpath)
+
+    plt.savefig(os.path.join(folderpath, filename), bbox_inches='tight')
+    
+    
+folder = r"pdfimages/"
 #%%
 
 from Library.Use import Use_LDOS as ImGLDOS
@@ -54,10 +62,12 @@ plt.plot(1000*dspacer,inverserate,'-')
 
 plt.xlabel("Distance (in nm)")
 plt.ylabel("1/(LDOS x QE + (1-QE))")
-plt.title("AMOS and Barnes PRB'97 - 200nm mirror")
+plt.title("AMOS and Barnes PRB'97 - 200nm mirror/Fig.2 ")
 plt.legend(['Assuming 70% QE. Note: for [ms] you need Eu3+ lifetime'])
 plt.xlim([0,1000*np.max(dspacer)])
 plt.ylim([0,1.2])
+file = [folder,'LitBenchmark_AmosBarnesPRB1997_Fig2'+' .pdf']
+savefig(file[0], file[1])
 plt.show()
 
 ################## Figure 3
@@ -92,10 +102,12 @@ plt.plot(1000*dspacer,inverserate,'-')
 
 plt.xlabel("Distance (in nm)")
 plt.ylabel("1/(LDOS x QE + (1-QE))")
-plt.title("AMOS and Barnes PRB'97 - 14 nm mirror/Fig 3")
+plt.title("AMOS & Barnes: PRB 55 7249 1997 - 14 nm mirror/Fig 3")
 plt.legend(['Assuming 70% QE. Note: for [ms] you need Eu3+ lifetime'])
 plt.xlim([0,1000*np.max(dspacer)])
 plt.ylim([0,1.2])
+file = [folder,'LitBenchmark_AmosBarnesPRB1997_Fig3'+' .pdf']
+savefig(file[0], file[1])
 plt.show()
 
 
@@ -130,9 +142,11 @@ for p in range(numgeom):
 plt.plot(1000*dspacer,np.transpose(inverserate))
 plt.xlabel("Distance (in nm)")
 plt.ylabel("1/(LDOS x QE + (1-QE))")
-plt.title("AMOS and Barnes PRB'97  Fig 4. Assuming 70% QE")
+plt.title("AMOS & Barnes: PRB 55 7249 1997. Assuming 70% QE/Fig 4")
 plt.legend(['200 nm Ag','66.7nm','46.1 nm','38.4 nm','26.7nm','13.3 nm'])
-
+file = [folder,'LitBenchmark_AmosBarnesPRB1997_Fig4'+' .pdf']
+savefig(file[0], file[1])
+plt.show()
 
 ################## Figure 5
 
@@ -164,5 +178,7 @@ for i in range(len(dspacer)):
     ax[i].set_ylabel('Decay rate contrib.')
     ax[i].legend(['Distance (nm):'+str(1000*dspacer[i])])
     
-ax[0].set_title('PRB 55, 7249 (1997) Fig 5)')
+ax[0].set_title('AMOS & Barnes: PRB 55 7249 1997/Fig 5')
+file = [folder,'LitBenchmark_AmosBarnesPRB1997_Fig5'+' .pdf']
+savefig(file[0], file[1])
 plt.show()

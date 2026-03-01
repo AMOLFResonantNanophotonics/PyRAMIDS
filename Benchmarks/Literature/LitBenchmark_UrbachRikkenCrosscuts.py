@@ -15,6 +15,14 @@ import sys
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
+    
+def savefig(folderpath, filename):
+    if not os.path.exists(folderpath):
+        os.makedirs(folderpath)
+
+    plt.savefig(os.path.join(folderpath, filename), bbox_inches='tight')
+    
+folder = r"pdfimages/"
 #%%
 
 
@@ -32,10 +40,11 @@ def BaseUrbachplotter(lam,d,n1,n3,nslab,zlist,plotz,xlab,yrange,titleaddition):
     #Urbach & Rikken for their plots specify wavelength,  d, the n1 and n3 of the halfspaces, and scan over several nslab values. Hence nslab is expected to be a list.
     #zlist is the set of z-sample points. Since Urbach skill their plot axis, plotz is requested as plot cooridnate. xlab is put on the x-axis as label. The plot is clipped at yrange. Here a 
     #list is expected to clip the total, radiative, and guided ldos
-    k0=2.*np.pi/lam
-    dstack=np.array([d]) # change here for Fig 1,2 d = 0.1 or Fig 3,4 d = 1
     
-    fig1,ax=plt.subplots(3,2,figsize=(10,15)) 
+    k0=2.*np.pi/lam
+    dstack=np.array([d]) # changes for Fig 1,2 d = 0.1 or Fig 3,4 d = 1
+    
+    fig1,ax=plt.subplots(3,2,figsize=(10,15), dpi=300)
     fig1.subplots_adjust(hspace=0.3)
     
     for ns in nslab: 
@@ -104,10 +113,9 @@ def BaseUrbachplotter(lam,d,n1,n3,nslab,zlist,plotz,xlab,yrange,titleaddition):
     ax[2][1].set_ylabel('LDOS/vac')
     ax[2][1].set_ylim([0.0,yrange[2]])
     ax[2][1].legend(['n='+str(n) for n in nslab])
-                
-                
-       
-    return
+   
+    return fig1
+
 plt.show()
 
 #Urbach & Rikken figure 4,5
@@ -118,9 +126,10 @@ zlist=np.linspace(-lam*0.5,lam*0.5,200)+d/2.
 plotz=2.*(zlist-d/2.0)/d
 yrange=[5,1.25,5.5] # y-axi range for plotting total / radiative / guided
  
-BaseUrbachplotter(lam,d,1.0,1.0,nslab,zlist,plotz,'2z/d',yrange, 'PRA 59 3913, Fig 4,5')
+fig = BaseUrbachplotter(lam,d,1.0,1.0,nslab,zlist,plotz,'2z/d',yrange, 'Urbach Rikken PRA 59 3913 (1998), Fig 4,5')
+fig.savefig(folder + 'LitBenchmark_UrbachRikken_PRA1998_Fig4_5.pdf', dpi=300, bbox_inches='tight')
 
-
+#%%
 #Urbach & Rikken figure 6,7
 lam=1.0
 d=1.0
@@ -128,7 +137,8 @@ nslab=[1.5, 2.0, 4.0]
 zlist=np.linspace(-lam*2.0,lam*2.0,200)+d/2.
 plotz=2.*(zlist-d/2.0)/d
  
-BaseUrbachplotter(lam,d,1.0,1.0,nslab,zlist,plotz,'2z/d',yrange, 'PRA 59 3913, Fig 6,7')
+fig = BaseUrbachplotter(lam,d,1.0,1.0,nslab,zlist,plotz,'2z/d',yrange, 'Urbach Rikken PRA 59 3913 (1998), Fig 6,7')
+fig.savefig(folder + 'LitBenchmark_UrbachRikken_PRA1998_Fig6_7.pdf', dpi=300, bbox_inches='tight')
 
 
 #Urbach & Rikken figure 8
@@ -138,7 +148,8 @@ nslab=[1.0, 1.5, 1.8]
 zlist=np.linspace(-lam*0.5,lam*0.5,200)+d/2.
 plotz=2.*(zlist-d/2.0)/d
 yrange=[6.0,6.0,6.0] 
-BaseUrbachplotter(lam,d,2.0,2.0,nslab,zlist,plotz,'2z/d',yrange, 'PRA 59 3913, Fig 8')
+fig = BaseUrbachplotter(lam,d,2.0,2.0,nslab,zlist,plotz,'2z/d',yrange, 'Urbach Rikken PRA 59 3913 (1998), Fig 8')
+fig.savefig(folder + 'LitBenchmark_UrbachRikken_PRA1998_Fig8.pdf', dpi=300, bbox_inches='tight')
 
 
 #Urbach & Rikken figure 9
@@ -148,19 +159,20 @@ nslab=[1.0, 1.5, 1.8]
 zlist=np.linspace(-lam*2.0,lam*2.0,200)+d/2.
 plotz=2.*(zlist-d/2.0)/d
 yrange=[6.0,6.0,6.0] 
-BaseUrbachplotter(lam,d,2.0,2.0,nslab,zlist,plotz,'2z/d',yrange, 'PRA 59 3913, Fig 9')
+fig = BaseUrbachplotter(lam,d,2.0,2.0,nslab,zlist,plotz,'2z/d',yrange, 'Urbach Rikken PRA 59 3913 (1998), Fig 9')
+fig.savefig(folder + 'LitBenchmark_UrbachRikken_PRA1998_Fig9.pdf', dpi=300, bbox_inches='tight')
 
 
 
 
-#Urbach & Rikken figure 14a
+#Urbach & Rikken figure 14
 lam=0.611  #wvlen in micron
 dlist=[0.02,0.15,0.5] #thicknesses of the thin layer to loop over
 n1=1.465 #substrate
 n2=1.585 #slab
 n3=1.0   #superstrate
 
-fig,ax=plt.subplots(3,1,figsize=(5,15))
+fig,ax=plt.subplots(3,1,figsize=(5,15), dpi=300)
 
 
 for m in range(len(dlist)):
@@ -176,6 +188,10 @@ for m in range(len(dlist)):
     ax[m].set_ylabel('Isotropic LDOS')
     ax[m].legend(['d='+str(1000*d)+' nm, at lambda='+str(lam*1000)+' nm'])
     
+fig.suptitle('Urbach Rikken PRA 59 3913 (1998), Fig 14')
+plt.tight_layout()
+fig.savefig(folder + 'LitBenchmark_UrbachRikken_PRA_1998_Fig14.pdf', dpi=300, bbox_inches='tight')
+
 plt.show()
 
 
@@ -186,7 +202,7 @@ n1list=[1.385,1.585,3.920] #substrate
 n2=1.585 #slab
 n3=1.0   #superstrate
 yrange=[2.1, 2.1, 5.1]
-fig,ax=plt.subplots(3,1,figsize=(5,15))
+fig,ax=plt.subplots(3,1,figsize=(5,15), dpi=300)
 
 
 for m in range(len(n1list)):
@@ -202,4 +218,9 @@ for m in range(len(n1list)):
     ax[m].set_xlabel('z/d')
     ax[m].set_ylabel('Isotropic LDOS')
     ax[m].legend(['n2='+str(n1)+', at n1='+str(n2)+' and n3='+str(n3)])
+    
+fig.suptitle('Urbach Rikken PRA 59 3913 (1998), Fig 16')
+plt.tight_layout()
+fig.savefig(folder + 'LitBenchmark_UrbachRikken_PRA_1998_Fig16.pdf', dpi=300, bbox_inches='tight')
+
 plt.show()

@@ -74,7 +74,7 @@ alphalist=np.zeros([Ndip,6,6],dtype=complex)
 for ii in range(Ndip):
     alphalist[ii,:,:]=alpha
 
-invalpha=ms.invalphadynamicfromstatic(alphalist, rdip,diplayer, k0, nstack, dstack)
+invalpha=ms.invalphadynamicfromstatic(alphalist, rdip, k0, nstack, dstack)
 talpha=time.time()-t0
 
 t0=time.time()
@@ -88,7 +88,7 @@ t0=time.time()
 pnm=ms.Solvedipolemoments(M, driving)
 tsolve=time.time()-t0
 
-work=ms.Work(pnm, diplayer, driving, k0,nstack)  
+work=ms.Work(pnm,rdip,driving, k0,nstack,dstack)  
 
 if drive =='planewave':
     extinction=work/intensity
@@ -103,7 +103,7 @@ thelist=np.linspace(+0.001,(np.pi/2)-0.01,Nthe)
 
 
 t0=time.time()
-Pup, Pdown=ms.TotalfarfieldpowerManydipoles(pnm, rdip, diplayer,k0, nstack, dstack) 
+Pup, Pdown=ms.TotalfarfieldpowerManydipoles(pnm, rdip, k0, nstack, dstack) 
 tfarf=time.time()-t0
 
 

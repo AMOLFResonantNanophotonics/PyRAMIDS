@@ -3,7 +3,7 @@ Benchmark routine replicating
 K.G. Lee et al. Nature Photonics volume 5, pages 166–169 (2011)
 '''
 
-print('###  Literature Benchmark: Lee et. al. Nature Photonics 5, 166-169 (2011)  ###')
+print('###  Literature Benchmark: Lee et. al. Nature Photonics 5, 166-169 (2011) Fig. 1 ###')
 
 #%%
 import os
@@ -14,6 +14,13 @@ if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
 
+def savefig(folderpath, filename):
+    if not os.path.exists(folderpath):
+        os.makedirs(folderpath)
+
+    plt.savefig(os.path.join(folderpath, filename), bbox_inches='tight')
+        
+folder = r"pdfimages/"
 #%%
 
 from Library.Use import Use_Radiationpattern as Radpat
@@ -21,13 +28,8 @@ from Library.Use import Use_Radiationpattern as Radpat
 import matplotlib.pyplot as plt
 import numpy as np
 
-#-----------------------------------------------
-#-----------------------------------------------
-#
-#Lee, Vahid Sandoghdar et al. Nature Photonics '11 - Figure 1
-#
-#-----------------------------------------------
-#-----------------------------------------------
+
+
 lam=580.0 #wvlength in vacuum
 k0=2.0*np.pi/lam
 
@@ -45,7 +47,7 @@ dstack=[]
 z=5
 
 Pk,E,tf=Radpat.RadiationpatternPandField(k0,z,pu,mu,thelist,0.0*thelist,nstack,dstack)
-f,ax = plt.subplots(3,1,figsize=(5,15),subplot_kw=dict(projection="polar"))
+f,ax = plt.subplots(3,1,figsize=(5,15),subplot_kw=dict(projection="polar"),dpi=300)
 f.subplots_adjust(hspace=0.35)
     
 scaler=(np.cos(thelist)>0)*9+1 #Lee multiplies upper hemisphere by 10
@@ -80,15 +82,20 @@ ax[1].plot(thelist,scaler*Pg,'g')
 ax[1].set_theta_zero_location("N")
 ax[1].set_theta_direction(-1)
 ax[1].set_title("Lee, t=600nm, h=200 nm")
+file = [folder,'LitBenchmark_Lee_etal_NatPhotonics2011_Fig1_polar'+' .pdf']
+savefig(file[0], file[1])
 plt.show()
  
 
-plt.figure(figsize=(8,5))
+#%%
+plt.figure(figsize=(8,5), dpi=300)
 plt.plot(thelist-np.pi,Pk/1.5**2,'k',thelist-np.pi,Pr,'r',thelist-np.pi,Pg,'g')
 plt.xlim([0,np.pi/2.]) 
 plt.xlabel('Angle (lower hemisphere, radians)')
 plt.ylabel('Power/steradian (normalization is in a.u in Lee et al.)')
-plt.title('K.G. Lee et al. Nature Photonics volume 5, pages 166–169 (2011), Fig 1')
+plt.title('K.G. Lee et al. Nature Photonics, 5, 166–169 (2011)/Fig 1')
 # not 100% sure how KG Lee introduced the normalization /1/eps_host. Probably
 # to normalize the total power of the source to unity.
+file = [folder,'LitBenchmark_Lee_etal_NatPhotonics2011_Fig1'+' .pdf']
+savefig(file[0], file[1])
 plt.show()

@@ -14,6 +14,15 @@ if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
 
+def savefig(folderpath, filename):
+    if not os.path.exists(folderpath):
+        os.makedirs(folderpath)
+
+    plt.savefig(os.path.join(folderpath, filename), bbox_inches='tight')
+    
+    
+folder = r"pdfimages/"
+
 #%%
 
 import numpy as np
@@ -60,13 +69,18 @@ for m in range(Nk):
 #%%
 X, Y = np.meshgrid(dSpacer, lam)
 
-fig, ax1 = plt.subplots(1, 1, figsize=(8, 6))
+fig, ax1 = plt.subplots(1, 1, figsize=(9, 6), dpi=300)
 img = ax1.pcolormesh(X, Y/1e3, RT, vmin = 0, vmax= 1, cmap='jet', shading='gouraud')
 cbar = fig.colorbar(img, ax=ax1)
 cbar.ax.tick_params(labelsize=14) 
+cbar.set_label("R", fontsize=14)
 ax1.set_xlabel("Spacer Thickness (nm)", fontsize = 14)
 ax1.set_ylabel(r"Wavelength ($\mu$m)", fontsize = 14)
-ax1.set_title("Reflection for. Spacer Thickness vs Wavelength")
 ax1.tick_params(axis='both', labelsize=14)
 
+ax1.set_title(" Ameling et. al. Nano Lett. 10, 4394-4398, 2010/Fig. 2b\n"
+              "Reflection for. Spacer Thickness vs Wavelength")
+
+file = [folder,'LitBenchmark_Ameling_etal_NanoLett2010_Fig2b'+' .pdf']
+savefig(file[0], file[1])
 plt.show()

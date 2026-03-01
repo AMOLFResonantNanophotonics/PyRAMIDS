@@ -11,6 +11,15 @@ import sys
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
+    
+    
+def savefig(folderpath, filename):
+    if not os.path.exists(folderpath):
+        os.makedirs(folderpath)
+
+    plt.savefig(os.path.join(folderpath, filename), bbox_inches='tight')
+    
+folder = r"pdfimages/"
 #%%
 
 
@@ -56,7 +65,7 @@ for m in range(numd):
         
 
 
-fig,ax=plt.subplots(1,2,figsize=(10,5))
+fig,ax=plt.subplots(1,2,figsize=(10,5), dpi=300)
 ax[0].plot(nlist,ldavav[0,:],'k:',nlist,ldavav[1,:],'k-.', nlist,ldravav[0,:],'k',nlist,ldravav[1,:],'k--')
 ax[0].set_xlabel('n of substrate')
 ax[0].set_ylabel('mean LDOS')
@@ -69,6 +78,11 @@ ax[1].set_xlabel('n of substrate')
 ax[1].set_xlim([1.0,5.0])
 ax[1].set_ylim([0.0,2.1])
 ax[1].legend(['d=lam/4 all modes','d=3lam all modes','d=lam/4; rad. modes','d=3lam; rad modes'])
+
+fig.suptitle('Urbach & Rikken, Phys. Rev. A 57 3913 (1998)/Fig 10')
+
+file = [folder,'LitBenchmark_UbrachRikken_PRA1998_Fig10'+' .pdf']
+savefig(file[0], file[1])
 plt.show()
 
 
@@ -113,11 +127,14 @@ for m in range(numn):
         ldavav[mm,m]=np.mean(ldav)
         ldravav[mm,m]=np.mean(ldrav)
 
-plt.figure(figsize=(6,6))
+plt.figure(figsize=(6,6), dpi=300)
 plt.plot(dZnSelist*1000,ldavav[:,0],'k',dZnSelist*1000,ldavav[:,1],'k:',dZnSelist*1000,ldravav[:,0],'k--',dZnSelist*1000,ldravav[:,1],'k-.')
 plt.xlabel('Thickness (nm) of ZnSe')
 plt.ylabel('Averaged LDOS normaliz to vac')
 plt.ylim([0,2.5])
 plt.legend(['Symmetric total','Asymm total','Symmetric radiative','Asymmetric radiative'])
+plt.title('Urbach & Rikken, Phys. Rev. A 57 3913 (1998)/Fig 12')
 
+file = [folder,'LitBenchmark_UbrachRikken_PRA1998_Fig12'+' .pdf']
+savefig(file[0], file[1])
 plt.show()

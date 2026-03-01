@@ -17,6 +17,13 @@ if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
 
+def savefig(folderpath, filename):
+    if not os.path.exists(folderpath):
+        os.makedirs(folderpath)
+
+    plt.savefig(os.path.join(folderpath, filename), bbox_inches='tight')
+    
+folder = r"pdfimages/"
 #%%
 
 from Library.Use import Use_LDOS as ImGLDOS
@@ -26,7 +33,7 @@ import numpy as np
  
  
 ## Figure 1 Karaveli
-plt.figure()
+plt.figure(dpi=300)
 lam=1.0
 k0=2.*np.pi/lam
 epshost=2.25
@@ -46,12 +53,14 @@ plt.xlabel('d/lambda')
 plt.ylabel('LDOS over that in host')
 plt.legend(['Electric (isotropic)','Magnetic','sum']) 
 plt.xlim([0,0.5])
-plt.title('Li, Karaveli et al. PRL 121, 227403 (2018), Fig 1a')
+plt.title('Li, Karaveli et al. PRL 121, 227403 (2018)/Fig 1a')
+file = [folder,'LitBenchmark_Li_etal_PRL2018_Fig1a'+' .pdf']
+savefig(file[0], file[1])
 plt.show()
 
 
 
-plt.figure()
+plt.figure(dpi=300)
 plt.plot(zlist,1./(ldE_iso/nstack[1]),'r',
          zlist,1./(ldM_iso/nstack[1]),'b',
          zlist,1./((ldE_iso+ldM_iso)/(2.0*nstack[1])),'k')
@@ -64,14 +73,15 @@ plt.ylabel('Apparent lifetime')
 plt.legend(['ED','MD','ED+MD av','ED (QE=0.2)','MD (QE=0.2']) 
 plt.xlim([0.0,0.5])
 plt.ylim([0.6,1.4])
-plt.title('Li, Karaveli et al. PRL 121, 227403 (2018), Fig 1b')
-
+plt.title('Li, Karaveli et al. PRL 121, 227403 (2018)/Fig 1b')
+file = [folder,'LitBenchmark_Li_etal_PRL2018_Fig1b'+' .pdf']
+savefig(file[0], file[1])
 plt.show()
 
 
 
 
-plt.figure()
+plt.figure(dpi=300)
 
 ## attempt to reproduce Figure 3a
 nMgO=1.66 #stated in supplement. Refr index of MgO
@@ -103,5 +113,9 @@ plt.ylim([0.42,1.68])
 plt.xlabel('distance (nm)')
 plt.ylabel('Inverse of LDOS rel. to LDOS in MgO')
 plt.legend(['ED','MD','mean'])
-plt.title('Approximation to Fig. 3 in Li, Karaveli et al. PRL 121, 227403 (2018),')
+plt.title('Approximation to Fig. 3 in Li,'
+          '\n'
+          'Karaveli et al. PRL 121, 227403 (2018)/Fig 3a')
+file = [folder,'LitBenchmark_Li_etal_PRL2018_Fig3a'+' .pdf']
+savefig(file[0], file[1])
 plt.show()

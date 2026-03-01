@@ -14,6 +14,13 @@ if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
 
+def savefig(folderpath, filename):
+    if not os.path.exists(folderpath):
+        os.makedirs(folderpath)
+
+    plt.savefig(os.path.join(folderpath, filename), bbox_inches='tight')
+    
+folder = r"pdfimages/"
 #%%
 
 import numpy as np
@@ -43,7 +50,6 @@ dstack = np.concatenate([
 thetalist = np.linspace(0, 80, 151)
 lam = np.linspace(380, 720, 301)
 
-# Initialize output matrix
 output = np.zeros((len(lam), len(thetalist)))
 
 # transmission values
@@ -58,11 +64,12 @@ fig, ax = plt.subplots(figsize=(9, 6),dpi=300)
 pcm = ax.pcolormesh(thetalist, lam, output, shading='gouraud', vmin=0, vmax=1, cmap='jet')
 
 cbar = fig.colorbar(pcm, ax=ax, label='Tp')
-cbar.ax.tick_params(labelsize=14)
+cbar.ax.tick_params(labelsize=16)
 
 ax.set_xlabel("Incident Angle (°)", fontsize=14)
 ax.set_ylabel("Wavelength (nm)", fontsize=14)
-ax.set_title("Optical Broadband Angular Selectivity (Science 2014, Fig. 4)", fontsize=12)
-
+ax.set_title("Optical Broadband Angular Selectivity, Science 343 2014/Fig. 4)", fontsize=12)
 ax.tick_params(axis='both', labelsize=14)
+file = [folder,'LitBenchmark_Shen_etal_Science2014_Fig4'+' .pdf']
+savefig(file[0], file[1])
 plt.show()

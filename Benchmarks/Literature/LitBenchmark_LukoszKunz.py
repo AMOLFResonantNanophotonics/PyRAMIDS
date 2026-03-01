@@ -17,6 +17,13 @@ if project_root not in sys.path:
 
 print('###  Literature Benchmark: Lukosz & Kunz JOSA 67, 1615-1619 (1977)  ###')
 
+def savefig(folderpath, filename):
+    if not os.path.exists(folderpath):
+        os.makedirs(folderpath)
+
+    plt.savefig(os.path.join(folderpath, filename), bbox_inches='tight')
+    
+folder = r"pdfimages/"
 #%%
 
 from Library.Use import Use_Radiationpattern as Radpat
@@ -39,8 +46,8 @@ plotspec=['k:','k--','k','k-.']
 #electric parallel-dipole only
 
 
-f,ax = plt.subplots(2,1,figsize=(5,10),gridspec_kw={'height_ratios': [3, 1]})
-f,ax2 = plt.subplots(2,1,figsize=(5,10),gridspec_kw={'height_ratios': [1, 1]})
+f1,ax = plt.subplots(2,1,figsize=(5,10),gridspec_kw={'height_ratios': [3, 1]}, dpi=300)
+f2,ax2 = plt.subplots(2,1,figsize=(5,10),gridspec_kw={'height_ratios': [1, 1]}, dpi=300)
 leg=[]
 
 for m in range(len(nlist)):
@@ -71,7 +78,7 @@ for m in range(len(nlist)):
     P2,E,f=Radpat.RadiationpatternPandField(k0,z,pu,mu,thelist,0.0*thelist,nstack,dstack)
     ax2[1].plot(180/np.pi*thelist,P2,plotspec[m])
     
-    leg.append('n='+str(nlist[m]))
+    leg.append(f'n={nlist[m]:.3f}')
     
 ax[0].set_ylim(bottom=0.0)
 ax[0].legend(leg)
@@ -92,11 +99,14 @@ ax2[1].set_xlim([0,180])
 ax2[1].set_xlabel('Theta')
 ax2[0].set_ylabel('Flux/steradian')
 ax2[1].set_ylabel('Flux/steradian')
-ax2[0].set_title('Perp electric, Fig 4 JOSA 67 1615')
-ax2[1].set_title('Perp magnetic, Fig 4 JOSA 67 1615]')
+ax2[0].set_title('Perp electric, Fig 4 Lukosz & Kunz JOSA 67 1615 1979')
+ax2[1].set_title('Perp magnetic, Fig 4 Lukosz & Kunz JOSA 67 1615 1979')
+
+f1.savefig(folder + 'LitBenchmark_Lukosz_etal_JOSA67_1979_Fig2.pdf', dpi=300, bbox_inches='tight')
+f2.savefig(folder + 'LitBenchmark_Lukosz_etal_JOSA67_1979_Fig4.pdf', dpi=300, bbox_inches='tight')
 
 plt.show()
-
+#%%
 '''
 ########################
 Perpendicular electric and magnetic dipoles / radiation patterns
@@ -105,7 +115,7 @@ Fig 3 (different heights)
 ########################
 '''
 
-f,ax = plt.subplots(2,1,figsize=(5,10),gridspec_kw={'height_ratios': [2, 1]})
+f3,ax = plt.subplots(2,1,figsize=(5,10),gridspec_kw={'height_ratios': [2, 1]}, dpi=300)
 leg=[]
 
 zlist=-lam*np.array([1.E-5,1/(4.*np.pi),1.0]) #note the minus sign. source is in air
@@ -139,8 +149,10 @@ ax[1].set_xlim([0,180])
 ax[1].set_xlabel('Theta')
 ax[0].set_ylabel('Flux/steradian')
 ax[1].set_ylabel('Flux/steradian')
-ax[0].set_title('Perp electric, Fig 3 JOSA 67 1615]')
-ax[1].set_title('Perp magnetic, Fig 3 JOSA 67 1615]')
+ax[0].set_title('Perp electric, Fig 3 Lukosz & Kunz JOSA 67 1615 1979]')
+ax[1].set_title('Perp magnetic, Fig 3 Lukosz & Kunz JOSA 67 1615 1979]')
+
+f3.savefig(folder + 'LitBenchmark_Lukosz_etal_JOSA67_1979_Fig3.pdf', dpi=300, bbox_inches='tight')
 plt.show()
 
 
@@ -152,7 +164,7 @@ Fig 5 (polar plots at different heights)
 ########################
 '''
 
-f,ax = plt.subplots(1,2,subplot_kw=dict(projection="polar"),gridspec_kw={'width_ratios': [2.5, 1]})
+f4,ax = plt.subplots(1,2,subplot_kw=dict(projection="polar"),gridspec_kw={'width_ratios': [2.5, 1]}, dpi=300)
 leg=[]
 
 zlist=-lam*np.array([1.E-5,1.0]) #note the minus sign. source is in air
@@ -181,16 +193,16 @@ for m in range(len(zlist)):
     ax[1].plot(np.pi-thelist,P2,plotspec[m])
     
     leg.append('z/lam='+plotname[m])
-ax[0].set_title('Fig 5 JOSA 67 1615 ')
+ax[0].set_title('Fig 5 Lukosz & Kunz JOSA 67 1615 1979')
 ax[0].set_thetamin(0)
 ax[0].set_thetamax(180)
 ax[1].set_thetamin(0)
 ax[1].set_thetamax(180)
 ax[1].legend(leg)
-
+f4.savefig(folder + 'LitBenchmark_Lukosz_etal_JOSA67_1615_Fig5.pdf', dpi=300, bbox_inches='tight')
 plt.show()
 
-
+#%%
 
 '''
 #-----------------------------------------------
@@ -225,7 +237,7 @@ for nsubs in nlist:
     P2,E,f=Radpat.RadiationpatternPandField(k0,z,pu,mu,thelist,np.pi/2.+0.0*thelist,nstack,dstack)
     
  
-    plt.figure()
+    plt.figure(dpi=300)
     
     plt.plot(180/np.pi*thelist,0.5*P1,'k:',
               180/np.pi*thelist,0.5*P2,'k--',
@@ -235,8 +247,14 @@ for nsubs in nlist:
     plt.xlabel('Theta')
     plt.ylabel('Flux/steradian')
     plt.legend(['p','s','s+p'])
-    plt.title('Parallel electric, n='+str(nsubs)+'[JOSA 69 1495]')
+    plt.title('Parallel electric, n='+f"{nsubs:.3f}"+'\n'+' [Lukosz JOSA 69 1615 1979]')
+    
+    if nsubs == 2.0:
+        file = [folder,'LitBenchmark_Lukosz_JOSA69_1979_electric_Fig7'+' .pdf']
+        savefig(file[0], file[1])
+        
     plt.show()
+    
     #magnetic parallel dipole only
     pu=np.array([0.0 ,0.0, 0.0])
     mu=np.array([0.0,1.0,0])
@@ -245,7 +263,7 @@ for nsubs in nlist:
     
     # prefactor 0.5 in all the plots results from definition of averaging in 
     # Lukosz
-    plt.figure()
+    plt.figure(dpi=300)
     plt.plot(180/np.pi*thelist,0.5*P1,'k:',
               180/np.pi*thelist,0.5*P2,'k--',
               180/np.pi*thelist,0.5*(P1+P2),'k')
@@ -254,6 +272,9 @@ for nsubs in nlist:
     plt.xlabel('Theta')
     plt.ylabel('Flux/steradian')
     plt.legend(['p','s','s+p'])
-    plt.title('Parallel magnetic, n='+str(nsubs)+' [JOSA 69 1495]')
+    plt.title('Parallel magnetic, n='+f"{nsubs:.3f}"+ '\n'+' [Lukosz JOSA 69 1615 1979]')
+    if nsubs == 2.0:
+        file = [folder,'LitBenchmark_Lukosz_JOSA69_1979_magnetic_Fig7'+' .pdf']
+        savefig(file[0], file[1])
     plt.show()
 

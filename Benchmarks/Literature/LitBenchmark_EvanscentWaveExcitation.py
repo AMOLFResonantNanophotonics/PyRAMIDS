@@ -9,7 +9,7 @@ Lei Wei et. al, PRL 121 193901 (2018)
 """
 #%%
 
-print('### Literature Benchmark:   Wel et. al. PRL 121 193901, 2018   ###')
+print('### Literature Benchmark:   Lei Wei et. al. Phys. Rev. Lett. 121 193901, 2018 Fig 1b ###')
 #%%
 
 
@@ -20,7 +20,14 @@ project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
+def savefig(folderpath, filename):
+    if not os.path.exists(folderpath):
+        os.makedirs(folderpath)
 
+    plt.savefig(os.path.join(folderpath, filename), bbox_inches='tight')
+    
+    
+folder = r"pdfimages/"
 #%%
 
 from Library.Use import Use_Planewaves as pw
@@ -84,16 +91,15 @@ Poynting_magnitude = np.sqrt(np.abs(Poynting_[0,:]**2) + np.abs(Poynting_[1,:]**
 
 
  
-#%% Figure setup
+#%%
 fig, ax = plt.subplots(figsize=(8, 4), dpi =400)
 
 cmap_background = "viridis"
 pcm = ax.pcolor(NA_illum*x/lam, NA_illum*z/lam,  Poynting_magnitude, vmin = 0, vmax = 1.9, shading='auto', cmap=cmap_background, rasterized = True)
 
 cbar = fig.colorbar(pcm, ax=ax, shrink = 0.9)
-cbar.set_ticks([0, 1.9])  # Set ticks at min and max
+cbar.set_ticks([0, 1.9])
 cbar.ax.tick_params(labelsize=16)
-
 
 subsample = 11
 quiver = ax.quiver((NA_illum*x/lam)[::subsample, ::subsample], (NA_illum*z/lam)[::subsample, ::subsample],
@@ -116,6 +122,11 @@ ax.set_yticks(yticks)
 ax.set_xticklabels([f'{tick:.2f}' for tick in xticks])
 ax.set_yticklabels([f'{tick:.2f}' for tick in yticks])
 
+ax.set_title(r'L. Wei et al. PRL 2018/Fig1b'
+             '\n'
+             r'$\Im\{S\}$')
+file = [folder,'LitBenchmark_LWei_etal_PRL2018_Fig1b'+' .pdf']
+savefig(file[0], file[1])
 plt.show()
 
 

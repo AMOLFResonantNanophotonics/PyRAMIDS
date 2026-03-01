@@ -74,7 +74,7 @@ def Rayleighspherepolarizability(nsph,nslab,V):
     return alpha
 
 
-def invalphadynamicfromstatic(alphalist,rdip,diplayer,k0,nstack,dstack):
+def invalphadynamicfromstatic(alphalist,rdip,k0,nstack,dstack):
     # Dressed polarizability, meaning including radiation damping
     # tested using the following logic
     
@@ -91,6 +91,7 @@ def invalphadynamicfromstatic(alphalist,rdip,diplayer,k0,nstack,dstack):
     # INcidentally, you COULD also just calculate this using only the Green function routine.
     # The purely scattering Green fucntion is not singular, and perfectly happy to evaluate at r=r'
     
+    diplayer, Ndip=dipolelayerchecker(rdip ,nstack,dstack)
     
     rdip=check.checkr(rdip)
     
@@ -177,16 +178,17 @@ def Solvedipolemoments(M,drivingfield):
 
 
 
-def Work(pdipvecs,diplayer,drivingfield,k0,nstack):
+def Work(pdipvecs,rdip,drivingfield,k0,nstack,dstack):
     # work done by driving field on induced dipoles
     # note that this is not yet extinction, for which one need to divide by an intensity
+    diplayer, Ndip=dipolelayerchecker(rdip ,nstack,dstack)
     kslab=nstack[diplayer]*k0
     work= 2.*np.pi*kslab*(np.real(drivingfield)*np.imag(pdipvecs)-np.imag(drivingfield)*np.real(pdipvecs))
     return np.sum(work,0)
 
 
 
-def Differentialradiatedfieldmanydipoles(theta,phi,pdipvecs,rdip,diplayer,k0,nstack,dstack):
+def Differentialradiatedfieldmanydipoles(theta,phi,pdipvecs,rdip,k0,nstack,dstack):
     # differential radiated E-field
     rdip=check.checkr(rdip)
     thelist,philist,shape=check.checkThetaAndPhi(theta, phi)
@@ -204,15 +206,15 @@ def Differentialradiatedfieldmanydipoles(theta,phi,pdipvecs,rdip,diplayer,k0,nst
         EEs=EEs+outE[0]
         EEp=EEp+outE[1] 
 
+    diplayer, Ndip=dipolelayerchecker(rdip ,nstack,dstack)
     pre=(k0*nstack[diplayer])**2
     return np.reshape(pre*EEs,shape),np.reshape(pre*EEp,shape),np.reshape(f[0],shape),np.reshape(f[1],shape) 
  
  
  
-def TotalfarfieldpowerManydipoles(pdipvecs,rdip,diplayer,k0,nstack,dstack):
+def TotalfarfieldpowerManydipoles(pdipvecs,rdip,k0,nstack,dstack):
      #  total upward and downward far field radiation, by integration. Not adaptive
-     rdip=check.checkr(rdip)
-
+     rdip=check.checkr(rdip) 
      # guessing the resolution
      L=np.max(np.array([(np.max(rdip[0,:])-np.min(rdip[0,:])), (np.max(rdip[1,:])-np.min(rdip[1,:]))]))
      nmax=np.max(np.real(np.array([nstack[0],nstack[-1]])))
@@ -221,24 +223,23 @@ def TotalfarfieldpowerManydipoles(pdipvecs,rdip,diplayer,k0,nstack,dstack):
      # defining the sampling points
      philist=np.arange(0,Nf)/Nf*(2.0*np.pi)
      
-     def phiintegratedUP(theta,philist,pdipvecs,rdip,diplayer,k0,nstack,dstack):
-         Esu,Epu,thetau,phiu=Differentialradiatedfieldmanydipoles(theta, philist, pdipvecs,rdip,diplayer,k0,nstack,dstack)
+     def phiintegratedUP(theta,philist,pdipvecs,rdip,k0,nstack,dstack):
+         Esu,Epu,thetau,phiu=Differentialradiatedfieldmanydipoles(theta, philist, pdipvecs,rdip,k0,nstack,dstack)
          jacobian=np.sin(theta)
          Pup=np.sum((np.abs(Esu)**2+np.abs(Epu)**2))*jacobian 
          
          return Pup
 
-     def phiintegratedDOWN(theta,philist,pdipvecs,rdip,diplayer,k0,nstack,dstack):
-         Esu,Epu,thetau,phiu=Differentialradiatedfieldmanydipoles(np.pi-theta, philist, pdipvecs,rdip,diplayer,k0,nstack,dstack)
+     def phiintegratedDOWN(theta,philist,pdipvecs,rdip,k0,nstack,dstack):
+         Esu,Epu,thetau,phiu=Differentialradiatedfieldmanydipoles(np.pi-theta, philist, pdipvecs,rdip,k0,nstack,dstack)
          jacobian=np.sin(theta) 
          Pdown=np.sum((np.abs(Esu)**2+np.abs(Epu)**2))*jacobian 
          return Pdown
      
-     Pu=integrate.quad(lambda x: phiintegratedUP(x,philist,pdipvecs,rdip,diplayer,k0,nstack,dstack),0,np.pi/2)     
-     Pd=integrate.quad(lambda x: phiintegratedDOWN(x,philist,pdipvecs,rdip,diplayer,k0,nstack,dstack),0,np.pi/2)     
+     Pu=integrate.quad(lambda x: phiintegratedUP(x,philist,pdipvecs,rdip,k0,nstack,dstack),0,np.pi/2)     
+     Pd=integrate.quad(lambda x: phiintegratedDOWN(x,philist,pdipvecs,rdip,k0,nstack,dstack),0,np.pi/2)     
      
      pre=np.pi/Nf
      return pre*Pu[0], pre*Pd[0]
-
 
 

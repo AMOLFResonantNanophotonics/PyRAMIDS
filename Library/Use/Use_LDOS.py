@@ -145,3 +145,11 @@ def LDOSintegrandplottrace(k0,kparlist,zlist,nstack,dstack,guidevisible=1):
         print('For layers with refractive index not positive or real, 0.0 entered as value')
     return out
 #    return np.abs(out+np.nextafter(0.,1.))#tiny offset upwards avoids error when plotting on a logscale
+
+
+
+def LDOSintegrandplotdispersion(k0list,kparlist,z,nstack,dstack,guidevisible=1):
+    out=np.zeros([5,np.size(k0list),np.size(kparlist)])
+    for index, k0 in enumerate(k0list):
+        out[:,index,:]=np.squeeze(LDOSintegrandplottrace(k0,kparlist,np.array([z]),nstack,dstack,guidevisible))
+    return out
