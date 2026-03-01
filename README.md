@@ -57,6 +57,9 @@ The implementation combines a stable S-matrix formalism with a rigorous 6x6 dyad
 > Applications:
 > Emitter calibration, high-NA objective benchmarking, COMSOL/FDTD validation, LED outcoupling analysis.
 
+**Note:**
+- The superstrate and substrate must have real (non-absorbing) refractive indices to have energy conservation.
+
 ---
 ### 3. Local Density of States (LDOS) Framework.
 LDOS is computed from the imaginary part of the dyadic Green function (ImG definition formalism; aka Amos & Barnes): $\[
@@ -79,17 +82,18 @@ LDOS is computed from the imaginary part of the dyadic Green function (ImG defin
 - Free-space dyadic contribution is evaluated explicitly (`Core_Greenslab.FreeDyadG`)
 - Explicit electric/magnetic cross-coupling blocks
 
+> Applications:
+> Drexhage experiments, Purcell engineering, extraction of emitter quantum efficiency from LDOS fits, LEDs and photovoltaics.
+
 **Current scope / assumptions:**
 - If a query point falls in a layer with refractive index not real-positive, the wrapper returns 0 and issues a warning (to avoid unphysical outputs).
 - Source and detector must lie in the same layer for this Green implementation.
-
-> Applications:
-> Drexhage experiments, Purcell engineering, extraction of emitter quantum efficiency from LDOS fits, LEDs and photovoltaics.
 
 ---
 ### 5. Multiple Scattering of Dipolar Particles
 
 - Coupled-dipole formalism in layered media  
+- Excitation by plane-wave illumination or local dipole sources
 - Dynamic polarizability dressing including radiation damping
 - Extinction via work $\( \mathrm{Re}[\mathbf{j}^* \cdot \mathbf{E}] \)$  
 - Scattering cross sections via angular far-field integration  
