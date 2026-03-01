@@ -166,9 +166,9 @@ These checks ensure physical consistency and numerical robustness across the fra
 
 **Debapriya Pal, A. Femius Koenderink**  
 
-Department of Physics of Information in Matter  
-Center for Nanophotonics  
-NWO-I Institute AMOLF  
+Department of Physics of Information in Matter,  
+Center for Nanophotonics,  
+NWO-I Institute AMOLF,  
 Amsterdam 1098 XG, The Netherlands  
 
 Contact: f.koenderink@amolf.nl  
@@ -179,7 +179,7 @@ Contact: f.koenderink@amolf.nl
 If you use PyRAMIDS in your research, please cite:
 
 Pal, D. & Koenderink, A. F.  
-*PyRAMIDS — A Python package for Radiation, Magnetoelectric Interactions, and Dipoles in Stratified Layers*
+*PyRAMIDS — A Python package for Radiation, Magnetoelectric Interactions, and Dipoles in Stratified Layers (2026)*
 
 ---
 ## License
