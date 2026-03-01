@@ -176,7 +176,7 @@ Contact: f.koenderink@amolf.nl
 ---
 ## Citation
 
-If you use PyRAMIDS in your research, please cite:
+If you use PyRAMIDS in your research or for any other purpose, please cite and acknowlege:
 
 Pal, D. & Koenderink, A. F.  
 *PyRAMIDS — A Python package for Radiation, Magnetoelectric Interactions, and Dipoles in Stratified Layers (2026)*
