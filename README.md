@@ -166,8 +166,7 @@ These checks ensure physical consistency and numerical robustness across the fra
 
 ## Authors
 
-**Debapriya Pal**  
-**A. Femius Koenderink**  
+**Debapriya Pal, A. Femius Koenderink**  
 
 Department of Physics of Information in Matter  
 Center for Nanophotonics  
