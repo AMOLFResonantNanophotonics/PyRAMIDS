@@ -14,7 +14,7 @@ It is designed for:
 - Fourier microscopy calibration and benchmarking  
 - Multiple scattering of magnetoelectric dipoles  
 - Device design workflows (LEDs, photovoltaics, cavities, multilayer metamaterials)  
-- Inverse-design and optimization studies  
+- Inverse design and (co-)optimization of multilayer stacks and embedded dipolar scatterers  
 
 ---
 ## Scientific Scope
@@ -27,43 +27,39 @@ The framework addresses the following fundamental problem:
 > - How is this power distributed across guided and radiative channels?  
 > - What is the angular and polarimetric far-field signature?   
 
-The implementation combines a stable S-matrix formalism with a rigorous 6x6 dyadic Green-function framework, as detailed in the accompanying main manuscript and detailed mathematical Supplement.
+The implementation combines a stable S-matrix formalism with a rigorous 6x6 dyadic magnetoelectric Green-function framework, as detailed in the accompanying main manuscript and mathematical Supplementary text.
 
 ---
 
 ## Core Engines
 
 ---
-### 1. S-Matrix Solver – Plane-wave response.
+### 1. S-Matrix solver – plane-wave multilayer response.
 
 - Stable Redheffer star-product implementation
-- Complex Fresnel coefficients for arbitrary stacks
+- Complex Fresnel coefficients for arbitrary multilayer stacks
 - Reflectance, transmittance, absorptance
-- Layer-resolved absorption and energy balance
-- Local field distributions inside stacks
+- Layer-resolved absorption and local field distributions
 - Guided-mode and evanescent wave physics at large \( $\text{k}_{\parallel}$ \)
 
 > Applications:
 > Mirrors, LED stacks, photovoltaic layers, dielectric cavities.
 
 ---
-### 2. Radiation Pattern - angular information.
+### 2. Radiation pattern engine – angular and polarimetric response
 
 - Angle-resolved far-field emission  
-- s–p polarization basis and Cartesian basis  
-- Integrated upward and downward radiated power  
-- Radiative LDOS extraction  
+- s–p polarization basis and Cartesian basis    
+- Radiative LDOS extraction - via angular integration
 - Back-focal-plane (Fourier plane) imaging simulations  
 - Stokes polarimetry (S0–S3)
 
 > Applications:
 > Emitter calibration, high-NA objective benchmarking, COMSOL/FDTD validation, LED outcoupling analysis.
 
-
 ---
 ### 3. Local Density of States (LDOS) Framework.
-
-LDOS is computed via the imaginary part of the dyadic Green function:
+LDOS is computed from the imaginary part of the dyadic Green function (ImG definition formalism; aka Amos & Barnes):
 
 $\[
 \rho \propto \mathbf{e}_d^T \cdot \mathrm{Im}\,G(\mathbf{r},\mathbf{r}) \cdot \mathbf{e}_d
@@ -73,18 +69,23 @@ Implemented features (aka Amos & Barnes):
 
 - Electric LDOS  
 - Magnetic LDOS  
-- Magnetoelectric (chiral / bianisotropic) LDOS 
-- Complex-contour integration over \( $\text{k}_{\parallel}$ \)  
-- Total LDOS 
+- Magnetoelectric (chiral / bianisotropic) LDOS  (for mixed p-m dipoles)
+- Total LDOS via complex-contour integration over \( $\text{k}_{\parallel}$ \)  
 - \( $\text{k}_{\parallel}$ \)-resolved modal analysis  
+- LDOS for arbitrary dipole orientations via combination of the canonical components
 
 ### 4. Dyadic Green Function Engine
 
 - Full 6x6 magnetoelectric Green tensor
 - Angular spectrum representation
+- Returns the **full Green tensor** as `G = G_scattered + G_free` (`Greensafe`)
 - Slab-centric internal coordinate formalism
-- Consistent unit system (rationalized units)
+- Free-space dyadic contribution is evaluated explicitly (`Core_Greenslab.FreeDyadG`)
 - Explicit electric/magnetic cross-coupling blocks
+
+**Current scope / assumptions:**
+- If a query point falls in a layer with refractive index not real-positive, the wrapper returns 0 and issues a warning (to avoid unphysical outputs).
+- Source and detector are required to lie **in the same layer** for this Green implementation (enforced by input checks).
 
 > Applications:
 > Drexhage experiments, Purcell engineering, materials quantum efficiency extraction, LEDs and photovoltaics.
