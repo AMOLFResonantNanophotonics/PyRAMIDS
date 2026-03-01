@@ -59,9 +59,7 @@ The implementation combines a stable S-matrix formalism with a rigorous 6x6 dyad
 
 ---
 ### 3. Local Density of States (LDOS) Framework.
-LDOS is computed from the imaginary part of the dyadic Green function (ImG definition formalism; aka Amos & Barnes):
-
-$\[
+LDOS is computed from the imaginary part of the dyadic Green function (ImG definition formalism; aka Amos & Barnes): $\[
 \rho \propto \mathbf{e}_d^T \cdot \mathrm{Im}\,G(\mathbf{r},\mathbf{r}) \cdot \mathbf{e}_d
 \]$
 
