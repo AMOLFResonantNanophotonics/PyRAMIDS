@@ -122,7 +122,11 @@ UserSandbox/       # Custom simulation workspace for users
 Manual/            # Code PDF documentation
 ```
 
-Internally, the code uses a slab-centric representation, while users interact with global stack coordinates. In the user convention, z = 0 corresponds to the first interface between the substrate and the stack, with positive z pointing toward the superstrate.
+The folder structure is organized into a **Core module** and a **Use module**.
+>> The **Core module** contains the low-level mathematical implementations (S-matrix, Green functions, LDOS integrands, radiation kernels) and provides direct access for advanced users who wish to inspect, modify, or extend the formalism.
+>> The **Use module** provides high-level, user-facing interfaces for standard simulation workflows, including coordinate handling, validation, and convenience wrappers.
+>> The **Core module** uses a slab-centric representation, when using the **User module**, users interact with global stack coordinates.
+>> In this user convention, z = 0 corresponds to the first interface between the substrate and the stack, with positive z pointing toward the superstrate.
 
 ---
 ## Installation
