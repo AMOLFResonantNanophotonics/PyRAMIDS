@@ -1,12 +1,11 @@
 # PyRAMIDS
 
-**A first-principles Python package for radiation, LDOS, and magnetoelectric dipoles in stratified multilayer systems**
-
+**A Python package for Radiation, Magnetoelectric Interactions, and Dipoles in Stratified Layers**
 ---
 
 ## Intended Use
 
-PyRAMIDS is a research-grade simulation framework for nanophotonics and electromagnetic modeling in planar multilayer structures.
+PyRAMIDS is a simulation framework for nanophotonics and electromagnetic modeling in planar multilayer structures.
 
 It is designed for:
 
@@ -34,7 +33,7 @@ The framework solves the following core problem:
 > - What is the angular and polarimetric far-field signature?  
 > - How do multiple dipolar scatterers interact self-consistently within the stack?
 
-The implementation follows the S-matrix formalism combined with a rigorous dyadic Green-function approach as detailed in the main article :contentReference[oaicite:2]{index=2} and its mathematical Supplement :contentReference[oaicite:3]{index=3}.
+The implementation follows the S-matrix formalism combined with a rigorous dyadic Green-function approach as detailed in the main paper article and its mathematical Supplement.
 
 ---
 
@@ -42,12 +41,12 @@ The implementation follows the S-matrix formalism combined with a rigorous dyadi
 
 ### 1. Plane-Wave Multilayer Optics (S-Matrix Formalism)
 
-- Stable S-matrix implementation (Redheffer star product)
+- S-matrix implementation (Redheffer star product)
 - Complex Fresnel coefficients for arbitrary stacks
 - Reflectance, transmittance, absorptance
 - Layer-resolved absorption and energy balance
 - Local field distributions inside stacks
-- Guided-mode and evanescent wave physics at large \( k_{\parallel} \)
+- Guided-mode and evanescent wave physics at large $\( k_{\parallel} \)$
 
 ---
 
@@ -55,9 +54,9 @@ The implementation follows the S-matrix formalism combined with a rigorous dyadi
 
 LDOS is computed via the imaginary part of the dyadic Green function:
 
-\[
+$\[
 \rho \propto \mathbf{e}_d^T \cdot \mathrm{Im}\,G(\mathbf{r},\mathbf{r}) \cdot \mathbf{e}_d
-\]
+\]$
 
 Implemented features:
 
@@ -65,8 +64,8 @@ Implemented features:
 - Magnetic LDOS  
 - Magnetoelectric (chiral / bianisotropic) LDOS  
 - Total and radiative LDOS separation  
-- Complex-contour integration over \( k_{\parallel} \)  
-- \( k_{\parallel} \)-resolved modal analysis  
+- Complex-contour integration over $\( k_{\parallel} \)$  
+- $\( k_{\parallel} \)$-resolved modal analysis  
 - Guided-mode and surface-polariton contributions  
 
 This enables direct insight into Purcell enhancement, guided-mode coupling, and non-radiative channels.
@@ -100,7 +99,7 @@ The package provides exact multilayer radiation patterns suitable as ground trut
 
 - Self-consistent coupled-dipole formalism in layered media  
 - Radiation damping corrections (dynamic polarizability dressing)  
-- Extinction via work \( \mathrm{Re}[\mathbf{j}^* \cdot \mathbf{E}] \)  
+- Extinction via work $\( \mathrm{Re}[\mathbf{j}^* \cdot \mathbf{E}] \)$  
 - Scattering cross sections via far-field integration  
 - Optical theorem validation  
 - Electric, magnetic, and magnetoelectric polarizabilities  
@@ -205,8 +204,7 @@ Contact: f.koenderink@amolf.nl
 If you use PyRAMIDS in your research, please cite:
 
 Pal, D. & Koenderink, A. F.  
-*PyRAMIDS — A Python package for Radiation, Magnetoelectric Interactions, and Dipoles in Stratified Layers* :contentReference[oaicite:4]{index=4}  
-
+*PyRAMIDS — A Python package for Radiation, Magnetoelectric Interactions, and Dipoles in Stratified Layers*
 ---
 
 ## License
