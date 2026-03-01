@@ -25,7 +25,7 @@ The framework addresses the following fundamental problem:
 > Given an electric, magnetic, or magnetoelectric dipole embedded in a stratified system,  
 > - What is the total emitted or scattered power?  
 > - How is this power distributed across guided and radiative channels?  
-> - What is the angular and polarimetric far-field signature?  
+> - What is the angular and polarimetric far-field signature?   
 
 The implementation combines a stable S-matrix formalism with a rigorous 6x6 dyadic Green-function framework, as detailed in the accompanying main manuscript and detailed mathematical Supplement.
 
