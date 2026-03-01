@@ -21,23 +21,21 @@ It is designed for:
 
 ## Scientific Scope
 
-PyRAMIDS implements a Green-function based angular spectrum formulation for electromagnetic sources and scatterers in arbitrary 1D multilayer stacks.
+PyRAMIDS implements a Green-function based angular spectrum formulation for electromagnetic sources and dipole scatterers in arbitrary 1D multilayer stacks.
 
-The framework solves the following core problem:
-
+The framework addresses the following fundamental problem:
 > Given an electric, magnetic, or magnetoelectric dipole embedded in a stratified system,  
 > - What is the total emitted or scattered power?  
 > - How is this power distributed across guided and radiative channels?  
 > - What is the angular and polarimetric far-field signature?  
 > - How do multiple dipolar scatterers interact self-consistently within the stack?
 
-The implementation follows the S-matrix formalism combined with a rigorous dyadic Green-function approach as detailed in the main paper article and its mathematical Supplement.
-
+The implementation combines a stable S-matrix formalism with a rigorous 6×6 dyadic Green-function framework, as detailed in the accompanying manuscript and mathematical Supplement.
 ---
 
 ## Core Engines
 
-### 1. S-Matrix Solver – Plane-wave response of arbitrary multilayer stacks.
+### 1. S-Matrix Solver – Plane-wave response.
 
 - Stable Redheffer star-product implementation
 - Complex Fresnel coefficients for arbitrary stacks
@@ -51,7 +49,7 @@ The implementation follows the S-matrix formalism combined with a rigorous dyadi
 
 ---
 
-### 2. Radiation Pattern Tool.
+### 2. Radiation Pattern - angular information.
 
 - Angle-resolved far-field emission  
 - s–p polarization basis and Cartesian basis  
@@ -74,13 +72,13 @@ $\[
 \rho \propto \mathbf{e}_d^T \cdot \mathrm{Im}\,G(\mathbf{r},\mathbf{r}) \cdot \mathbf{e}_d
 \]$
 
-Implemented features:
+Implemented features (aka Amos & Barnes):
 
 - Electric LDOS  
 - Magnetic LDOS  
 - Magnetoelectric (chiral / bianisotropic) LDOS 
 - Complex-contour integration over \( $\text{k}_{\parallel}$ \)  
-- Total LDOS  
+- Total LDOS 
 - \( $\text{k}_{\parallel}$ \)-resolved modal analysis  
 
 ### 4. Dyadic Green Function Engine
@@ -101,7 +99,7 @@ Implemented features:
 
 ### 5. Multiple Scattering of Dipolar Particles
 
-- Self-consistent coupled-dipole formalism in layered media  
+- Coupled-dipole formalism in layered media  
 - Radiation damping corrections (dynamic polarizability dressing)  
 - Extinction via work $\( \mathrm{Re}[\mathbf{j}^* \cdot \mathbf{E}] \)$  
 - Scattering cross sections via far-field integration  
@@ -110,7 +108,7 @@ Implemented features:
 
 > Applications:
 > Metasurface design, layered nanoantenna arrays, fast co-optimization with multilayers.
-> (orders of magnitude faster than full-wave FEM/FDTD in large footprints).
+> (Orders of magnitude faster than full-wave FEM/FDTD in large footprints).
 
 ---
 
@@ -128,10 +126,10 @@ Benchmarks/
 
 Examples/          # Reproducible figures and workflows
 UserSandbox/       # Custom simulation workspace
-Manual/            # Full PDF documentation
+Manual/            # Folder structure PDF documentation
 ```
 
-The internal implementation uses a slab-centric representation, while the user interacts in global stack coordinates.
+Internally, the code uses a slab-centric representation, while users interact with global stack coordinates.
 
 ---
 
