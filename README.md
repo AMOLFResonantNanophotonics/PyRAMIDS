@@ -5,7 +5,7 @@
 
 ## Intended Use
 
-PyRAMIDS is a simulation framework for nanophotonics and electromagnetic modeling in planar multilayer structures.
+PyRAMIDS is a simulation framework for nanophotonics and electromagnetic modeling in planar multilayer structures. It can serve both as a teaching tool and as a research platform.
 
 It is designed for:
 
@@ -35,20 +35,38 @@ The implementation follows the S-matrix formalism combined with a rigorous dyadi
 
 ---
 
-## Core Capabilities
+## Core Engines
 
-### 1. Plane-Wave Multilayer Optics (S-Matrix Formalism)
+### 1. S-Matrix Solver – Plane-wave response of arbitrary multilayer stacks.
 
-- S-matrix implementation (Redheffer star product)
+- Stable Redheffer star-product implementation
 - Complex Fresnel coefficients for arbitrary stacks
 - Reflectance, transmittance, absorptance
 - Layer-resolved absorption and energy balance
 - Local field distributions inside stacks
 - Guided-mode and evanescent wave physics at large \( $\text{k}_{\parallel}$ \)
 
+Applications:
+Mirrors, LED stacks, photovoltaic layers, dielectric cavities.
+
 ---
 
-### 2. Local Density of States (LDOS)
+### 2. Radiation Pattern Tool.
+
+- Angle-resolved far-field emission  
+- s–p polarization basis and Cartesian basis  
+- Integrated upward and downward radiated power  
+- Radiative LDOS extraction  
+- Back-focal-plane (Fourier plane) imaging simulations  
+- Stokes polarimetry (S0–S3)
+
+Applications:
+Emitter calibration, high-NA objective benchmarking, COMSOL/FDTD validation, LED outcoupling analysis.
+
+
+---
+
+### 3. Local Density of States (LDOS) Framework.
 
 LDOS is computed via the imaginary part of the dyadic Green function:
 
@@ -60,36 +78,24 @@ Implemented features:
 
 - Electric LDOS  
 - Magnetic LDOS  
-- Magnetoelectric (chiral / bianisotropic) LDOS  
-- Total and radiative LDOS separation  
+- Magnetoelectric (chiral / bianisotropic) LDOS 
 - Complex-contour integration over \( $\text{k}_{\parallel}$ \)  
+- Total LDOS  
 - \( $\text{k}_{\parallel}$ \)-resolved modal analysis  
-- Guided-mode and surface-polariton contributions  
-
-This enables direct insight into Purcell enhancement, guided-mode coupling, and non-radiative channels.
-
----
-
-### 3. Radiation Patterns and Fourier Microscopy
-
-- Angle-resolved far-field emission  
-- s–p polarization basis and Cartesian basis  
-- Integrated upward and downward radiated power  
-- Radiative LDOS extraction  
-- Back-focal-plane (Fourier plane) imaging simulations  
-- Stokes polarimetry (S0–S3)
-
-The package provides exact multilayer radiation patterns suitable as ground truth for calibrating high-NA Fourier microscopes.
-
----
 
 ### 4. Dyadic Green Function Engine
 
-- Full 6×6 magnetoelectric Green tensor
+- Full 6x6 magnetoelectric Green tensor
 - Angular spectrum representation
 - Slab-centric internal coordinate formalism
 - Consistent unit system (rationalized units)
 - Explicit electric/magnetic cross-coupling blocks
+
+Applications:
+Drexhage experiments, Purcell engineering, materials quantum efficiency extraction, LEDs and photovoltaics.
+
+---
+
 
 ---
 
@@ -147,8 +153,7 @@ Install dependencies:
 pip install package==version
 ```
 
-The listed versions correspond to the validated development environment.  
-The package is typically compatible with earlier and newer versions, although only the versions above have been formally tested.
+Other versions are typically compatible, but only the above have been formally validated.
 
 ---
 
@@ -164,22 +169,6 @@ The repository includes:
 
 These tests ensure physical consistency and numerical robustness.
 
----
-
-## Didactic and Research Applications
-
-PyRAMIDS supports:
-
-- Purcell effect exploration  
-- Drexhage-type mirror experiments  
-- Guided-mode physics in multilayers  
-- Hyperbolic metamaterial LDOS  
-- Kerker and Huygens dipoles  
-- Chiral and pseudochiral emitters  
-- Device-scale LED and photovoltaic modeling  
-- Fourier microscopy calibration  
-
-It can serve both as a teaching tool and as a research platform.
 
 ---
 
