@@ -46,8 +46,8 @@ The implementation follows the S-matrix formalism combined with a rigorous dyadi
 - Local field distributions inside stacks
 - Guided-mode and evanescent wave physics at large \( $\text{k}_{\parallel}$ \)
 
-Applications:
-Mirrors, LED stacks, photovoltaic layers, dielectric cavities.
+> Applications:
+> Mirrors, LED stacks, photovoltaic layers, dielectric cavities.
 
 ---
 
@@ -60,8 +60,8 @@ Mirrors, LED stacks, photovoltaic layers, dielectric cavities.
 - Back-focal-plane (Fourier plane) imaging simulations  
 - Stokes polarimetry (S0–S3)
 
-Applications:
-Emitter calibration, high-NA objective benchmarking, COMSOL/FDTD validation, LED outcoupling analysis.
+> Applications:
+> Emitter calibration, high-NA objective benchmarking, COMSOL/FDTD validation, LED outcoupling analysis.
 
 
 ---
@@ -91,8 +91,8 @@ Implemented features:
 - Consistent unit system (rationalized units)
 - Explicit electric/magnetic cross-coupling blocks
 
-Applications:
-Drexhage experiments, Purcell engineering, materials quantum efficiency extraction, LEDs and photovoltaics.
+> Applications:
+> Drexhage experiments, Purcell engineering, materials quantum efficiency extraction, LEDs and photovoltaics.
 
 ---
 
@@ -108,9 +108,9 @@ Drexhage experiments, Purcell engineering, materials quantum efficiency extracti
 - Optical theorem validation  
 - Electric, magnetic, and magnetoelectric polarizabilities  
 
-The formulation is fully Green-function based and avoids near-to-far field transformation approximations that fail near interfaces.
-
-This enables fast and physically explainable device-scale modeling (orders of magnitude faster than full-wave FEM/FDTD in large footprints).
+> Applications:
+> Metasurface design, layered nanoantenna arrays, fast co-optimization with multilayers.
+> (orders of magnitude faster than full-wave FEM/FDTD in large footprints).
 
 ---
 
