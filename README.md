@@ -58,13 +58,10 @@ Install dependencies using:
 pip install package==version
 ```
 
-or via a `requirements.txt` file if provided.
-
 The listed versions correspond to the validated development environment.  
 The package is generally compatible with earlier and newer versions of these libraries, although only the versions specified above have been formally tested.
 
 ---
-
 ## Repository Structure
 
 ```
@@ -138,7 +135,6 @@ PyRAMIDS is intended for:
 - Dipolar emitter engineering  
 - Inverse design workflows  
 
-It is a research code and assumes familiarity with electromagnetic theory in layered media.
 
 ---
 
@@ -146,10 +142,7 @@ It is a research code and assumes familiarity with electromagnetic theory in lay
 
 If you use PyRAMIDS in your research, please cite:
 
-(Insert thesis / paper citation here)
-
+****#########****
 ---
 
 ## License
-
-(Insert license information — e.g., MIT / GPL / academic license)
