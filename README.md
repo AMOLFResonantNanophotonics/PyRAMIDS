@@ -152,19 +152,17 @@ Other versions are typically compatible, but only with the above, the package ha
 
 ---
 ## Benchmarks and Validation
+The **Literature** subdirectory reproduces seminal results from various published nanophotonic literature.
 
-The repository includes:
+The **Internal\_Consistency** subdirectory cross-checks independent formulations of the same physical quantities:
 
-- Reproduction of canonical LDOS literature results  
-- Electric, magnetic, and chiral dipole benchmarks  
-- Guided-mode resolved LDOS verification  
-- LDOS vs far-field consistency checks  
-- Optical theorem tests in multiple scattering  
-
-These tests ensure physical consistency and numerical robustness.
-
-
+- LDOS from ImG vs LDOS from integrated radiation patterns (electric, magnetic, and magnetoelectric dipoles, including off-axis and phase-shifted cases)
+- LDOS-like quantities compared across radiation-pattern integration, ImG-LDOS, and scattered Green-tensor routes
+- Dyadic Green tensor checks against analytical free-space limits, reflected-interface terms, and mirrored-geometry symmetry/sign behavior
+- Optical-theorem consistency in multiple scattering for plane-wave-driven dipole arrays in layered structures
+- Rotational consistency of pseudochiral dipole definitions via Stokes \(S_3\) radiation maps in upper/lower hemispheres
 ---
+
 ## Authors
 
 **Debapriya Pal**  
