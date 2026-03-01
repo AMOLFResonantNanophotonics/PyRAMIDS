@@ -122,7 +122,8 @@ UserSandbox/       # Custom simulation workspace for users
 Manual/            # Code PDF documentation
 ```
 
-The folder structure is organized into a **Core module** and a **Use module**.
+PyRAMIDS follows a layered folder implementation architecture consisting of a **Core modules** and a **Use modules**.
+
 >> The **Core module** contains the low-level mathematical implementations (S-matrix, Green functions, LDOS integrands, radiation kernels) and provides direct access for advanced users who wish to inspect, modify, or extend the formalism.
 >> The **Use module** provides high-level, user-facing interfaces for standard simulation workflows, including coordinate handling, validation, and convenience wrappers.
 >> The **Core module** uses a slab-centric representation, when using the **User module**, users interact with global stack coordinates.
