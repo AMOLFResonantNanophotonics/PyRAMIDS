@@ -52,7 +52,7 @@ The implementation combines a stable S-matrix formalism with a rigorous 6x6 dyad
 - s–p polarization basis and Cartesian basis    
 - Radiative LDOS extraction via angular integration
 - Back-focal-plane (Fourier plane) imaging simulations  
-- Stokes polarimetry ($S_0$–$S_3$)
+- Stokes polarimetry ($S_0$ - $S_3$)
 
 > Applications:
 > Emitter calibration, high-NA objective benchmarking, COMSOL/FDTD validation, LED outcoupling analysis.
@@ -112,7 +112,7 @@ Library/
     Use/           # High-level user interfaces
 
 Benchmarks/
-    Literature/    # Reproduction of seminal results from the published nanophotonics literature
+    Literature/    # Reproduction of seminal results from published literature
     Internal_Consistency/  # Cross-validation tests
 
 Example/           # Reproducible figures and workflows
