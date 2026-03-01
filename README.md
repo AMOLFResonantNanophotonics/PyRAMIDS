@@ -17,8 +17,6 @@ It is designed for:
 - Device design workflows (LEDs, photovoltaics, cavities, multilayer metamaterials)  
 - Inverse-design and optimization studies  
 
-The package assumes familiarity with electromagnetic theory in stratified systems.
-
 ---
 
 ## Scientific Scope
@@ -46,7 +44,7 @@ The implementation follows the S-matrix formalism combined with a rigorous dyadi
 - Reflectance, transmittance, absorptance
 - Layer-resolved absorption and energy balance
 - Local field distributions inside stacks
-- Guided-mode and evanescent wave physics at large $\( k_{\parallel} \)$
+- Guided-mode and evanescent wave physics at large $\($ k$_{\parallel}$ $\)$
 
 ---
 
@@ -64,8 +62,8 @@ Implemented features:
 - Magnetic LDOS  
 - Magnetoelectric (chiral / bianisotropic) LDOS  
 - Total and radiative LDOS separation  
-- Complex-contour integration over $\( k_{\parallel} \)$  
-- $\( k_{\parallel} \)$-resolved modal analysis  
+- Complex-contour integration over $\($ k$_{\parallel}$ $\)$  
+- $\($ k$_{\parallel}$ $\)$-resolved modal analysis  
 - Guided-mode and surface-polariton contributions  
 
 This enables direct insight into Purcell enhancement, guided-mode coupling, and non-radiative channels.
