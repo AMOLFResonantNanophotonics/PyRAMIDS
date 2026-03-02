@@ -125,9 +125,10 @@ PyRAMIDS follows a layered folder implementation architecture consisting of **Co
 - The **Util** module contains argument checking, coordinate rewrapping, visualization, and optimization utilities used by high-level interfaces.
 - The **Use** module provides high-level, user-facing interfaces for standard simulation workflows, including coordinate handling, validation, and convenience wrappers.
 - The **Core** module uses a slab-centric representation; in the **Use** layer, users interact with global stack coordinates.
-- In this user convention, $z = 0$ corresponds to the first interface between the substrate and the stack, with positive $z$ pointing toward the superstrate.
-- Polar angle is measured from the surface normal: \($\theta=0^\circ$\) is normal to the plane, \($\theta=90^\circ$\) is in-plane or grazing. In code, upper hemisphere uses \($\cos\theta>0$\), lower hemisphere uses \($\cos\theta\le 0$\).
 
+*
+- In this user convention, $z = 0$ corresponds to the first interface between the substrate and the stack, with positive $z$ pointing toward the superstrate.
+- Polar angle is measured from the surface normal: \($\theta=0^\circ$\) is normal to the plane, \($\theta=90^\circ$\) is in-plane or grazing. In code, upper hemisphere uses \($\cos\theta>0$\), lower hemisphere uses \($\cos\theta\le 0$\).*
 ---
 ## Installation
 
@@ -161,7 +162,7 @@ The **Internal\_Consistency** subdirectory cross-checks independent formulations
 - Optical-theorem consistency in multiple scattering for plane-wave-driven dipole arrays in layered structures
 - Rotational consistency of pseudochiral dipole definitions via Stokes $S_3$ radiation maps in upper/lower hemispheres
 
->> These checks ensure physical consistency and numerical robustness across the framework.
+> These checks ensure physical consistency and numerical robustness across the framework.
 ---
 
 ## Authors
