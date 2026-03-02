@@ -29,7 +29,6 @@ import matplotlib.pyplot as plt
 import numpy as np
  
  
- 
 
 #Urbach & Rikken figure 10
 lam=1.0  #wvlen in micron
