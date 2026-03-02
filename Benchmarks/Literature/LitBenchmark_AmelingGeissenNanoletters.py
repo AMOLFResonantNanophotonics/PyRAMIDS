@@ -8,20 +8,17 @@ print('### Literature Benchmark: Ameling et al., Nano Lett. 10, 4394-4398 (2010)
 import os
 import sys
 
-project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
 
 def savefig(folderpath, filename):
-    if not os.path.exists(folderpath):
-        os.makedirs(folderpath)
+    os.makedirs(folderpath, exist_ok=True)
+    plt.savefig(os.path.join(folderpath, filename), bbox_inches="tight")
 
-    plt.savefig(os.path.join(folderpath, filename), bbox_inches='tight')
-    
-    
-folder = r"pdfimages/"
 
+folder = "pdfimages/"
 #%%
 
 import numpy as np
