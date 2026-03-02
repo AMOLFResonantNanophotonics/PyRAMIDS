@@ -153,7 +153,7 @@ Other versions are typically compatible, but only the versions above have been f
 
 ---
 ## Benchmarks and Validation
-The **Literature** subdirectory reproduces seminal results from published nanophotonics literature.
+The **Literature** subdirectory reproduces seminal results from various published nanophotonics literatures.
 
 The **Internal\_Consistency** subdirectory cross-checks independent formulations of the same physical quantities:
 
