@@ -1,9 +1,14 @@
 """
-Run all the Benchmarks Literature in one push
+UserSandbox batch runner for benchmark scripts.
 
-Inside Benchmark>> Literature folder
+Runs:
+- Benchmarks/Literature/LitBenchmark_*.py
+- Benchmarks/Internal_Consistency/InternalBenchmark_*.py
+
+Each script is executed from its own folder so relative outputs
+(e.g., pdfimages/) are written locally to that benchmark folder.
 """
-print('!!! RUNNING ALL BENCHMARKS in ONE GO !!!')
+print("### UserSandbox Runner: All Benchmarks (Literature + Internal Consistency) ###")
 #%%
 import os
 import sys
@@ -35,10 +40,14 @@ def run_all_literature_benchmarks():
         benchmark_module = importlib.util.module_from_spec(spec)
         sys.modules["benchmark_module"] = benchmark_module
         
+        prev_cwd = os.getcwd()
         try:
+            os.chdir(os.path.dirname(benchmark_path))
             spec.loader.exec_module(benchmark_module)
         except Exception as e:
             print(f"Error running {benchmark_name}: {e}")
+        finally:
+            os.chdir(prev_cwd)
 
 
 def run_all_internal_benchmarks():
@@ -56,10 +65,14 @@ def run_all_internal_benchmarks():
         benchmark_module = importlib.util.module_from_spec(spec)
         sys.modules["benchmark_module"] = benchmark_module
         
+        prev_cwd = os.getcwd()
         try:
+            os.chdir(os.path.dirname(benchmark_path))
             spec.loader.exec_module(benchmark_module)
         except Exception as e:
             print(f"Error running {benchmark_name}: {e}")
+        finally:
+            os.chdir(prev_cwd)
             
             
 if __name__ == "__main__":

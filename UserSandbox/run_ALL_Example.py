@@ -1,9 +1,14 @@
 """
-Run all the Benchmarks Literature in one push
+UserSandbox batch runner for example scripts.
 
-Inside Benchmark>> Literature folder
+Runs:
+- Example/RoutineUse_Examples/Example_*.py
+- Example/PaperReproduce_Examples/Fig*.py
+
+Each script is executed from its own folder so relative outputs
+(e.g., pdfimages/) are written locally to that example folder.
 """
-print('!!! RUNNING ALL BENCHMARKS in ONE GO !!!')
+print("### UserSandbox Runner: All Examples (Routine Use + Paper Reproduction) ###")
 #%%
 import os
 import sys
@@ -34,10 +39,14 @@ def run_all_examples():
         benchmark_module = importlib.util.module_from_spec(spec)
         sys.modules["benchmark_module"] = benchmark_module
         
+        prev_cwd = os.getcwd()
         try:
+            os.chdir(os.path.dirname(benchmark_path))
             spec.loader.exec_module(benchmark_module)
         except Exception as e:
             print(f"Error running {benchmark_name}: {e}")
+        finally:
+            os.chdir(prev_cwd)
 
 
 def run_all_reproducePaperPanels():
@@ -55,14 +64,18 @@ def run_all_reproducePaperPanels():
         benchmark_module = importlib.util.module_from_spec(spec)
         sys.modules["benchmark_module"] = benchmark_module
         
+        prev_cwd = os.getcwd()
         try:
+            os.chdir(os.path.dirname(benchmark_path))
             spec.loader.exec_module(benchmark_module)
         except Exception as e:
             print(f"Error running {benchmark_name}: {e}")
+        finally:
+            os.chdir(prev_cwd)
             
             
 if __name__ == "__main__":
     run_all_examples()
     print('*******************### Now Doing Paper Figure runs ###**************************')
     run_all_reproducePaperPanels()
-    print('THE paper Figures are also saved as pdfs - > pdfimages FOLDER')
+    print("Paper figures are saved as PDFs in each example script folder (pdfimages/).")
