@@ -1,28 +1,22 @@
 #!/usr/bin/env python3
 """
-A consistent LDOS implementation must include the following attributes:
-
-  For any non-absorbing system without guided modes, the radiation pattern integral should
-  equal the ImG based LDOS for any dipole orientation    
-
-Note that this is a nontrivial check, since
-    Im G is calculated for specific dipole orientations. Is the reconstruction for arbitrary dipole moment correct ?
-    The core radiation pattern to LDOS routine similarly uses "favorite orientations"
-    Yet radiation patterns are coherent field superpositions, and so getting equality when summing absolute value-squared
-    is a nontrivial exercise.
-    
-This routine is written to do the following:
-    Take a test case, here a single interface with a high-dielectric.
-    Verify the LDOS-at-any-p-and-m routine against the radiation-pattern-at-any-p-and-m routine 
-    For
-    - "canonical dipoles" (just px, py, pz, and magnetic equivalent)
-    - Off-kilter purely electric and magnetic dipoles
-    - Mixed dipoles that are both p and m
-    - Mixed dipoles that are both p and m with a phase slip
-
-To our knowledge this is the only real benchmark for the "magnetoelectric LDOS", as there are no literature benchmarks. 
-    
+#Internal consistency benchmark: LDOS from ImG versus radiation-pattern integration
+#
+#Checks that LDOS computed via ImG matches LDOS inferred from integrated
+#far-field radiation for a non-absorbing, no-guided-mode test geometry.
+#
+#Cases covered:
+#  - canonical electric/magnetic dipoles (px, py, pz and magnetic analogues)
+#  - off-axis pure electric and pure magnetic dipoles
+#  - mixed electric-magnetic dipoles
+#  - mixed dipoles with controlled phase offsets
+#
+#This is the main internal verification route for magnetoelectric LDOS terms.
+#
+@author: dpal,fkoenderink
 """
+
+print("### Internal Consistency Benchmark: LDOS (ImG) vs Radiation Pattern Integration ###")
 
 #%%
 import os

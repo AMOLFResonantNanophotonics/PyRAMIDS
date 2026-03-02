@@ -1,10 +1,20 @@
 #!/usr/bin/env python3
 """
-- Consistency check of our LDOS implementation for standard dipole orientations in non-absorbing, no guided mode
-system from all the routines (Integration of radiation pattern, ImG LDOS, Green's function.
-
-
+#Internal consistency benchmark: Green tensor versus LDOS versus radiation pattern
+#
+#Cross-compares three independent routes to LDOS-like quantities in a
+#non-absorbing, no-guided-mode layered test system:
+#  - integrated radiation pattern
+#  - ImG-based LDOS
+#  - values derived from the scattered dyadic Green tensor
+#
+#Agreement across these routes validates sign conventions, normalization,
+#and channel mapping for electric, magnetic, and crossed responses.
+#
+@author: dpal,fkoenderink
 """
+
+print("### Internal Consistency Benchmark: Green vs ImG LDOS vs Radiation Pattern ###")
 
 #%%
 import os

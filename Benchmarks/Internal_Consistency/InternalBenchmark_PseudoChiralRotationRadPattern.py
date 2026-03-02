@@ -1,11 +1,18 @@
 
 """
-For magnetochiral dipole, ImG LDOS definition constraints the definition of the rotation of pseudo chiral dipoles
-if (px = 1, my= 1.0j) is lefthanded, then the rotated lefthanded version is (py=1.0, mx=-1.0j)
-
-Consequently, the Stokes parameter S3 (which represents circular polarization) should yield the same radiation pattern
- in the same hemisphere for both dipole configurations
+#Internal consistency benchmark: pseudochiral dipole rotation invariance
+#
+#For the pseudochiral convention used in the code, if (px = 1, my = +1j)
+#is one handedness, then the rotated equivalent is (py = 1, mx = -1j).
+#
+#This script checks rotational consistency through Stokes S3 radiation maps:
+#the S3 pattern should remain invariant (within numerical tolerance) for
+#the rotated-equivalent dipoles in the same hemisphere.
+#
+@author: dpal,fkoenderink
 """
+
+print("### Internal Consistency Benchmark: Pseudochiral Rotation (Stokes S3 Invariance) ###")
 
 #%%
 import os

@@ -1,6 +1,18 @@
 #!/usr/bin/env python3
-'''Optical Theorem check for plane wave incidence in no guided mode situation'''
-print('## Optical Theorem check ##')
+"""
+#Internal consistency benchmark: multiple-scattering optical theorem
+#
+#Verifies optical-theorem consistency for plane-wave-driven scattering by
+#dipole arrays in layered structures, using a non-absorbing, no-guided-mode
+#reference geometry.
+#
+#Compares extinction/scattering consistency and checks that the coupled-dipole
+#solution obeys the expected energy-balance constraints.
+#
+@author: dpal,fkoenderink
+"""
+
+print("### Internal Consistency Benchmark: Multiple Scattering Optical Theorem ###")
 
 #%%
 import os

@@ -1,13 +1,20 @@
 #!/usr/bin/env python3
 
 """
-- validates the Green's function calculations in both free-space and 
-    layered media by comparing analytical solutions, the angular spectrum method, and interface reflections. 
-
-- Ensures self-consistency across methods, checks the correctness of scattered Green’s function components, 
-    and verifies expected symmetry properties when flipping the interface.
-
+#Internal consistency benchmark: dyadic Green tensor implementation
+#
+#Validation paths included in this script:
+#  - analytical free-space Green tensor versus numerical Green tensor
+#  - single-interface reflected contribution checks
+#  - symmetry/sign behavior under mirrored stack geometries
+#
+#The goal is to verify both amplitude/phase correctness and expected
+#tensor symmetries for the slab Green-function implementation.
+#
+@author: dpal,fkoenderink
 """
+
+print("### Internal Consistency Benchmark: Dyadic Green Tensor ###")
 #%%
 import os
 import sys
