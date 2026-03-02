@@ -125,6 +125,7 @@ PyRAMIDS follows a layered folder implementation architecture consisting of **Co
 - The **Use** module provides high-level, user-facing interfaces for standard simulation workflows, including coordinate handling, validation, and convenience wrappers.
 - The **Core** module uses a slab-centric representation; in the **Use** layer, users interact with global stack coordinates.
 - In this user convention, $z = 0$ corresponds to the first interface between the substrate and the stack, with positive $z$ pointing toward the superstrate.
+- Polar angle is measured from the surface normal: \(\theta=0^\circ\) is normal to the plane, \(\theta=90^\circ\) is in-plane or grazing. In code, upper hemisphere uses \(\cos\theta>0\), lower hemisphere uses \(\cos\theta\le 0\).
 
 ---
 ## Installation
