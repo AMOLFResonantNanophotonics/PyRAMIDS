@@ -161,7 +161,7 @@ The **Internal\_Consistency** subdirectory cross-checks independent formulations
 - Optical-theorem consistency in multiple scattering for plane-wave-driven dipole arrays in layered structures
 - Rotational consistency of pseudochiral dipole definitions via Stokes $S_3$ radiation maps in upper/lower hemispheres
 
-These checks ensure physical consistency and numerical robustness across the framework.
+>> These checks ensure physical consistency and numerical robustness across the framework.
 ---
 
 ## Authors
