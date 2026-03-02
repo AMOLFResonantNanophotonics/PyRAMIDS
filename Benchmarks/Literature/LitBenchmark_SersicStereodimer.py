@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 #%%
 '''Reproducing Sersic et. al. Phys. Rev. B 83, 245102 (2011)'''

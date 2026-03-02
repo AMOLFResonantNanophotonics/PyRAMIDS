@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 This code calculates the optical response for any stratified multilayer system at any input k||, 
 using the S matrix formalism reported by Lifeng Li in JOSA A 13 1024-1335  1996

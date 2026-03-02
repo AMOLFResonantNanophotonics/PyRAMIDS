@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Reproducing Barnes et. al. 2020 J. Opt. 22, 073501
 """

@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 Coordinate wrapping utility
 Conversion routine between the natural "user-centric" coordinate and the "slab-centric" coordinate system in the base routines

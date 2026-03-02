@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 '''
 This script shows how to plot the far field radiation pattern 

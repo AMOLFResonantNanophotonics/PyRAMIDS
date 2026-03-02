@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 '''Optical Theorem check for plane wave incidence in no guided mode situation'''
 print('## Optical Theorem check ##')
 

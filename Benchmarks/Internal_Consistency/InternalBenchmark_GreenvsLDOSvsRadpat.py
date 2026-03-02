@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 - Consistency check of our LDOS implementation for standard dipole orientations in non-absorbing, no guided mode
 system from all the routines (Integration of radiation pattern, ImG LDOS, Green's function.

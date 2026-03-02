@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 print('PRB 88, 045407 ')
 print('Making Figure 6')

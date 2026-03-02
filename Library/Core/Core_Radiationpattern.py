@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
  
 """
     This file contains all the far-field related scripts for electromagnetic sources embedded in stratfied system.  This includes:

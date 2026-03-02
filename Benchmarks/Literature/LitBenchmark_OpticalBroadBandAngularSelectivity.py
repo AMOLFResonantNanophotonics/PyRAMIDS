@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 #%%
 '''Reproducing Shen Soljcacic et. al. Science 343, 1499-1501 (2014)'''
