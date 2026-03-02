@@ -1,10 +1,8 @@
- 
-"""
-Test radiation pattern routine by plotting the electric dipole radiation patterns
-reported in Novotny & Hecht, Principles of Nano-optics,  1st edition, figures 10.7 and 10.9
-"""
+#%%
+'''Reproducing Novotny and Hecht, Principles of Nano-Optics (1st ed.), Figs. 10.7 and 10.9'''
 
-print('### Literature Benchmark: Novotny & Hecht, Principles of Nano-optics,  1st edition Book, figures 10.7 and 10.9 ###')
+#%%
+print('### Literature Benchmark: Novotny & Hecht, Principles of Nano-Optics (1st ed.), Figs. 10.7 and 10.9 ###')
 
 #%%
 import os

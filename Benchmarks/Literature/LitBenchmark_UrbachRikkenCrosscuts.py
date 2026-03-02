@@ -1,11 +1,8 @@
-
-"""
-Reproduces Urbach & Rikken, Phys Rev A 57, 3913 (1998)
-Figures 4-9, 15,16 (all the z-dependent LDOS cross cuts)
-"""
 #%%
+'''Reproducing Urbach and Rikken, Phys. Rev. A 57, 3913 (1998), Figs. 4-9 and 15-16'''
 
-print('### Literature Benchmark: Urbach & Rikken, Phys. Rev. A 57 3913 (1998) ###')
+#%%
+print('### Literature Benchmark: Urbach & Rikken, Phys. Rev. A 57, 3913 (1998) ###')
 
 
 #%%
@@ -126,7 +123,7 @@ zlist=np.linspace(-lam*0.5,lam*0.5,200)+d/2.
 plotz=2.*(zlist-d/2.0)/d
 yrange=[5,1.25,5.5] # y-axi range for plotting total / radiative / guided
  
-fig = BaseUrbachplotter(lam,d,1.0,1.0,nslab,zlist,plotz,'2z/d',yrange, 'Urbach Rikken PRA 59 3913 (1998), Fig 4,5')
+fig = BaseUrbachplotter(lam,d,1.0,1.0,nslab,zlist,plotz,'2z/d',yrange, 'Urbach & Rikken, Phys. Rev. A 57, 3913 (1998), Figs. 4,5')
 fig.savefig(folder + 'LitBenchmark_UrbachRikken_PRA1998_Fig4_5.pdf', dpi=300, bbox_inches='tight')
 
 #%%
@@ -137,7 +134,7 @@ nslab=[1.5, 2.0, 4.0]
 zlist=np.linspace(-lam*2.0,lam*2.0,200)+d/2.
 plotz=2.*(zlist-d/2.0)/d
  
-fig = BaseUrbachplotter(lam,d,1.0,1.0,nslab,zlist,plotz,'2z/d',yrange, 'Urbach Rikken PRA 59 3913 (1998), Fig 6,7')
+fig = BaseUrbachplotter(lam,d,1.0,1.0,nslab,zlist,plotz,'2z/d',yrange, 'Urbach & Rikken, Phys. Rev. A 57, 3913 (1998), Figs. 6,7')
 fig.savefig(folder + 'LitBenchmark_UrbachRikken_PRA1998_Fig6_7.pdf', dpi=300, bbox_inches='tight')
 
 
@@ -148,7 +145,7 @@ nslab=[1.0, 1.5, 1.8]
 zlist=np.linspace(-lam*0.5,lam*0.5,200)+d/2.
 plotz=2.*(zlist-d/2.0)/d
 yrange=[6.0,6.0,6.0] 
-fig = BaseUrbachplotter(lam,d,2.0,2.0,nslab,zlist,plotz,'2z/d',yrange, 'Urbach Rikken PRA 59 3913 (1998), Fig 8')
+fig = BaseUrbachplotter(lam,d,2.0,2.0,nslab,zlist,plotz,'2z/d',yrange, 'Urbach & Rikken, Phys. Rev. A 57, 3913 (1998), Fig. 8')
 fig.savefig(folder + 'LitBenchmark_UrbachRikken_PRA1998_Fig8.pdf', dpi=300, bbox_inches='tight')
 
 
@@ -159,7 +156,7 @@ nslab=[1.0, 1.5, 1.8]
 zlist=np.linspace(-lam*2.0,lam*2.0,200)+d/2.
 plotz=2.*(zlist-d/2.0)/d
 yrange=[6.0,6.0,6.0] 
-fig = BaseUrbachplotter(lam,d,2.0,2.0,nslab,zlist,plotz,'2z/d',yrange, 'Urbach Rikken PRA 59 3913 (1998), Fig 9')
+fig = BaseUrbachplotter(lam,d,2.0,2.0,nslab,zlist,plotz,'2z/d',yrange, 'Urbach & Rikken, Phys. Rev. A 57, 3913 (1998), Fig. 9')
 fig.savefig(folder + 'LitBenchmark_UrbachRikken_PRA1998_Fig9.pdf', dpi=300, bbox_inches='tight')
 
 
@@ -188,7 +185,7 @@ for m in range(len(dlist)):
     ax[m].set_ylabel('Isotropic LDOS')
     ax[m].legend(['d='+str(1000*d)+' nm, at lambda='+str(lam*1000)+' nm'])
     
-fig.suptitle('Urbach Rikken PRA 59 3913 (1998), Fig 14')
+fig.suptitle('Urbach & Rikken, Phys. Rev. A 57, 3913 (1998), Fig. 14')
 plt.tight_layout()
 fig.savefig(folder + 'LitBenchmark_UrbachRikken_PRA_1998_Fig14.pdf', dpi=300, bbox_inches='tight')
 
@@ -219,7 +216,7 @@ for m in range(len(n1list)):
     ax[m].set_ylabel('Isotropic LDOS')
     ax[m].legend(['n2='+str(n1)+', at n1='+str(n2)+' and n3='+str(n3)])
     
-fig.suptitle('Urbach Rikken PRA 59 3913 (1998), Fig 16')
+fig.suptitle('Urbach & Rikken, Phys. Rev. A 57, 3913 (1998), Fig. 16')
 plt.tight_layout()
 fig.savefig(folder + 'LitBenchmark_UrbachRikken_PRA_1998_Fig16.pdf', dpi=300, bbox_inches='tight')
 

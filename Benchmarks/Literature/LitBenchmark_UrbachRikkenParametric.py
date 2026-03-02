@@ -1,8 +1,8 @@
-"""
-Reproduces Urbach & Rikken, Phys Rev A 57, 3913 (1998)
-"""
+#%%
+'''Reproducing Urbach and Rikken, Phys. Rev. A 57, 3913 (1998)'''
 
-print('### Literature Benchmark: Urbach & Rikken, Phys. Rev. A 57 3913 (1998) ###')
+#%%
+print('### Literature Benchmark: Urbach & Rikken, Phys. Rev. A 57, 3913 (1998) ###')
 
 #%%
 import os
@@ -79,7 +79,7 @@ ax[1].set_xlim([1.0,5.0])
 ax[1].set_ylim([0.0,2.1])
 ax[1].legend(['d=lam/4 all modes','d=3lam all modes','d=lam/4; rad. modes','d=3lam; rad modes'])
 
-fig.suptitle('Urbach & Rikken, Phys. Rev. A 57 3913 (1998)/Fig 10')
+fig.suptitle('Urbach & Rikken, Phys. Rev. A 57, 3913 (1998), Fig. 10')
 
 file = [folder,'LitBenchmark_UbrachRikken_PRA1998_Fig10'+' .pdf']
 savefig(file[0], file[1])
@@ -133,7 +133,7 @@ plt.xlabel('Thickness (nm) of ZnSe')
 plt.ylabel('Averaged LDOS normaliz to vac')
 plt.ylim([0,2.5])
 plt.legend(['Symmetric total','Asymm total','Symmetric radiative','Asymmetric radiative'])
-plt.title('Urbach & Rikken, Phys. Rev. A 57 3913 (1998)/Fig 12')
+plt.title('Urbach & Rikken, Phys. Rev. A 57, 3913 (1998), Fig. 12')
 
 file = [folder,'LitBenchmark_UbrachRikken_PRA1998_Fig12'+' .pdf']
 savefig(file[0], file[1])

@@ -1,9 +1,8 @@
+#%%
+'''Reproducing Snoeks et al., Phys. Rev. Lett. 74, 2459 (1995), Fig. 4'''
 
-"""
-# Reproduces Snoeks, Lagendijk and Polman, PRL 74, 2459 (1995)
-"""
-
-print('### Literature Benchmark: Snoeks et. al. Phys. Rev. Lett. 74, 2459, 1995 Fig. 4###')
+#%%
+print('### Literature Benchmark: Snoeks et al., Phys. Rev. Lett. 74, 2459 (1995), Fig. 4 ###')
 #%%
 import os
 import sys
@@ -47,7 +46,7 @@ plt.xlabel('Position z (lam/2pi)')
 plt.ylabel('LDOS (isotropic) normalized to n=1.5')
 plt.xlim([-4,4])
 plt.ylim([0.5,2.5])
-plt.title('Snoeks et. al., PRL 74 2459 (1995), Fig 4')
+plt.title('Snoeks et al., Phys. Rev. Lett. 74, 2459 (1995), Fig. 4')
 
 file = [folder,'LitBenchmark_Snoeks_etal_PRL1995_Fig4'+' .pdf']
 savefig(file[0], file[1])

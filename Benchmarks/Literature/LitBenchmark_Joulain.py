@@ -1,8 +1,8 @@
+#%%
+'''Reproducing Joulain et al., Phys. Rev. B 68, 245405 (2003)'''
 
 #%%
-'''Reproducing Joulain et. al. Phys. Rev. B. 68, 245405 (2003)'''
-
-print('###  Literature Benchmark: Joulain et. al. Phys. Rev. B. 68, 245405 (2003)  ###')
+print('### Literature Benchmark: Joulain et al., Phys. Rev. B 68, 245405 (2003) ###')
 #%%
 import os
 import sys
@@ -76,7 +76,7 @@ plt.xlabel(r"$\omega$ (rad s$^{-1}$)")
 plt.ylabel("Density of states")
 plt.legend()
 plt.grid(True, which="both", linestyle="--", linewidth=0.5)
-plt.title('Joulain et. al. Phys. Rev. B. 68, 245405 (2003)/Fig 2')
+plt.title('Joulain et al. Phys. Rev. B. 68, 245405 (2003), Fig. 2')
 file = [folder,'LitBenchmark_Joulain_etal_PRB2003_Fig2'+' .pdf']
 savefig(file[0], file[1])
 plt.show()
@@ -113,7 +113,7 @@ plt.xlabel(r"$\omega$ (rad s$^{-1}$)")
 plt.ylabel("Density of states")
 plt.legend()
 plt.grid(True, which="both", linestyle="--", linewidth=0.5)
-plt.title('Joulain et. al. Phys. Rev. B. 68, 245405 (2003)/Fig 3')
+plt.title('Joulain et al. Phys. Rev. B. 68, 245405 (2003), Fig. 3')
 file = [folder,'LitBenchmark_Joulain_etal_PRB2003_Fig3'+' .pdf']
 savefig(file[0], file[1])
 plt.show()

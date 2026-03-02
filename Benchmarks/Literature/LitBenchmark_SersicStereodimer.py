@@ -1,8 +1,8 @@
-#!/usr/bin/env python3
+#%%
+'''Reproducing Sersic et al. Phys. Rev. B 83, 245102 (2011)'''
 
 #%%
-'''Reproducing Sersic et. al. Phys. Rev. B 83, 245102 (2011)'''
-print('### Literature Benchmark:   Sersic et. al. PRB 83, 2011 Figure 3f ###')
+print('### Literature Benchmark: Sersic et al., Phys. Rev. B 83, 245102 (2011), Fig. 3f ###')
 
 #%%
 import os
@@ -136,7 +136,7 @@ ax.set_ylabel("Frequency [THz]", fontsize=14)
 ax.set_title("", fontsize=12)
 ax.set_ylim([100,300])
 ax.tick_params(axis='both', labelsize=14)
-plt.title('Sersic et. al. PRB 83, 2011, Figure 3f')
+plt.title('Sersic et al., Phys. Rev. B 83, 245102 (2011), Fig. 3f')
 file = [folder,'LitBenchmark_Sersic_etal_PRB2011_Fig3f'+' .pdf']
 savefig(file[0], file[1])
 plt.show()

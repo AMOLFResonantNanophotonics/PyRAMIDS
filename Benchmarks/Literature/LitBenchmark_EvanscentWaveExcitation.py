@@ -1,15 +1,8 @@
-
-"""
-Literarture Benchmark -
-
-Interferometric Evanescent Wave Excitation of a Nanoantenna
-for Ultrasensitive Displacement and Phase Metrology
-
-Lei Wei et. al, PRL 121 193901 (2018)
-"""
 #%%
+'''Reproducing Wei et al., Phys. Rev. Lett. 121, 193901 (2018)'''
 
-print('### Literature Benchmark:   Lei Wei et. al. Phys. Rev. Lett. 121 193901, 2018 Fig 1b ###')
+#%%
+print('### Literature Benchmark: Lei Wei et al., Phys. Rev. Lett. 121, 193901 (2018), Fig. 1b ###')
 #%%
 
 
@@ -122,11 +115,9 @@ ax.set_yticks(yticks)
 ax.set_xticklabels([f'{tick:.2f}' for tick in xticks])
 ax.set_yticklabels([f'{tick:.2f}' for tick in yticks])
 
-ax.set_title(r'L. Wei et al. PRL 2018/Fig1b'
+ax.set_title(r'Lei Wei et al., Phys. Rev. Lett. 121, 193901 (2018), Fig. 1b'
              '\n'
              r'$\Im\{S\}$')
 file = [folder,'LitBenchmark_LWei_etal_PRL2018_Fig1b'+' .pdf']
 savefig(file[0], file[1])
 plt.show()
-
-

@@ -1,9 +1,8 @@
+#%%
+'''Reproducing Ameling et al., Nano Lett. 10, 4394-4398 (2010)'''
 
 #%%
-'''Reproducing Ameling et. al. Nano Lett. 10, 4394-4398 (2010)'''
-
-#%%
-print('### Literature Benchmark:   Ameling et. al. Nano Lett. 10, 4394-4398, 2010 ###')
+print('### Literature Benchmark: Ameling et al., Nano Lett. 10, 4394-4398 (2010), Fig. 2b ###')
 
 #%%
 import os
@@ -78,8 +77,8 @@ ax1.set_xlabel("Spacer Thickness (nm)", fontsize = 14)
 ax1.set_ylabel(r"Wavelength ($\mu$m)", fontsize = 14)
 ax1.tick_params(axis='both', labelsize=14)
 
-ax1.set_title(" Ameling et. al. Nano Lett. 10, 4394-4398, 2010/Fig. 2b\n"
-              "Reflection for. Spacer Thickness vs Wavelength")
+ax1.set_title("Ameling et al., Nano Lett. 10, 4394-4398 (2010), Fig. 2b\n"
+              "Reflectance vs spacer thickness and wavelength")
 
 file = [folder,'LitBenchmark_Ameling_etal_NanoLett2010_Fig2b'+' .pdf']
 savefig(file[0], file[1])

@@ -1,9 +1,8 @@
+#%%
+'''Reproducing Shen et al., Science 343, 1499-1501 (2014)'''
 
 #%%
-'''Reproducing Shen Soljcacic et. al. Science 343, 1499-1501 (2014)'''
-
-
-print('###  Literature Benchmark: Shen at. al. Science 343, 1499-1501 (2014)  ###')
+print('### Literature Benchmark: Shen et al., Science 343, 1499-1501 (2014), Fig. 4 ###')
 #%%
 import os
 import sys
@@ -67,7 +66,7 @@ cbar.ax.tick_params(labelsize=16)
 
 ax.set_xlabel("Incident Angle (°)", fontsize=14)
 ax.set_ylabel("Wavelength (nm)", fontsize=14)
-ax.set_title("Optical Broadband Angular Selectivity, Science 343 2014/Fig. 4)", fontsize=12)
+ax.set_title("Shen et al., Science 343, 1499-1501 (2014), Fig. 4", fontsize=12)
 ax.tick_params(axis='both', labelsize=14)
 file = [folder,'LitBenchmark_Shen_etal_Science2014_Fig4'+' .pdf']
 savefig(file[0], file[1])

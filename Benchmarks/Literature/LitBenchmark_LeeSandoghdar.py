@@ -1,9 +1,8 @@
-'''
-Benchmark routine replicating
-K.G. Lee et al. Nature Photonics volume 5, pages 166–169 (2011)
-'''
+#%%
+'''Reproducing Lee et al., Nat. Photonics 5, 166-169 (2011)'''
 
-print('###  Literature Benchmark: Lee et. al. Nature Photonics 5, 166-169 (2011) Fig. 1 ###')
+#%%
+print('### Literature Benchmark: Lee et al., Nat. Photonics 5, 166-169 (2011), Fig. 1 ###')
 
 #%%
 import os
@@ -54,7 +53,7 @@ scaler=(np.cos(thelist)>0)*9+1 #Lee multiplies upper hemisphere by 10
 ax[2].plot(thelist,scaler*Pk,'k')
 ax[2].set_theta_zero_location("N")
 ax[2].set_theta_direction(-1)
-ax[2].set_title("Lee-Fig1, z-dipole 5 nm above sapphire") 
+ax[2].set_title("Lee-Fig. 1, z-dipole 5 nm above sapphire") 
 
 nstack=[1.78, 1.5, 1.0] 
 dstack=[350.0] 
@@ -93,7 +92,7 @@ plt.plot(thelist-np.pi,Pk/1.5**2,'k',thelist-np.pi,Pr,'r',thelist-np.pi,Pg,'g')
 plt.xlim([0,np.pi/2.]) 
 plt.xlabel('Angle (lower hemisphere, radians)')
 plt.ylabel('Power/steradian (normalization is in a.u in Lee et al.)')
-plt.title('K.G. Lee et al. Nature Photonics, 5, 166–169 (2011)/Fig 1')
+plt.title('K.G. Lee et al. Nature Photonics, 5, 166–169 (2011), Fig. 1')
 # not 100% sure how KG Lee introduced the normalization /1/eps_host. Probably
 # to normalize the total power of the source to unity.
 file = [folder,'LitBenchmark_Lee_etal_NatPhotonics2011_Fig1'+' .pdf']

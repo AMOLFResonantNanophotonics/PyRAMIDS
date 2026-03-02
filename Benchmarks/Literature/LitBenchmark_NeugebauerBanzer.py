@@ -1,12 +1,8 @@
+#%%
+'''Reproducing Neugebauer et al., Nat. Commun. 7, 11286 (2016)'''
 
-'''
-Benchmark routine replicating
-Polarization-controlled directional scattering for nanoscopic position sensing
-Martin Neugebauer  Paweł Woźniak  Ankan Bag Gerd Leuchs  Peter Banzer 
-Nat. Commun. 2016 20 7 11286
-'''
-
-print('### Literature Benchmark: Neugebauer et. al. Nature Commun. 20 7 11286 (2016) ###')
+#%%
+print('### Literature Benchmark: Neugebauer et al., Nat. Commun. 7, 11286 (2016) ###')
 #%%
 import os
 import sys
@@ -78,7 +74,7 @@ Pk_my,E_my,tf=Radpat.RadiationpatternPandField(k0,z,pu,mu,thelist,0.0*thelist,ns
 ax[0].plot(thelist,Pk_my,'k',label = r'$m_y$')
 ax[0].set_theta_zero_location("N")
 ax[0].set_theta_direction(-1)
-ax[0].set_title("Fig 2b") 
+ax[0].set_title("Fig. 2b") 
 ax[0].legend(loc="best")
 ax[0].set_thetamin(90)
 ax[0].set_thetamax(270)
@@ -102,7 +98,7 @@ Pk_mp,E_mp,tf=Radpat.RadiationpatternPandField(k0,z,pu,mu,thelist,0.0*thelist,ns
 ax[1].plot(thelist,Pk_mp,'b',label = r'$m_y + p_z$')
 ax[1].set_theta_zero_location("N")
 ax[1].set_theta_direction(-1)
-ax[1].set_title("Fig 2c") 
+ax[1].set_title("Fig. 2c") 
 ax[1].legend(loc="best")
 ax[1].set_yticklabels([])
 ax[1].set_thetamin(90)
@@ -111,7 +107,7 @@ r_max = ax[1].get_ylim()[1]
 angle = np.arcsin(nstack[1]/nstack[0])
 ax[1].plot([np.pi - angle, np.pi - angle], [0, r_max], ':', color= 'gray', linewidth=1.5)  # Dashed black line
 ax[1].plot([np.pi + angle, np.pi + angle], [0, r_max], ':', color= 'gray', linewidth=1.5)  # Dashed black line
-f.suptitle('Neugebauer et. al. Nature Commun. 20 7 11286 (2016)/Fig 2b,c')
+f.suptitle('Neugebauer et al., Nat. Commun. 7, 11286 (2016), Fig. 2b,c')
 file = [folder,'LitBenchmark_Neugebauer_etal_NatCommun2016_Fig2'+' .pdf']
 savefig(file[0], file[1])
 plt.show()
@@ -134,7 +130,7 @@ Es_down_mp=outE[0]
 Ep_down_mp=outE[1]
 
 S0, fig = vector.BFPplotIntensity(theta_d,-phi_d,Es_down_mp,Ep_down_mp,nstack[0],
-                                  title = 'Neugebauer et. al. Nature Commun. 20 7 11286 (2016)/Fig 2e \n', show=False) 
+                                  title = 'Neugebauer et al. Nature Commun. 20 7 11286 (2016), Fig. 2e \n', show=False) 
 
 fig.savefig(folder + 'LitBenchmark_Neugebauer_etal_NatCommun2016_Fig2e.pdf',
             dpi=300, bbox_inches='tight')

@@ -1,8 +1,8 @@
+#%%
+'''Reproducing Fink et al., Science 282, 1679 (1998), Fig. 2b'''
 
 #%%
-'''Reproducing Fink & Thomas et. al. Science 282, 1679-1998 (1998) Figure 2'''
-
-print('###  Literature Benchmark: Fink et. al. Science 282, 1679-1998 (1998) Figure 2b  ###')
+print('### Literature Benchmark: Fink et al., Science 282, 1679 (1998), Fig. 2b ###')
 
 #%%
 
@@ -92,7 +92,7 @@ plt.xlim([-1.5,1.5])
 
 ax.set_xlabel(r"Parallel Wave Vector ($k_x 2\pi/a$)", fontsize=14)
 ax.set_ylabel(r"Frequency ($\omega a / 2\pi c$)", fontsize=14)
-ax.set_title(r"Fink et. al. Science 282, 1998/Fig 2b", fontsize=14)
+ax.set_title(r"Fink et al. Science 282, 1998, Fig. 2b", fontsize=14)
 file = [folder,'LitBenchmark_Fink_etal_Science1998_Fig2b'+' .pdf']
 savefig(file[0], file[1])
 plt.show()

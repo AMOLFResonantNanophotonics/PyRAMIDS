@@ -1,12 +1,8 @@
- 
-"""
-Reproduce Electric and magnetic LDOS in Li, Karaveli et al. PRL 121, 227403 (2018), Fig 1
-Note that to reproduce the other figures there is not quite enough info in the paper.
-Therefore this routine provides a "replica with caveats" for Figure 3a as example
- 
-"""
+#%%
+'''Reproducing Li et al., Phys. Rev. Lett. 121, 227403 (2018)'''
 
-print('###  Literature Benchmark: Li et. al. Phys. Rev. Lett. 121 227403 (2018)  ###')
+#%%
+print('### Literature Benchmark: Li et al., Phys. Rev. Lett. 121, 227403 (2018) ###')
 
 #%%
 import os
@@ -53,7 +49,7 @@ plt.xlabel('d/lambda')
 plt.ylabel('LDOS over that in host')
 plt.legend(['Electric (isotropic)','Magnetic','sum']) 
 plt.xlim([0,0.5])
-plt.title('Li, Karaveli et al. PRL 121, 227403 (2018)/Fig 1a')
+plt.title('Li, Karaveli et al. PRL 121, 227403 (2018), Fig. 1a')
 file = [folder,'LitBenchmark_Li_etal_PRL2018_Fig1a'+' .pdf']
 savefig(file[0], file[1])
 plt.show()
@@ -73,7 +69,7 @@ plt.ylabel('Apparent lifetime')
 plt.legend(['ED','MD','ED+MD av','ED (QE=0.2)','MD (QE=0.2']) 
 plt.xlim([0.0,0.5])
 plt.ylim([0.6,1.4])
-plt.title('Li, Karaveli et al. PRL 121, 227403 (2018)/Fig 1b')
+plt.title('Li, Karaveli et al. PRL 121, 227403 (2018), Fig. 1b')
 file = [folder,'LitBenchmark_Li_etal_PRL2018_Fig1b'+' .pdf']
 savefig(file[0], file[1])
 plt.show()
@@ -91,7 +87,7 @@ lam=1.4 # approx emission wvln. Precise bandwidth not listed in paper
 k0=2.*np.pi/lam
 dAu=0.200
 dspacer=np.linspace(1.E-3,0.5,100)
-nstack=[nQrtz,nMgO,nMgO,nMgO,nAu,1.0] #guessing that Fig1 and Fig3 match eps_Au
+nstack=[nQrtz,nMgO,nMgO,nMgO,nAu,1.0] #guessing that Fig. 1 and Fig. 3 match eps_Au
 
 #variable allocation to hold result
 ldisoE=np.zeros(np.shape(dspacer))
@@ -115,7 +111,7 @@ plt.ylabel('Inverse of LDOS rel. to LDOS in MgO')
 plt.legend(['ED','MD','mean'])
 plt.title('Approximation to Fig. 3 in Li,'
           '\n'
-          'Karaveli et al. PRL 121, 227403 (2018)/Fig 3a')
+          'Karaveli et al. PRL 121, 227403 (2018), Fig. 3a')
 file = [folder,'LitBenchmark_Li_etal_PRL2018_Fig3a'+' .pdf']
 savefig(file[0], file[1])
 plt.show()

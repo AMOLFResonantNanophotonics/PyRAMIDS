@@ -1,7 +1,8 @@
-"""
-Reproducing Barnes et. al. 2020 J. Opt. 22, 073501
-"""
-print('###  Literature Benchmark: Barnes et. al. 2020, J. Opt. 22, 073501  ###')
+#%%
+'''Reproducing Barnes et al., J. Opt. 22, 073501 (2020)'''
+
+#%%
+print('### Literature Benchmark: Barnes et al., J. Opt. 22, 073501 (2020) ###')
 
 #%%
 import os
@@ -70,7 +71,7 @@ ax.set_xlabel(r"in-plane wavevector $k_{||}$ ($\mu m^{-1})$")
 ax.set_ylabel(r"angular frequency ($10^{15}$ in rad $s^{-1}$)")
 ax.set_xlim([0,50.])
 ax.set_ylim([0.8,8.])
-plt.title("W. L. Barnes et al 2020 J. Opt. 22/Fig 13c," "\n"
+plt.title("W. L. Barnes et al., J. Opt. 22, 073501 (2020), Fig. 13c" "\n"
           "Power dissipated")
 
 file = [folder,'LitBenchmark_Barnes_etal_JOpt2020_Fig13c'+' .pdf']
@@ -85,7 +86,7 @@ plt.xlabel(r'LDOS relative to bulk ($\rho_t / \rho$)')
 plt.ylabel(r'angular frequency ($10^{15}$ in rad s$^{-1}$)')
 plt.axvline(x=1, color='k', linestyle='--')   # bulk LDOS reference
 plt.gca().invert_xaxis()
-plt.title("W. L. Barnes et al., J. Opt. 22 (2020)/Fig. 13d")
+plt.title("W. L. Barnes et al., J. Opt. 22 (2020), Fig. 13d")
 plt.xlim([4.5,0])
 plt.tight_layout()
 
@@ -113,7 +114,7 @@ plt.ylabel(r'dissipated power $P(k_{||})$')
 plt.yscale('log')
 plt.xlim([0,50])
 plt.ylim([1E-4,1E4])
-plt.title(r"W. L. Barnes et al., J. Opt. 22 (2020)/Fig. 13b" "\n"
+plt.title(r"W. L. Barnes et al., J. Opt. 22 (2020), Fig. 13b" "\n"
     rf"Cross-cut at $\omega = {om_sel/1e15:.2f}\times10^{{15}}\,\mathrm{{rad\,s^{{-1}}}}$")
 file = [folder,'LitBenchmark_Barnes_etal_JOpt2020_Fig13b'+' .pdf']
 savefig(file[0], file[1])

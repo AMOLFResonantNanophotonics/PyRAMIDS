@@ -1,12 +1,8 @@
-#!/usr/bin/env python3
-"""
-Created on Fri Feb 17 18:01:14 2023
+#%%
+'''Reproducing Kwadrin et al., Phys. Rev. B 87, 125123 (2013)'''
 
-Reproducing
-Kwadrin, PHYSICAL REVIEW B 87, 125123 (2013)
-"""
-
-print('###  Literature Benchmark: Kwadrin et. al. Phys. Rev. B. 87, 125123 (2013)  ###')
+#%%
+print('### Literature Benchmark: Kwadrin et al., Phys. Rev. B 87, 125123 (2013) ###')
 
 #%%
 import os
@@ -56,7 +52,7 @@ plt.xlim([0,1.5])
 plt.xlabel('d (um)')
 plt.ylabel('LDOS/LDOS$_{vac}$')
 plt.legend(['Ag px','Ag mz','Si px','Si mz'])
-plt.title('Kwadrin et. al. Phys. Rev. B. 87, 125123 (2013)/Fig 2')
+plt.title('Kwadrin et al. Phys. Rev. B. 87, 125123 (2013), Fig. 2')
 file = [folder,'LitBenchmark_Kwadrin_etal_PRB2013_Fig2_zoomed'+' .pdf']
 savefig(file[0], file[1])
 plt.show()
@@ -68,8 +64,7 @@ plt.xlim([0,0.3])
 plt.xlabel('d (um)')
 plt.ylabel('LDOS/LDOS$_{vac}$')
 plt.legend(['Ag px','Ag mz','Si px','Si mz'])
-plt.title('Kwadrin et. al. Phys. Rev. B. 87, 125123 (2013)/Fig 2')
+plt.title('Kwadrin et al. Phys. Rev. B. 87, 125123 (2013), Fig. 2')
 file = [folder,'LitBenchmark_Kwadrin_etal_PRB2013_Fig2'+' .pdf']
 savefig(file[0], file[1])
 plt.show()
-

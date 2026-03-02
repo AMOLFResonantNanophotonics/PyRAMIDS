@@ -1,11 +1,8 @@
-'''
-########################
-Perpendicular electric and magnetic dipoles / radiation patterns
-Lukosz and Kunz JOSA 67 1615'
-Fig 2 and 4 (right on interface, different refractive indices)
-########################
-'''
+#%%
+'''Reproducing Lukosz and Kunz, JOSA 67, 1615-1619 (1977), Figs. 2 and 4'''
 
+#%%
+print('### Literature Benchmark: Lukosz & Kunz, JOSA 67, 1615-1619 (1977) ###')
 
 #%%
 import os
@@ -14,8 +11,6 @@ import sys
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
-
-print('###  Literature Benchmark: Lukosz & Kunz JOSA 67, 1615-1619 (1977)  ###')
 
 def savefig(folderpath, filename):
     if not os.path.exists(folderpath):
@@ -88,8 +83,8 @@ ax[1].set_xlim([0,180])
 ax[1].set_xlabel('Theta')
 ax[0].set_ylabel('Flux/steradian')
 ax[1].set_ylabel('Flux/steradian')
-ax[0].set_title('Perp electric, Fig 2 JOSA 67 1615')
-ax[1].set_title('Perp magnetic, Fig 2 JOSA 67 1615]')
+ax[0].set_title('Perp electric, Fig. 2, JOSA 67, 1615')
+ax[1].set_title('Perp magnetic, Fig. 2, JOSA 67, 1615')
 
 ax2[0].set_ylim(bottom=0.0)
 ax2[0].legend(leg)
@@ -99,8 +94,8 @@ ax2[1].set_xlim([0,180])
 ax2[1].set_xlabel('Theta')
 ax2[0].set_ylabel('Flux/steradian')
 ax2[1].set_ylabel('Flux/steradian')
-ax2[0].set_title('Perp electric, Fig 4 Lukosz & Kunz JOSA 67 1615 1979')
-ax2[1].set_title('Perp magnetic, Fig 4 Lukosz & Kunz JOSA 67 1615 1979')
+ax2[0].set_title('Perp electric, Fig. 4, Lukosz & Kunz, JOSA 67, 1615 (1977)')
+ax2[1].set_title('Perp magnetic, Fig. 4, Lukosz & Kunz, JOSA 67, 1615 (1977)')
 
 f1.savefig(folder + 'LitBenchmark_Lukosz_etal_JOSA67_1979_Fig2.pdf', dpi=300, bbox_inches='tight')
 f2.savefig(folder + 'LitBenchmark_Lukosz_etal_JOSA67_1979_Fig4.pdf', dpi=300, bbox_inches='tight')
@@ -149,8 +144,8 @@ ax[1].set_xlim([0,180])
 ax[1].set_xlabel('Theta')
 ax[0].set_ylabel('Flux/steradian')
 ax[1].set_ylabel('Flux/steradian')
-ax[0].set_title('Perp electric, Fig 3 Lukosz & Kunz JOSA 67 1615 1979]')
-ax[1].set_title('Perp magnetic, Fig 3 Lukosz & Kunz JOSA 67 1615 1979]')
+ax[0].set_title('Perp electric, Fig. 3, Lukosz & Kunz, JOSA 67, 1615 (1977)')
+ax[1].set_title('Perp magnetic, Fig. 3, Lukosz & Kunz, JOSA 67, 1615 (1977)')
 
 f3.savefig(folder + 'LitBenchmark_Lukosz_etal_JOSA67_1979_Fig3.pdf', dpi=300, bbox_inches='tight')
 plt.show()
@@ -193,7 +188,7 @@ for m in range(len(zlist)):
     ax[1].plot(np.pi-thelist,P2,plotspec[m])
     
     leg.append('z/lam='+plotname[m])
-ax[0].set_title('Fig 5 Lukosz & Kunz JOSA 67 1615 1979')
+ax[0].set_title('Fig. 5, Lukosz & Kunz, JOSA 67, 1615 (1977)')
 ax[0].set_thetamin(0)
 ax[0].set_thetamax(180)
 ax[1].set_thetamin(0)
@@ -247,7 +242,7 @@ for nsubs in nlist:
     plt.xlabel('Theta')
     plt.ylabel('Flux/steradian')
     plt.legend(['p','s','s+p'])
-    plt.title('Parallel electric, n='+f"{nsubs:.3f}"+'\n'+' [Lukosz JOSA 69 1615 1979]')
+    plt.title('Parallel electric, n='+f"{nsubs:.3f}"+'\n'+'[Lukosz, JOSA 69, 1615 (1979)]')
     
     if nsubs == 2.0:
         file = [folder,'LitBenchmark_Lukosz_JOSA69_1979_electric_Fig7'+' .pdf']
@@ -272,9 +267,8 @@ for nsubs in nlist:
     plt.xlabel('Theta')
     plt.ylabel('Flux/steradian')
     plt.legend(['p','s','s+p'])
-    plt.title('Parallel magnetic, n='+f"{nsubs:.3f}"+ '\n'+' [Lukosz JOSA 69 1615 1979]')
+    plt.title('Parallel magnetic, n='+f"{nsubs:.3f}"+ '\n'+'[Lukosz, JOSA 69, 1615 (1979)]')
     if nsubs == 2.0:
         file = [folder,'LitBenchmark_Lukosz_JOSA69_1979_magnetic_Fig7'+' .pdf']
         savefig(file[0], file[1])
     plt.show()
-
