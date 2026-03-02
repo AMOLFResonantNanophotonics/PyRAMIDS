@@ -1,9 +1,14 @@
-''' Plot example SPP - insight into LDOS contributions from plotting LDOS integrand
-    Example for a simple Ag Drude Glass interface.
-    
-    Source in glass at various heights away from metal.
-
- '''
+"""
+#Routine-use example: SPP-focused LDOS integrand analysis
+#
+#Evaluates k_parallel-resolved LDOS integrands for a Drude-metal/glass
+#interface and compares several emitter heights in glass.
+#
+#Shows how the SPP branch and near-field contributions appear in electric
+#parallel/perpendicular LDOS channels as function of frequency and k_parallel.
+#
+@author: dpal,fkoenderink
+"""
 
 #%%
 import os
@@ -166,4 +171,3 @@ plt.xlabel(r'$k_{||}\ (\mu m^{-1})$')
 plt.ylabel(r'$\omega\ (eV)$')
 plt.title('100 nm from Ag')
 plt.show()
-

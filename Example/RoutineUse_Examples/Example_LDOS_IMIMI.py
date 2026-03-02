@@ -1,7 +1,15 @@
-''' Plot example MIM - insight into LDOS contributions from plotting LDOS integrand
-    Example for a simple Metal-Insulator-Meta structure  in insultator surrounding.. 
-    with gap  between metal layer increasing.
- '''
+"""
+#Routine-use example: LDOS integrand maps for IMIMI geometry
+#
+#Plots k_parallel-resolved LDOS integrands for a metal-insulator-metal-
+#insulator-metal type stack (Drude metal) to inspect mode contributions
+#and their evolution with spacer geometry.
+#
+#The script illustrates how electric-parallel and electric-perpendicular
+#channels expose coupled/plasmonic features in multilayer systems.
+#
+@author: dpal,fkoenderink
+"""
 
 #%%
 import os
@@ -224,7 +232,6 @@ plt.xlabel(r'$\omega\ (eV)$')
 plt.ylabel('LDOS / vacuum LDOS (middle of MIM)')
 plt.title('Solid - IMIMI, Dashed - infront of mirror')
 plt.show()
-
 
 
 

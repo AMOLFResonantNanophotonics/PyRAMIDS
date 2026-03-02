@@ -1,9 +1,16 @@
 #!/usr/bin/env python3
 
-'''
-This script shows how to plot the far field radiation pattern 
-including Stokes polarimetry for different dipoles
-'''
+"""
+#Routine-use example: back-focal-plane radiation and Stokes maps
+#
+#Demonstrates far-field radiation-pattern calculations for several dipole
+#configurations and visualizes the corresponding BFP intensity/polarization
+#maps using Stokes analysis in upper and lower hemispheres.
+#
+#Useful as a reference for polarization-resolved emission workflows.
+#
+@author: dpal,fkoenderink
+"""
 
 
 #%%

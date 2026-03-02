@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
 """
-Computes Green's function for all components'
+#Routine-use example: slab dyadic Green tensor evaluation
+#
+#Computes full dyadic Green-tensor components (EE, HH, EH, HE) for a
+#three-layer slab geometry and plots selected tensor elements along a
+#detector trajectory.
+#
+#This script is a practical reference for inspecting Green-function
+#amplitudes/phases and component-wise behavior in layered media.
+#
+@author: dpal,fkoenderink
 """
 #%%
 import os

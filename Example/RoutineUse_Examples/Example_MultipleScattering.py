@@ -1,4 +1,17 @@
 #!/usr/bin/env python3
+"""
+#Routine-use example: multiple scattering from dipole particles in stacks
+#
+#Runs a wavelength sweep for a dipole particle and compares extinction/scattering
+#cross-sections in homogeneous versus layered surrounding media under plane-wave
+#excitation.
+#
+#Demonstrates core coupled-dipole workflow:
+#polarizability -> dynamic inverse polarizability -> driving -> dipole moments
+#-> extracted optical cross-sections.
+#
+@author: dpal,fkoenderink
+"""
 
 #%%
 import os

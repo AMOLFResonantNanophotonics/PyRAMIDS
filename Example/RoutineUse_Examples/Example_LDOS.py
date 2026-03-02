@@ -1,15 +1,16 @@
-''' Plot example - insight into LDOS contributions from plotting LDOS integrand
-    Example for a dielectric waveguide. Method proposed by  Amos & Barnes PRB 55 7249 (1997) Figure 5 
-  
-    Example: waveguide of n=3.5 on glass, with thickness d=lam/10
-    
-    Returns plots for LDOS_E (par, perp), LDOS_M (par,perp) and LDOS_C (relates to chirality)
-
-    What you are suppose to find:
-        - Gentle LDOS(k||) oscillations in both half spaces below the light lines, i.e., below kpar/k0 is 1.5 and 1.0
-        - Distinct guided mode contributions between kpar/k0=1.5 and 3.5
-        - These appear as vertical stripes, and show the mode profile    
- '''
+"""
+#Routine-use example: LDOS decomposition in a dielectric waveguide
+#
+#Demonstrates LDOS workflows for a high-index slab waveguide on glass,
+#including:
+#  - LDOS for arbitrary electric/magnetic dipole definitions
+#  - decomposition into total, radiative, and guided contributions
+#  - k_parallel-resolved integrand maps for modal interpretation
+#
+#Reference context: Amos and Barnes, Phys. Rev. B 55, 7249 (1997), Fig. 5.
+#
+@author: dpal,fkoenderink
+"""
 
 #%%
 import os

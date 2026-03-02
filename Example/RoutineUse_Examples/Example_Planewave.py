@@ -1,9 +1,16 @@
 #!/usr/bin/env python3
 
 """
-Calculates and shows all the plane wave capabilities
-- Reflectance, Transmittance, Absorptance
-- On axis Electric field, Absorption
+#Routine-use example: plane-wave response of layered stacks
+#
+#Demonstrates user-level plane-wave calculations:
+#  - Reflectance / Transmittance / Absorptance (s and p polarization)
+#  - per-layer absorption
+#  - on-axis local fields and absorption profiles
+#
+#This is a compact reference for standard stack optical-response workflows.
+#
+@author: dpal,fkoenderink
 """
 
 #%%

@@ -1,13 +1,18 @@
 #!/usr/bin/env python3
 
-
-'''This example use file calculating amplitude and phase; with how the core functions work 
-
-- simple air/glass 
-- air/n=1.6(400nm)/ glass 
-
-- shows the guided modes beyond k0
-'''
+"""
+#Routine-use example: core S-matrix amplitudes and phases
+#
+#Shows direct use of core S-matrix routines for simple stacks and compares
+#results with user-level plane-wave intensity routines.
+#
+#Cases included:
+#  - air / glass interface
+#  - air / finite layer / glass
+#  - guided/leaky-mode behavior beyond the light line
+#
+@author: dpal,fkoenderink
+"""
 
 
 #%%
