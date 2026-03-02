@@ -131,7 +131,18 @@ PyRAMIDS follows a layered folder implementation architecture consisting of **Co
 - Polar angle is measured from the surface normal: \($\theta=0^\circ$\) is normal to the plane, \($\theta=90^\circ$\) is in-plane or grazing. In code, upper hemisphere uses \($\cos\theta>0$\), lower hemisphere uses \($\cos\theta\le 0$\).
 
 ---
-## Installation
+## Installation and Dependencies
+
+Get the code:
+
+```bash
+git clone https://github.com/AMOLFResonantNanophotonics/PyRAMIDS.git
+cd PyRAMIDS
+```
+
+Alternative workflows:
+- VS Code: use `Git: Clone`, then open the cloned `PyRAMIDS` folder.
+- GitHub ZIP: `Code -> Download ZIP`, unzip, then open `PyRAMIDS` in VS Code or Spyder.
 
 PyRAMIDS is implemented in Python.
 
