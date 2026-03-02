@@ -3,7 +3,8 @@
 **A Python package for Radiation, Magnetoelectric Interactions, and Dipoles in Stratified Layers**
 
 
-### Intended Use
+### Motivation and prospective use cases
+
 PyRAMIDS is a simulation framework for nanophotonics and electromagnetic modeling in planar multilayer structures. It can serve both as a teaching tool and as a research platform.
 
 It is designed for:
@@ -11,7 +12,7 @@ It is designed for:
 - Local density of states (LDOS) engineering  
 - Dipolar emitter photophysics in layered media  
 - Far-field radiation pattern analysis  
-- Fourier microscopy calibration and benchmarking  
+- Calibration and benchmarking: High NA objectives, Fourier microscope, Numerical Solvers  
 - Multiple scattering of magnetoelectric dipoles  
 - Device design workflows (LEDs, photovoltaics, cavities, multilayer metamaterials)  
 - Inverse design and (co-)optimization of multilayer stacks and embedded dipolar scatterers  
