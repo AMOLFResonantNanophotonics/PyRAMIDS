@@ -10,14 +10,15 @@
 #(1) All the *integrands* (electric, magnetic, and crossed)
 #(2) Integration routines, with and without the guided mode contributions
 
-#Note that the electric dipole precisely follows the formulation     #Amos and Barnes PRB 55, 7249
-#The magnetic and magnetoelectric are in same nomenclature
+#Note that the electric dipole precisely follows the formulation of
+#Amos and Barnes PRB 55, 7249.
+#The magnetic and magnetoelectric terms are in the same nomenclature.
 
 Parameter input throughout (geometry)
         - We assume a point dipole at height z in a slab of index nslab and height dslab
         - The half infinite substrate n2 is separated from the slab itself by 
-          a set of layers of index and thickness listed in nd2 list, counting away from the slab. This is on the z=0 side
-        - On the z=dslab side is half infinite superstrate n3. Inbetween the slab and the superstrate is the stack nd3list
+          a set of layers of index and thickness listed in nd2list, counting away from the slab. This is on the z=0 side
+        - On the z=dslab side is half infinite superstrate n3. In between the slab and the superstrate is the stack nd3list
  
 
 @author: dpal,fkoenderink
@@ -156,4 +157,3 @@ def LDOSinlayer(k0,z,dslab,nslab,n2,n3,nd2list,nd3list):
   
     zt=nslab*(zt1+zt2)
     return np.real(zt)
-

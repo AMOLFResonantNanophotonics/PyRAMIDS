@@ -1,5 +1,24 @@
 
 """
+#All user-level routines for plane-wave response of layered stacks
+
+#This file wraps the S-matrix core to compute reflectance/transmittance,
+#layer-resolved absorption, field components, and related plane-wave
+#interrogation quantities.
+#
+#Conventions used throughout
+#  - k0 = 2*pi/lambda_vac
+#  - nstack = [n0, n1, n2, ..., n_{m-1}, n_m]
+#    where n0 and n_m are semi-infinite input/output halfspaces
+#  - dstack = [d1, d2, ..., d_{m-1}]
+#    where d_j is the thickness of layer n_j (j=1...m-1)
+#
+#Main user functions
+#  - IntensityRT: reflectance/transmittance/absorptance for s and p
+#  - PerLayerAbsorption: absorption per finite layer (s and p)
+#  - OnAxisLocalFieldandAbsorption: local fields and absorption density vs z
+#  - CartesianField: full Cartesian E/H fields for specified illuminations
+
 @author: dpal,fkoenderink
 """
 
@@ -34,6 +53,7 @@ import numpy as np
 
 
 def checkplanewaveproblem(k0,kpar,nstack,dstack): 
+    """Internal argument checker/normalizer for plane-wave routines."""
     k0=check.checkk0(k0)
     kpar=check.checkKparlist(kpar)
     nstack,dstack=check.checkStackdefinition(nstack,dstack)
@@ -45,12 +65,27 @@ def checkplanewaveproblem(k0,kpar,nstack,dstack):
 
 # Plane wave layer reflectivity and transmission
 def IntensityRT(k0,kpar,nstack,dstack):
-    ''' Wrapper routine that queries S-matrix for intensity Reflectance, and transmittance.
-        k0 = free space wavenumber
-        kpar = parallel momentum of the input wave, can go up to nin. Goes with sine input angle
-        nstack = [nin, n1,n2..nM, nout]  refractive indices
-        dstack = [d1,d2,d3 .., dN]  
-    '''
+    """Compute intensity R/T/A for s and p polarized plane waves.
+
+    Intuition
+    ---------
+    Direct wrapper over S-matrix reflection/transmission amplitudes, converted
+    to intensities and reported as `(R, T, A)` for both polarizations.
+
+    Parameters
+    ----------
+    k0 : float
+        Free-space wavenumber (`k0 = 2*pi/lambda_vac`).
+    kpar : array-like
+        Parallel wavevector component(s).
+    nstack, dstack : array-like
+        Layer refractive indices and thicknesses.
+
+    Returns
+    -------
+    tuple(ndarray, ndarray)
+        `(s_out, p_out)` each with shape `(3, Nkpar)` ordered as `(R, T, A)`.
+    """
     
     k0,kpar,nstack,dstack,nin,nout,ndlist,dum=checkplanewaveproblem(k0,kpar,nstack,dstack)
     
@@ -75,14 +110,24 @@ def IntensityRT(k0,kpar,nstack,dstack):
 
 
 def PerLayerAbsorption(k0,kpar,nstack,dstack):
-    ''' Wrapper routine that queries S-matrix to solve the plane wave problem for incidence from medium 1,  
-        and to return the absorped power per layer for each of the finite thickness layers in the stack.   
-        
-        k0 = free space wavenumber
-        kpar = parallel momentum of the input wave, can go up to nin. Goes with sine input angle
-        nstack = [nin, n1,n2..nM, nout]  refractive indices
-        dstack = [d1,d2,d3 .., dN]  
-    '''
+    """Compute per-layer absorption for s and p illumination.
+
+    Intuition
+    ---------
+    Solves the full stack once, then evaluates energy dissipation in each
+    layer from up/down field amplitudes.
+
+    Parameters
+    ----------
+    k0, kpar, nstack, dstack :
+        Same definition as in `IntensityRT`.
+
+    Returns
+    -------
+    tuple(ndarray, ndarray)
+        `(abs_s, abs_p)` arrays with one value per finite layer plus output
+        half-space contribution handled by the internal solver convention.
+    """
     # query the sensibility of the problem parameters: 
     k0,kpar,nstack,dstack,nin,nout,ndlist,nmid=checkplanewaveproblem(k0,kpar,nstack,dstack)
     
@@ -172,15 +217,26 @@ def PerLayerAbsorption(k0,kpar,nstack,dstack):
 
 
 def OnAxisLocalFieldandAbsorption(k0,kpar,nstack,dstack,zlist):
-    ''' Wrapper routine that queries S-matrix to solve the plane wave problem for incidence from medium 1,  
-        and to return the local E and H fields on the x=y=0 axis, separated out 
-        in the s and p solution. Also the routine returns the local absorption density
-         
-        k0 = free space wavenumber
-        kpar = parallel momentum of the input wave, can go up to nin. Goes with sine input angle
-        nstack = [nin, n1,n2..nM, nout]  refractive indices
-        dstack = [d1,d2,d3 .., dN]  
-    '''
+    """Return local on-axis fields and absorption density as function of z.
+
+    Intuition
+    ---------
+    Gives local fields along `x=y=0` while keeping s and p channels separated,
+    plus corresponding local absorption densities.
+
+    Parameters
+    ----------
+    k0, kpar, nstack, dstack :
+        Same definition as in `IntensityRT`.
+    zlist : array-like
+        z positions where fields are requested.
+
+    Returns
+    -------
+    tuple
+        `(S, P, As, Ap)` where `S` and `P` are field component arrays and
+        `As`, `Ap` are local absorption densities.
+    """
     # Argument checking     
     zlist=check.checkz(zlist)
     k0,kpar,nstack,dstack,nin,nout,ndlist,dum=checkplanewaveproblem(k0,kpar,nstack,dstack)
@@ -224,19 +280,31 @@ def OnAxisLocalFieldandAbsorption(k0,kpar,nstack,dstack,zlist):
 
 
 def CartesianField(theta,phi,scoeff,pcoeff,rlist,k0,nstack,dstack):
-    ''' Routine provides Cartesian field components for E and H 
-    ## For a range of input wave vectors, and at a list of positions
-    ##
-    ##
-    ## rlist:  positions r that are offered r[:,3] at which you want to know the answer
-    ##  
-    ## thetas, phis   specify input wavevectors for which you want the answer, 
-    ## these are angles in medium nin (negative z)
-    ## 
-    ##  Each illumination at s and p complex prefactors, meaning amplitudes and phase
-    ## 
-    ##  k0,nstack,dstack as usual
-    '''
+    """Return Cartesian E/H fields for superposed s/p plane-wave inputs.
+
+    Intuition
+    ---------
+    For each incident angle and complex `(s, p)` weight, computes the local
+    field in the stratified stack and adds the in-plane phase factor from
+    dipole/observation lateral coordinates.
+
+    Parameters
+    ----------
+    theta, phi : array-like
+        Input angles in medium `nin`.
+    scoeff, pcoeff : array-like
+        Complex s/p amplitudes for each input angle.
+    rlist : array-like, shape (3, Npos)
+        Cartesian positions where fields are evaluated.
+    k0, nstack, dstack :
+        Standard stack definition with `k0 = 2*pi/lambda_vac`.
+
+    Returns
+    -------
+    ndarray
+        Complex array `EH` with shape `(6, Ntheta, Npos)` storing
+        `(Ex, Ey, Ez, Hx, Hy, Hz)`.
+    """
     
 # Argument checking plane wave problem      
     k0,kpar,nstack,dstack,nin,nout,ndlist,dum=checkplanewaveproblem(k0,0.0*k0,nstack,dstack)

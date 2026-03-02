@@ -1,7 +1,19 @@
 """
-Created on Wed Nov  6 20:32:03 2024
+#Custom Differential Evolution optimizer with geometric constraints
 
-@author: pal
+#This file provides a Differential Evolution implementation with:
+#(1) minimum-separation constraints for scatterers,
+#(2) optional exclusion-zone constraints,
+#(3) optional caching of merit evaluations,
+#(4) generation-by-generation save to output npz.
+
+#Used in optimization workflows (e.g. inverse-design examples).
+#
+#Main user class
+#  - DifferentialEvolution
+#    initialize with bounds/objective and call `optimize()`
+
+@author: dpal,fkoenderink
 """
 
 import numpy as np
@@ -10,6 +22,14 @@ from scipy.spatial.distance import pdist, squareform
 import os
 
 class DifferentialEvolution:
+    """Differential Evolution optimizer with geometric constraints.
+
+    Intuition
+    ---------
+    Designed for scatterer-position optimization where each individual is
+    `[x1, y1, x2, y2, ...]`, with optional minimum-separation and exclusion
+    zone constraints.
+    """
     def __init__(self,
         bounds,
         pop_size,
@@ -28,6 +48,25 @@ class DifferentialEvolution:
         exclude_square_side=None,   # e.g. 0.25  (microns)
         exclude_margin=0.0,         # optional padding
     ):
+        """Create optimizer and initialize population.
+
+        Parameters
+        ----------
+        bounds : sequence
+            Per-dimension `(min, max)` bounds.
+        pop_size : int
+            Population size.
+        max_generations : int
+            Maximum DE generations.
+        merit_func : callable
+            Objective function `f(x, *args)` to minimize.
+        outputFilename : str
+            `.npz` file path used for progress/history saving.
+        min_separation : float, optional
+            Minimum allowed inter-particle distance.
+        initial_population : array-like, optional
+            Seed individuals.
+        """
         
         self.bounds = np.array(bounds)
         self.pop_size = pop_size
@@ -67,6 +106,7 @@ class DifferentialEvolution:
             self.population = self.generate_positions_with_constraints()
 
     def round_to_step(self, value):
+        """Round values to configured discretization step size."""
         return np.round(value / self.step_size) * self.step_size
 
 
@@ -286,6 +326,7 @@ class DifferentialEvolution:
         return xy_positions
 
     def optimize(self):
+        """Run Differential Evolution iterations and persist history to disk."""
         for generation in tqdm(range(self.max_generations), desc="DE Progress"):
             
             # Evaluate FOM for all individuals
@@ -398,6 +439,7 @@ class DifferentialEvolution:
 
 
     def evaluate_population(self, population):
+        """Evaluate objective for all individuals (with optional caching)."""
         scores = []
         for indiv in population:
             # Round positions using the instance method
@@ -425,5 +467,6 @@ class DifferentialEvolution:
 
 
     def merit_func_wrapper(self, x):
+        """Internal objective wrapper."""
         # x is already rounded to the desired precision
         return self.merit_func(x, *self.args)

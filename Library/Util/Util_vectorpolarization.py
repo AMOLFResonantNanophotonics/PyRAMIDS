@@ -1,6 +1,17 @@
 """
+#Utility functions for polarization visualization in Fourier/back-focal plane
+
+#Transforms far-field radiation patterns into 2D back focal plane maps
+#and computes Stokes-parameter-based polarimetry quantities.
+#
+#Main user functions
+#  - BFPplotIntensity
+#  - BFPplotpassport
+#  - BFPplotpassportStokes
+#  - BFPcartesianStokes / BFPspStokes
+#  - Field2Stokes
+
 @author: dpal,fkoenderink
-Transform Far field radiation patterns into 2D back focal plane & Stokes polarimetry 
 """
 
 #%%
@@ -23,6 +34,7 @@ import matplotlib.pyplot as plt
  
 
 def FarfieldEsp2Ecartesian3D(theta,phi,Es,Ep):
+    """Convert far-field `(Es, Ep)` into Cartesian `(Ex, Ey, Ez)`."""
 
     check.checkBFPinput(theta,phi,Es,Ep)
     
@@ -36,6 +48,7 @@ def FarfieldEsp2Ecartesian3D(theta,phi,Es,Ep):
 
 
 def FarfieldEsp2EcartesianBFP(theta,phi,Es,Ep) :
+    """Convert far-field `(Es, Ep)` into BFP Cartesian `(Ex, Ey)`."""
     check.checkBFPinput(theta,phi,Es,Ep)
 
     khat,shat,phat=cc.spherical2cartesian(theta,phi)
@@ -54,6 +67,7 @@ def FarfieldEsp2EcartesianBFP(theta,phi,Es,Ep) :
 
 
 def Intensity2Stokes(Ix,Iy,Idp,Idm,Ircp,Ilcp):
+    """Compute Stokes `(S0, S1, S2, S3)` from measured intensity channels."""
     check.checkBFPinput(Ix,Iy,Idp,Idm)
     check.checkBFPinput(Ix,Iy,Ircp,Ilcp)
 
@@ -66,6 +80,13 @@ def Intensity2Stokes(Ix,Iy,Idp,Idm,Ircp,Ilcp):
 
 
 def Field2Stokes(Ex,Ey):
+    """Compute Stokes parameters from complex field components `(Ex, Ey)`.
+
+    Returns
+    -------
+    tuple
+        `(S0, S1, S2, S3, ellipticity, majororientation)`.
+    """
     
     #projected on linear diagonal 45, -45
 
@@ -90,6 +111,7 @@ def Field2Stokes(Ex,Ey):
  
     
 def BFPcartesianStokes(theta,phi,Es,Ep) :
+    """Stokes analysis in Cartesian BFP basis."""
     check.checkBFPinput(theta,phi,Es,Ep)
 
     Ex,Ey=FarfieldEsp2EcartesianBFP(theta, phi, Es, Ep)
@@ -97,6 +119,7 @@ def BFPcartesianStokes(theta,phi,Es,Ep) :
     
 
 def BFPspStokes(theta,phi,Es,Ep) :
+    """Stokes analysis in local `(s, p)` basis."""
     check.checkBFPinput(theta,phi,Es,Ep)
     s=np.sign(np.cos(theta))
     S0,S1,S2,S3,ellipticity,majororientation=Field2Stokes(s*Ep,Es)
@@ -105,6 +128,13 @@ def BFPspStokes(theta,phi,Es,Ep) :
 
 
 def BFPplotIntensity(theta,phi,Es,Ep,nrefr,title, basis='cartesian', show=True) :
+    """Plot and return BFP intensity map `S0`.
+
+    Returns
+    -------
+    tuple
+        `(S0, figure_handle)`.
+    """
     check.checkBFPinput(theta,phi,Es,Ep)
     khat,shat,phat=cc.spherical2cartesian(theta,phi)
     kx = khat[0]*nrefr 
@@ -137,6 +167,13 @@ def BFPplotIntensity(theta,phi,Es,Ep,nrefr,title, basis='cartesian', show=True) 
     return S0, plt.gcf()
 
 def BFPplotpassport(theta,phi,Es,Ep,nrefr,title=' ',basis='cartesian', plot = True) :
+    """Compute and optionally plot full BFP Stokes passport.
+
+    Returns
+    -------
+    tuple
+        `(kx, ky, S0, S1, S2, S3)`.
+    """
     check.checkBFPinput(theta,phi,Es,Ep)
     khat,shat,phat=cc.spherical2cartesian(theta,phi)
     kx = khat[0]*nrefr 
@@ -227,6 +264,7 @@ def BFPplotpassport(theta,phi,Es,Ep,nrefr,title=' ',basis='cartesian', plot = Tr
 
 
 def BFPplotpassportStokes(theta,phi,S0,S1,S2,S3,nrefr,title=' ') :
+    """Plot BFP passport from precomputed Stokes maps."""
     check.checkBFPinput(theta,phi,S0,S1)
     khat,shat,phat=cc.spherical2cartesian(theta,phi)
     kx = khat[0]*nrefr 
@@ -290,4 +328,3 @@ def BFPplotpassportStokes(theta,phi,S0,S1,S2,S3,nrefr,title=' ') :
     plt.show()
  
     return
-

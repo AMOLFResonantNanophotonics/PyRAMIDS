@@ -1,4 +1,22 @@
 """
+#All functions for evaluating the generalized dyadic Green tensor in a stratified slab
+
+#This file provides routines for source-detector Green tensor evaluation
+#for layered media, when source and detector are in the same slab.
+
+#Overall structure of this file
+#(1) Main wrapper performing contour + real-axis integration
+#(2) Integrands for dyadic Green tensor terms
+#(3) Helper terms used by LDOS and multiple-scattering routines
+
+Parameter input throughout (geometry)
+        - We assume a source dipole at height z0 and detector at z
+          in a slab of index nslab and height dslab
+        - The half infinite substrate n2 is separated from the slab by
+          layers listed in nd2list, counting away from the slab (z=0 side)
+        - On the z=dslab side is half infinite superstrate n3, separated
+          from the slab by layers listed in nd3list
+
 @author: dpal,fkoenderink
 """
 

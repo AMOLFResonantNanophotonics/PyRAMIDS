@@ -1,23 +1,23 @@
  
 """
-    This file contains all the far-field related scripts for electromagnetic sources embedded in stratfied system.  This includes:
+    This file contains all far-field related scripts for electromagnetic sources embedded in stratified systems. This includes:
     
-    - Far field in  halfspaces  on basis of asymptotic dyadic Green function. The use is:
+    - Far field in half-spaces on the basis of asymptotic dyadic Green functions. The use is:
         
         (1) We assume a general electric and magnetic dipole. Cartesian coordinates are used
             for pu=[px,py,pz] mu = [mx,my,mz]. z is perpendicular to the stack. Note that
             For arbitrary dipoles, the relative magnitude and phase matter - coherent addition!
             
             
-        (2) The fields are requested for lists of theta,phi coordinates.  
+        (2) The fields are requested for lists of theta,phi coordinates.
         
         (3) The output is in s- and p-polarized basis, and reports electric field.
         
         (4) The problem spec in terms of geometry is:
                 k0=w/c          free space wavenumber
                 h, dslab,nslab  The dipole is at height h in slab of thickness dslab, and index nslab
-                n2, n3          lower and upper half infinite substrate. 
-                nd2list,nd3list stack between the slab and halfinfinite space, counting from slab                          
+                n2, n3          lower and upper half infinite substrates.
+                nd2list,nd3list stack between the slab and half-infinite space, counting from slab
         
     - Fluxes derived from fields
     - Integration of fluxes to obtain total radiated power. Available for canonical dipole orientations only
@@ -331,4 +331,3 @@ def TotalRadiatedfromlayerPuMu(pu,mu,k0,h,dslab,nslab,n2,n3,nd2list,nd3list):
     
      
     return np.vstack((up+down,up, down))
-

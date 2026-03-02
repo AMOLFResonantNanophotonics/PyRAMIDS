@@ -1,6 +1,18 @@
 """
-Coordinate wrapping utility
-Conversion routine between the natural "user-centric" coordinate and the "slab-centric" coordinate system in the base routines
+#Coordinate wrapping utility
+#Conversion routine between the natural "user-centric" coordinates and
+#the "slab-centric" coordinate system used by base routines.
+#
+#Conventions used throughout
+#  - nstack = [n0, n1, n2, ..., n_{m-1}, n_m]
+#  - dstack = [d1, d2, ..., d_{m-1}]
+#  - first interface is at z=0 in user-centric coordinates
+#
+#Main user functions
+#  - stackseparator
+#  - pinpointdomain
+#  - providecoordinates
+#  - spherical2cartesian
 
 User centric:  consider  a stratified system with first interface at z=0, and then  a set of finite layers of thickness d1,d2,d3, dN
                the source is at a coordinate z in the system
@@ -12,7 +24,7 @@ Slab centric:   The natural coordinate system for LDOS and radiation pattern rou
                 and also the slabs 1 to m-1 in reverse order, counting away from the source
                 
 
-The coordinate wrapper translates coordinates and all the arguments from user centric to slab centric. The approach is:
+The coordinate wrapper translates coordinates and arguments from user centric to slab centric. The approach is:
     - pinpointdomain. For a list of z, and geometry,  pinpoint for each z in which domain n=0, 1....N+1 it lies (incl half infinite spaces)
     - provide coordinates. Given the domain has been pinpointed,  take the user centric z and stack definition, and return the slab centric definition
     
@@ -28,6 +40,7 @@ import numpy as np
 
     
 def basicgeoinfo(z,dstack):
+    """Internal geometry helper for stack boundaries and overhang."""
      
     zstack=np.cumsum(np.append(0.0,np.array(dstack))) 
     stacksize=np.sum(dstack)  #total stack thickness
@@ -36,6 +49,13 @@ def basicgeoinfo(z,dstack):
     return zstack,stacksize,numdomains,tightoverhang
   
 def stackseparator(nstack,dstack):
+    """Split full stack into halfspaces and finite-layer list.
+
+    Returns
+    -------
+    tuple
+        `(n2, n3, ndlist, ninterior)` where `ndlist` is `(n, d)` pairs.
+    """
     n2=nstack[0]
     n3=nstack[-1]
     ninterior=nstack[1:-1]
@@ -44,6 +64,7 @@ def stackseparator(nstack,dstack):
     return n2,n3,ndlist,ninterior
     
 def pinpointdomain(zlist,dstack):
+    """Assign each z in `zlist` to a layer-domain index."""
 #  given a list of z values (real) in zlist, and a set of layer thickness (also real, first interface is at z=0),  returns for each z in zlist 
 #  the index m corresponding to the domain that z is in  (m=0 stands for left half space, counting up)    
 
@@ -68,6 +89,13 @@ def pinpointdomain(zlist,dstack):
 
 ####################        Coordinate reshuffle routine                #################
 def providecoordinates(m,z,nstack,dstack):
+    """Convert user-centric coordinates to slab-centric coordinates.
+
+    Returns
+    -------
+    tuple
+        `(zz, dslab, nslab, n2, n3, nd2list, nd3list)`.
+    """
     # m:   assignment given z and geometry, of coordinates to domains, returned from pinpointdomain
     #      this must be a single integer, meaning the data is assumed sliced in small lists of z that are just in one given layer
     # z-values:  list of z-values
@@ -121,13 +149,14 @@ def providecoordinates(m,z,nstack,dstack):
     return zz,dslab,nslab,n2,n3,nd2list,nd3list
     
 def nvalueatzposition(z,nstack,dstack):
+    """Return refractive index at given z position(s)."""
     
     m=pinpointdomain(z,dstack)
     return np.array(nstack)[m]
 
 
 def spherical2cartesian(theta,phi):
-    'returns the spherical unit vectors for radiation patterns, and the s- p- unit vectors'
+    """Return spherical basis vectors and corresponding s/p basis vectors."""
     
     
     cosp=np.cos(phi)
@@ -147,4 +176,3 @@ def spherical2cartesian(theta,phi):
 
 
     
-

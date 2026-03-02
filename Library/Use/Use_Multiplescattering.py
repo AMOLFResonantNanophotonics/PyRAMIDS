@@ -1,4 +1,22 @@
 """
+#All user-level routines for multiple scattering by dipole arrays in layered media
+
+#This file contains driving-field definitions, dipole coupling assembly,
+#polarizability helpers, and post-processing quantities such as extinction
+#and scattering cross sections.
+#
+#Conventions used throughout
+#  - k0 = 2*pi/lambda_vac
+#  - nstack = [n0, n1, n2, ..., n_{m-1}, n_m]
+#  - dstack = [d1, d2, ..., d_{m-1}]
+#  - Coupling uses Green/LDOS wrappers (Paulus/Amos-Barnes based cores).
+#
+#Main user functions
+#  - Planewavedriving / Emitterdriving
+#  - Lorentzscalar / Lorentzplasmonspherestatic / Rayleighspherepolarizability
+#  - invalphadynamicfromstatic / SetupandSolveCouplingmatrix / Solvedipolemoments
+#  - Work / Differentialradiatedfieldmanydipoles / TotalfarfieldpowerManydipoles
+
 @author: dpal,fkoenderink
 """
 
@@ -26,8 +44,8 @@ from Library.Util import Util_argumentchecker as check
 from Library.Util import Util_argumentrewrapper as cc 
 
 
-
 def dipolelayerchecker(rdipvecs,nstack,dstack):
+    """Internal helper: ensure all dipoles are in one layer."""
     #checks if all dipoles in the problem are in the same layer, and returns the refr index of that layer
     rdipvecs=check.checkr(rdipvecs)
     z=rdipvecs[2,:]
@@ -38,19 +56,48 @@ def dipolelayerchecker(rdipvecs,nstack,dstack):
 
 
 def Planewavedriving(theta,phi,s,p,rdip,k0,nstack,dstack):
+    """Build driving field on dipoles from incident plane-wave components.
+
+    Intuition
+    ---------
+    Converts user-specified plane-wave amplitudes/angles into local driving
+    fields at each dipole position.
+
+    Returns
+    -------
+    tuple
+        `(EH_drive, input_intensity)`.
+    """
     EH=pw.CartesianField(theta, phi, s, p, rdip, k0, nstack, dstack)
     inputintensity=(np.array(np.abs(s))**2+np.array(np.abs(p))**2)*nstack[0]*0.5
     return np.squeeze(EH), inputintensity
 
 
 def Emitterdriving(pnmsource,rsource,rdipvecs,k0,nstack,dstack):
-    
+    """Build driving field from a source dipole `(p,m)` at `rsource`.
+
+    Intuition
+    ---------
+    Uses the dyadic Green tensor to map a source dipole into driving fields on
+    all scatterers.
+
+    Returns
+    -------
+    ndarray
+        Driving E/H field at scatterer positions.
+    """
     GG=Gs.Greensafe(k0, nstack, dstack, rdipvecs, rsource)
     Efield=np.transpose(np.dot(GG.T,pnmsource))
     return Efield
 
 
 def Lorentzscalar(k0,omegaSPP,gamma,V):
+    """Scalar Lorentzian polarizability model.
+
+    Intuition
+    ---------
+    Minimal resonant line-shape model for a single electric mode.
+    """
     # Simple Lorentzian polarizability mode as appropriate for a Drude sphere plasmon particle, or similar.
     # Polarizability is in units of volume 
    
@@ -59,6 +106,12 @@ def Lorentzscalar(k0,omegaSPP,gamma,V):
     return omegaSPP**2/(omegaSPP**2-omega**2-1.j*omega*gamma)*V;
    
 def Lorentzplasmonspherestatic(k0,omegaSPP,gamma,V):
+    """Static isotropic electric polarizability tensor from Lorentz model.
+
+    Intuition
+    ---------
+    Convenience wrapper returning a 3x3 tensor from `Lorentzscalar`.
+    """
     # Lorentzian polarizability tensor for an electric-only sphere - static
     Lorentz=Lorentzscalar(k0,omegaSPP,gamma,V)
     alpha=Lorentz*np.identity(3)
@@ -66,6 +119,13 @@ def Lorentzplasmonspherestatic(k0,omegaSPP,gamma,V):
 
    
 def Rayleighspherepolarizability(nsph,nslab,V):
+    """Simple electric/magnetic Rayleigh polarizability tensor.
+
+    Intuition
+    ---------
+    Quasi-static sphere model: electric response from Clausius-Mossotti form,
+    very small magnetic block retained for 6x6 consistency.
+    """
     # Simple Rayleigh polarizability
     alpha=np.zeros([6,6],dtype=complex)
     alpha[0:3,0:3]=V*(nsph**2-nslab**2)/(nsph**2+2.0*nslab**2)*np.identity(3)
@@ -75,6 +135,18 @@ def Rayleighspherepolarizability(nsph,nslab,V):
 
 
 def invalphadynamicfromstatic(alphalist,rdip,k0,nstack,dstack):
+    """Convert static inverse polarizability to dynamic (radiation-damped) form.
+
+    Intuition
+    ---------
+    Applies radiation-damping/self-interaction correction using LDOS channels,
+    so optical-theorem-consistent inverse polarizability is used in coupling.
+
+    Returns
+    -------
+    ndarray
+        Array of shape `(Ndip, 6, 6)` with dynamic inverse polarizabilities.
+    """
     # Dressed polarizability, meaning including radiation damping
     # tested using the following logic
     
@@ -88,7 +160,7 @@ def invalphadynamicfromstatic(alphalist,rdip,k0,nstack,dstack):
     #
     # In practice, a test routine works where you compare G/ (2/3 k^3)
     # To the ldos assignment below.
-    # INcidentally, you COULD also just calculate this using only the Green function routine.
+    # Incidentally, you COULD also just calculate this using only the Green function routine.
     # The purely scattering Green fucntion is not singular, and perfectly happy to evaluate at r=r'
     
     diplayer, Ndip=dipolelayerchecker(rdip ,nstack,dstack)
@@ -118,6 +190,18 @@ def invalphadynamicfromstatic(alphalist,rdip,k0,nstack,dstack):
     return invalphadyn
  
 def SetupandSolveCouplingmatrix(invalphadyn,rdip,k0,nstack,dstack):
+    """Assemble dipole coupling matrix `M = inv(alpha_dyn) - G`.
+
+    Intuition
+    ---------
+    Builds full many-body interaction matrix using pairwise Green couplings,
+    with self-terms from dynamic inverse polarizabilities.
+
+    Returns
+    -------
+    ndarray
+        Complex coupling matrix of shape `(6*Ndip, 6*Ndip)`.
+    """
     rdip=check.checkr(rdip)
     Ndip=rdip.shape[1]
     
@@ -171,6 +255,12 @@ def SetupandSolveCouplingmatrix(invalphadyn,rdip,k0,nstack,dstack):
 
 
 def Solvedipolemoments(M,drivingfield):
+    """Solve induced dipole moments from coupling matrix and driving field.
+
+    Intuition
+    ---------
+    Solves the linear system `(inv(alpha)-G) p = E_drive`.
+    """
     # if M is the (1/a - G) matrix, and drivingfield is given, returns dipole moments
     M=inv(M)
     pm=np.matmul(M,np.transpose(drivingfield).flatten())
@@ -179,6 +269,16 @@ def Solvedipolemoments(M,drivingfield):
 
 
 def Work(pdipvecs,rdip,drivingfield,k0,nstack,dstack):
+    """Compute work done by driving field on induced dipoles.
+
+    Intuition
+    ---------
+    Useful intermediate quantity for extinction-like observables.
+
+    Notes
+    -----
+    This quantity is not yet normalized to an extinction cross section.
+    """
     # work done by driving field on induced dipoles
     # note that this is not yet extinction, for which one need to divide by an intensity
     diplayer, Ndip=dipolelayerchecker(rdip ,nstack,dstack)
@@ -189,6 +289,17 @@ def Work(pdipvecs,rdip,drivingfield,k0,nstack,dstack):
 
 
 def Differentialradiatedfieldmanydipoles(theta,phi,pdipvecs,rdip,k0,nstack,dstack):
+    """Compute coherent differential far-field from multiple induced dipoles.
+
+    Intuition
+    ---------
+    Sums complex far fields from all induced dipoles before taking intensity.
+
+    Returns
+    -------
+    tuple
+        `(Es, Ep, theta_out, phi_out)` for requested angles.
+    """
     # differential radiated E-field
     rdip=check.checkr(rdip)
     thelist,philist,shape=check.checkThetaAndPhi(theta, phi)
@@ -213,6 +324,18 @@ def Differentialradiatedfieldmanydipoles(theta,phi,pdipvecs,rdip,k0,nstack,dstac
  
  
 def TotalfarfieldpowerManydipoles(pdipvecs,rdip,k0,nstack,dstack):
+     """Integrate total upward and downward far-field power.
+
+     Intuition
+     ---------
+     Numerically integrates the coherent differential far field over upper and
+     lower hemispheres.
+
+     Returns
+     -------
+     tuple(float, float)
+         `(P_up, P_down)`.
+     """
      #  total upward and downward far field radiation, by integration. Not adaptive
      rdip=check.checkr(rdip) 
      # guessing the resolution
@@ -241,5 +364,3 @@ def TotalfarfieldpowerManydipoles(pdipvecs,rdip,k0,nstack,dstack):
      
      pre=np.pi/Nf
      return pre*Pu[0], pre*Pd[0]
-
-

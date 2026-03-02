@@ -1,4 +1,19 @@
 """
+#All user-level routines for dipole radiation patterns in layered stacks
+
+#This file wraps core far-field routines in user-centric coordinates and
+#provides angle-resolved fields and integrated radiated power quantities.
+#
+#Conventions used throughout
+#  - k0 = 2*pi/lambda_vac
+#  - nstack = [n0, n1, n2, ..., n_{m-1}, n_m]
+#  - dstack = [d1, d2, ..., d_{m-1}]
+#
+#Main user functions
+#  - TotalRadiatedatanyPandM: integrated radiated power for arbitrary (p, m)
+#  - TotalRadiated: canonical decomposition (15 output channels)
+#  - RadiationpatternPandField: angle-resolved power and (Es, Ep)
+
 @author: dpal,fkoenderink
 """
 
@@ -23,7 +38,7 @@ from Library.Core import Core_Radiationpattern as Radp
 
 
 ''' Coordinate wrapped versions 
-Routines above are slab centric i.e.,  consider a dipole at height z from slab boundary, where the slab might be layer m out of n=1..N layers
+Routines above (Core folder) are slab centric i.e.,  consider a dipole at height z from slab boundary, where the slab might be layer m out of n=1..N layers
                 The base routines then require to enumerate separately the slabs  m+1 ... N on one end of the slab of interest,
                 and also the slabs 1 to m-1 in reverse order, counting away from the source
  
@@ -36,6 +51,29 @@ The routines below casts into user centric coordinates, using the imported helpe
 
 
 def TotalRadiatedatanyPandM(pu,mu,k0,zlist,nstack,dstack) :
+    """Integrated radiated power for arbitrary electric/magnetic dipoles.
+
+    Intuition
+    ---------
+    Wrapper that evaluates total radiated power by sending each `z` point to
+    its corresponding slab-centric core routine, then collecting `(total/up/down)`.
+
+    Parameters
+    ----------
+    pu, mu : array-like, length 3
+        Electric and magnetic dipole vectors.
+    k0 : float
+        Free-space wavenumber.
+    zlist : array-like
+        Dipole z positions in user-centric coordinates.
+    nstack, dstack : array-like
+        Layer refractive indices and thicknesses.
+
+    Returns
+    -------
+    ndarray
+        Shape `(3, Nz)` with `(total, up, down)` normalized radiated powers.
+    """
 #  Problem specification is
 #  k0 =w/2 is free space wavebumber
 #  pu,mu magnetic dipole moment
@@ -82,6 +120,19 @@ def TotalRadiatedatanyPandM(pu,mu,k0,zlist,nstack,dstack) :
 ''' Integrated far field power,  demanded through nicely wrapped coordinates'''
 
 def TotalRadiated(k0,zlist,nstack,dstack) :
+    """Return canonical 15-channel radiated-power decomposition.
+
+    Intuition
+    ---------
+    Convenience wrapper that evaluates canonical electric/magnetic dipoles and
+    returns a fixed 15-row output layout used throughout benchmarks/examples.
+
+    Returns
+    -------
+    ndarray
+        Shape `(15, Nz)` for E/M parallel/perpendicular and crossed channels:
+        first over 4pi, then upper hemisphere, then lower hemisphere.
+    """
     pu=np.array([1.0,0.0,0.0])
     mu=np.array([0.0,0.0,0.0])
     Ppar=TotalRadiatedatanyPandM(pu,mu,k0,zlist,nstack,dstack)
@@ -116,6 +167,33 @@ def TotalRadiated(k0,zlist,nstack,dstack) :
 
 
 def RadiationpatternPandField(k0,z,pu,mu,thelist,philist,nstack,dstack,rdipxy=[0,0]) :
+    """Return angle-resolved radiation power and complex far fields.
+
+    Intuition
+    ---------
+    Main angle-resolved wrapper. Upper hemisphere is selected by
+    `cos(theta) > 0`, lower hemisphere by `cos(theta) <= 0`.
+
+    Parameters
+    ----------
+    k0 : float
+        Free-space wavenumber.
+    z : float or array-like
+        Dipole z position (single value preferred).
+    pu, mu : array-like, length 3
+        Electric and magnetic dipole vectors.
+    thelist, philist : array-like
+        Polar and azimuthal angles.
+    nstack, dstack : array-like
+        Layer refractive indices and thicknesses.
+    rdipxy : array-like, optional
+        In-plane dipole coordinates `[x, y]`.
+
+    Returns
+    -------
+    tuple
+        `(P, [Es, Ep], [theta, phi])` reshaped to input angle layout.
+    """
 #  Problem specifcation is
 #  k0 =w/c is free space wavebumber
 #  dstack and nstack parameterize geometry of multilayer stack
@@ -172,5 +250,3 @@ def RadiationpatternPandField(k0,z,pu,mu,thelist,philist,nstack,dstack,rdipxy=[0
 
  
     return np.reshape(np.real(P),shape),[np.reshape(Es,shape),np.reshape(Ep,shape)],[np.reshape(thelist,shape),np.reshape(philist,shape)]
-
-

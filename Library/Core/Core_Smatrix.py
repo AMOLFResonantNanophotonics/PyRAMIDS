@@ -1,16 +1,16 @@
 """
 This code calculates the optical response for any stratified multilayer system at any input k||, 
-using the S matrix formalism reported by Lifeng Li in JOSA A 13 1024-1335  1996
+using the S matrix formalism reported by Lifeng Li in JOSA A 13, 1024-1035 (1996).
 
 The code is divided as follows
-General routines:   (1) kz calculation from n, k0=omega/c and k||,  with proper sign of imaginary part pinned by the code.
+General routines:   (1) kz calculation from n, k0=omega/c and k||, with proper sign of imaginary part pinned by the code.
                         (2) Redheffer star product
                         (3) Lifeng Li code, JOSA A 13 1025
                                      - Interface t and S matrices
                                      - Layer S-matrices that include propagation delay also
                                      - Recursion to build composite S-matrix of a stack
                               Almost entirely identical for both polarizations. Therefore polarization is passed as a boolean
-                              through al lthe routines (only used in interface t-matrix)
+                              through all the routines (only used in interface t-matrix)
                         (4) Routine to report  the amplitude r and t (meaning, in half-infinites around the layers)
                             Two routines, one for s and one for p                            
 
@@ -19,9 +19,7 @@ General routines:   (1) kz calculation from n, k0=omega/c and k||,  with proper 
                             Includes polarization resolved wrappers, calling one routine that works for both
  
 
-
-
-@author: fkoenderink, dpal
+@author: dpal,fkoenderink
 """
 #%%
 import os
@@ -384,5 +382,3 @@ def SP_FieldsAtZ(k0,kpar,nin,nout,ndlist,nlay,zz,fastmath=fastmathchoice):
                
    
     return np.array(EHs), np.array(EHp)
-
-

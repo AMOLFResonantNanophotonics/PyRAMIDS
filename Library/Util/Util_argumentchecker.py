@@ -1,8 +1,20 @@
 """
+#All functions for checking and casting user inputs into valid internal forms
+
+#Checks user input validity, dimensions, and data structures.
+#Also reshapes inputs to match the expectations of core routines.
+#
+#Conventions used throughout
+#  - k0 = 2*pi/lambda_vac
+#  - nstack = [n0, n1, n2, ..., n_{m-1}, n_m]
+#  - dstack = [d1, d2, ..., d_{m-1}]
+#
+#Main user functions
+#  - checkFullk0znd / checkStackdefinition / checkk0 / checkz
+#  - checkThetaAndPhi / checkPuamMu / checkr / checkGreenrsourcerdetect
+#  - checkKparlist / checkBFPinput
+
 @author: dpal,fkoenderink
-
-Checks all the user inputs for its validatiy, data structure, and also molds them it relevant correct form
-
 """
 
 #%%
@@ -11,6 +23,7 @@ import numpy as np
  
 
 def checkRealPositive(nrefr):
+    """Return True if refractive index is real and strictly positive."""
     #retruns False unless nrefr is positive and real
     success=True
     if not np.isreal(nrefr):
@@ -21,6 +34,13 @@ def checkRealPositive(nrefr):
     return success
 
 def checkThetaAndPhi(the,phi):
+    """Validate and broadcast `theta`/`phi` angle inputs.
+
+    Returns
+    -------
+    tuple
+        `(theta_flat, phi_flat, original_shape)` suitable for reshaping plots.
+    """
     #if either theta or phi are scalar: turn into lists
     #if either theta or phi are entered as lists exceeding 1 in dimension, throw error
     #if only theta or phi is a list, make the other a list of equal size and constant value
@@ -65,11 +85,13 @@ def checkThetaAndPhi(the,phi):
     return the,phi,shape # export shape, so that radiation patterns can be reshaped
 
 def checkPuamMu(pu,mu):
+    """Validate electric/magnetic dipole vectors and return ndarray pairs."""
     pu=checkDip(pu)
     mu=checkDip(mu)
     return pu,mu
 
 def checkDip(pu):
+    """Validate one dipole vector of length 3."""
     message='Dipole moment must be a 3-vector'
     if np.isscalar(pu):
         raise ValueError(message)
@@ -81,6 +103,7 @@ def checkDip(pu):
         
 
 def checkFullk0znd(k0,z,nstack,dstack):
+    """Convenience checker for the common `(k0, z, nstack, dstack)` tuple."""
     k0=checkk0(k0)
     z=checkz(z)
     nstack,dstack=checkStackdefinition(nstack,dstack)
@@ -88,6 +111,13 @@ def checkFullk0znd(k0,z,nstack,dstack):
     return k0,z,nstack,dstack
 
 def checkStackdefinition(nstack,dstack):
+    """Validate stack definition consistency.
+
+    Returns
+    -------
+    tuple(ndarray, ndarray)
+        `(nstack, dstack)` converted to numpy arrays.
+    """
 
     dstack=checkdstackonly(dstack)
     if np.isscalar(nstack):
@@ -105,6 +135,7 @@ def checkStackdefinition(nstack,dstack):
 
  
 def checkdstackonly(dstack):
+    """Validate `dstack` only and cast to 1D ndarray."""
     if np.isscalar(dstack):
         dstack=np.array([dstack])
     if np.ndim(dstack)>1:
@@ -119,12 +150,14 @@ def checkdstackonly(dstack):
 
 
 def checkequaldimension(x,y):
+    """Return True if `x` and `y` have equal array shape."""
     x=np.array(x)
     y=np.array(y)
     return (x.shape == y.shape)
     
 
 def checkBFPinput(x,y,s,p):
+    """Validate mutually compatible shapes for BFP-related arrays."""
     a=checkequaldimension(x,y)
     b=checkequaldimension(s,p)
     c=checkequaldimension(x,s)
@@ -135,6 +168,7 @@ def checkBFPinput(x,y,s,p):
 
 
 def checkk0(k0): 
+    """Validate scalar positive real free-space wavenumber `k0`."""
     if not np.isscalar(k0):
         if np.size(k0)>1 :
             raise ValueError('Found list of k0 (free space wavenum). Can not vectorize over k0')
@@ -149,6 +183,7 @@ def checkk0(k0):
     return k0
 
 def checkz(z):
+    """Validate z-coordinate list and return flattened 1D ndarray."""
     if np.isscalar(z):
         z=np.array([z])
     if z.shape==():
@@ -165,6 +200,7 @@ def checkz(z):
     return np.array(z) 
 
 def checkr(r):
+    """Validate position array shape `(3, N)` (or transposable equivalent)."""
     r=np.array(r)
     if r.shape[0]!=3:
         r=np.transpose(r) # fingers crossed that tranposing helps ... 
@@ -177,6 +213,13 @@ def checkr(r):
     
 
 def checkGreenrsourcerdetect(rdetect,rsource):
+    """Validate/align Green-function source-detector coordinate inputs.
+
+    Returns
+    -------
+    tuple
+        `(dx, dy, zdetect, zsource, R, phi)` all as 1D arrays.
+    """
     rdetect=checkr(rdetect)
     rsource=checkr(rsource) 
     
@@ -234,6 +277,7 @@ def checkGreenrsourcerdetect(rdetect,rsource):
 
             
 def checkKparlist(kparlist):
+    """Validate parallel-wavevector list and return 1D ndarray."""
     if np.isscalar(kparlist):
         kparlist=np.array([kparlist])
     if np.size(kparlist)==0:
@@ -241,4 +285,3 @@ def checkKparlist(kparlist):
     if np.ndim(kparlist)>1:
         raise ValueError('kpar-list higher-D than 1D-array..') 
     return np.array(kparlist)
-

@@ -124,16 +124,16 @@ for n in range(nk):
 
 plt.figure(figsize=(2.5,5))
 plt.pcolor(kparplot,k0plot/(2.*np.pi*1.240),np.log10(ImGEx10*0.667+ImGEz10*0.333))
-plt.xlabel('$k_{||}\ (\mu m^{-1})$')
-plt.ylabel('$\omega\ (eV)$')
+plt.xlabel(r'$k_{||}\ (\mu m^{-1})$')
+plt.ylabel(r'$\omega\ (eV)$')
 plt.title('MIM (10 nm gap)')
 plt.show()
 
 
 plt.figure(figsize=(2.5,5))
 plt.pcolor(kparplot,k0plot/(2.*np.pi*1.240),np.log10(ImGEx20*0.667+ImGEz20*0.333))
-plt.xlabel('$k_{||}\ (\mu m^{-1})$')
-plt.ylabel('$\omega\ (eV)$')
+plt.xlabel(r'$k_{||}\ (\mu m^{-1})$')
+plt.ylabel(r'$\omega\ (eV)$')
 plt.title('MIM (20 nm gap)')
 plt.show()
 
@@ -141,8 +141,8 @@ plt.show()
 
 plt.figure(figsize=(2.5,5))
 plt.pcolor(kparplot,k0plot/(2.*np.pi*1.240),np.log10(ImGEx50*0.667+ImGEz50*0.333),vmin=-3,vmax=2)
-plt.xlabel('$k_{||}\ (\mu m^{-1})$')
-plt.ylabel('$\omega\ (eV)$')
+plt.xlabel(r'$k_{||}\ (\mu m^{-1})$')
+plt.ylabel(r'$\omega\ (eV)$')
 plt.title('MIM (50 nm gap)')
 plt.show()
 
@@ -150,8 +150,8 @@ plt.show()
 
 plt.figure(figsize=(2.5,5))
 plt.pcolor(kparplot,k0plot/(2.*np.pi*1.240),np.log10(ImGEx500*0.667+ImGEz500*0.333),vmin=-3,vmax=2)
-plt.xlabel('$k_{||}\ (\mu m^{-1})$')
-plt.ylabel('$\omega\ (eV)$')
+plt.xlabel(r'$k_{||}\ (\mu m^{-1})$')
+plt.ylabel(r'$\omega\ (eV)$')
 plt.title('MIM (500 nm gap)')
 plt.show()
 
@@ -224,7 +224,6 @@ plt.xlabel(r'$\omega\ (eV)$')
 plt.ylabel('LDOS / vacuum LDOS (middle of MIM)')
 plt.title('Solid - IMIMI, Dashed - infront of mirror')
 plt.show()
-
 
 
 

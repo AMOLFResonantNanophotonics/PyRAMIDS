@@ -1,4 +1,22 @@
 """
+#All user-level routines for dyadic Green tensor evaluation in layered stacks
+
+#This file wraps the core Green-tensor routines in user-centric coordinates.
+#It provides full Green, scattered Green, and free-space Green components.
+#
+#Current implementation assumes source and detector are in the same layer.
+#
+#Conventions used throughout
+#  - k0 = 2*pi/lambda_vac
+#  - nstack = [n0, n1, n2, ..., n_{m-1}, n_m]
+#  - dstack = [d1, d2, ..., d_{m-1}]
+#
+#Main user functions
+#  - Greensafe: total (scattered + free-space) dyadic Green tensor
+#  - GreenS: scattered and free-space Green tensors as separate outputs
+#  - Green: scattered Green tensor only
+#  - GreenFree: homogeneous-space Green tensor only
+
 @author: dpal,fkoenderink
 """
 
@@ -20,7 +38,29 @@ from Library.Util import Util_argumentchecker as check
 
 from Library.Core import Core_Greenslab as Gr
 
+
 def Greensafe(k0,nstack,dstack,rdetect,rsource):
+    """Return total dyadic Green tensor (scattered + free-space).
+
+    Intuition
+    ---------
+    Main user wrapper when you want the physically complete Green tensor.
+    Internally this is `GreenS + GreenFree`.
+
+    Parameters
+    ----------
+    k0 : float
+        Free-space wavenumber.
+    nstack, dstack : array-like
+        Layer refractive indices and thicknesses.
+    rdetect, rsource : array-like
+        Detection/source coordinates accepted by the argument checker.
+
+    Returns
+    -------
+    ndarray
+        Complex array of shape (6, 6, Npos).
+    """
     GS,GF=GreenS(k0, nstack, dstack, rdetect, rsource)
     return GS + GF
 
@@ -28,18 +68,56 @@ def Greensafe(k0,nstack,dstack,rdetect,rsource):
 
 
 def GreenS(k0,nstack,dstack,rdetect,rsource):
+    """Return scattered and free-space dyadic Green tensors.
+
+    Intuition
+    ---------
+    Use this when you want to inspect the layered contribution and the
+    homogeneous reference contribution separately.
+
+    Returns
+    -------
+    tuple(ndarray, ndarray)
+        `(GS, GF)` each of shape (6, 6, Npos).
+    """
     GS= GreenEvalwrapped(k0,nstack,dstack,rdetect,rsource,diff=True)
     GF= GreenFree(k0,nstack,dstack,rdetect,rsource)
     
     return GS,GF
  
 def Green(k0,nstack,dstack,rdetect,rsource):
+    """Return scattered dyadic Green tensor.
+
+    Intuition
+    ---------
+    Wrapper for the layered correction only (no free-space term).
+
+    Returns
+    -------
+    ndarray
+        Complex array of shape (6, 6, Npos).
+    """
     return GreenEvalwrapped(k0,nstack,dstack,rdetect,rsource,diff=False)
 
 
 
 
 def GreenFree(k0,nstack,dstack,rdetect,rsource):
+    """Return homogeneous-medium dyadic Green tensor.
+
+    Intuition
+    ---------
+    Baseline free-space/same-medium dyadic Green tensor for the local slab.
+
+    Notes
+    -----
+    Source and detector positions must be in the same layer.
+
+    Returns
+    -------
+    ndarray
+        Complex array of shape (6, 6, Npos).
+    """
     #type check the arguments
     nstack,dstack=check.checkStackdefinition(nstack,dstack)
     k0=check.checkk0(k0)
@@ -74,6 +152,10 @@ def GreenFree(k0,nstack,dstack,rdetect,rsource):
 
 
 def GreenEvalwrapped(k0,nstack,dstack,rdetect,rsource,diff=False):
+    """Internal slab-centric wrapper used by public Green routines.
+
+    Handles user-to-slab coordinate conversion and source/detector ordering.
+    """
     
     #In internal routines 
     #    z0 is the source
