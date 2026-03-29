@@ -218,3 +218,5 @@ Pal, D. & Koenderink, A. F.
 
 ---
 ## License
+
+Released under the MIT License. See [LICENSE](LICENSE).
