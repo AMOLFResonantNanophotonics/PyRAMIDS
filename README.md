@@ -57,7 +57,7 @@ The implementation combines a stable S-matrix formalism with a rigorous 6x6 dyad
 - s-p polarization basis and Cartesian basis    
 - Radiative LDOS extraction via angular integration
 - Back-focal-plane (Fourier plane) imaging simulations  
-- Stokes polarimetry ($S_0$-$S_3$)
+- Stokes polarimetry ($S_0$--$S_3$)
 
 > Applications:
 > Emitter calibration, high-NA objective benchmarking, COMSOL/FDTD validation, LED outcoupling analysis.
