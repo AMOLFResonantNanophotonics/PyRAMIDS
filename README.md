@@ -123,7 +123,7 @@ UserSandbox/       # Custom simulation workspace for users
 Manual.pdf         # PDF documentation
 ```
 
-Typical user-facing flow:
+Code flow:
 
 ```mermaid
 flowchart LR
