@@ -1,6 +1,10 @@
 # PyRAMIDS
 
-**A Python package for Radiation, Magnetoelectric Interactions, and Dipoles in Stratified Layers**
+<h3 align="center">A Python package for Radiation, Magnetoelectric Interactions, and Dipoles in Stratified Layers</h3>
+
+<p align="center">
+  <img src="Git_image.png" alt="PyRAMIDS logo" width="360">
+</p>
 
 
 ### Motivation and prospective use cases
