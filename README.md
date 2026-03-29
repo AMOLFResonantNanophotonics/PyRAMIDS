@@ -1,12 +1,12 @@
 <h1>PyRAMIDS</h1>
 
-<h2 align="center">A <b>Py</b>thon package for <b>R</b>adiation, <b>M</b>agnetoelectric <b>I<b>nteractions, and <b>D</b>ipoles in <b>S</b>tratified layers</h2>
+<h2 align="center">A <b><i>Py<i></b>thon package for <b><i>R<i></b>adiation, <b><i>M<i></b>agnetoelectric <b><i>I<i><b>nteractions, and <b><i>D<i></b>ipoles in <b><i>S<i></b>tratified layers</h2>
 
 <p align="center">
   <img src="Git_image_white.jpg" alt="PyRAMIDS logo" width="612">
 </p>
 
-
+---
 ### Motivation and prospective use cases
 
 PyRAMIDS is a simulation framework for nanophotonics and electromagnetic modeling in planar multilayer structures. It can serve both as a teaching tool and as a research platform.
