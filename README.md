@@ -127,10 +127,7 @@ Code flow:
 
 ```mermaid
 flowchart LR
-    subgraph Main[" "]
-        direction LR
-        C["Library/Core<br/>low-level physics engines"] --> U["Library/Use<br/>user-facing interface"]
-    end
+    C["Library/Core<br/>low-level physics engines"] --> U["Library/Use<br/>user-facing interface"]
     T["Library/Util<br/>checks, wrappers, plotting helpers"]
     E["Example"]
     B["Benchmarks"]
