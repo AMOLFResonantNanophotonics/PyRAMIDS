@@ -125,21 +125,9 @@ Manual.pdf         # PDF documentation
 
 Code flow:
 
-```mermaid
-flowchart LR
-    C["Library/Core<br/>low-level physics engines"]
-    T["Library/Util<br/>checks, wrappers, plotting helpers"]
-    U["Library/Use<br/>user-facing interface"]
-    E["Example"]
-    B["Benchmarks"]
-    S["UserSandbox"]
-
-    C --> U
-    T --> U
-    U --> E
-    U --> B
-    U --> S
-```
+<p align="center">
+  <img src="folder_flow.svg" alt="Code flow" width="860">
+</p>
 
 PyRAMIDS follows a layered folder implementation architecture consisting of **Core**, **Util**, and **Use** modules.
 

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="320" viewBox="0 0 980 320" role="img" aria-labelledby="title desc">
+  <title id="title">PyRAMIDS user-facing flow</title>
+  <desc id="desc">Library Core and Util feed Library Use, which is used by Example, Benchmarks, and UserSandbox.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#425466"/>
+    </marker>
+    <style>
+      .box { fill: #f8fafc; stroke: #cbd5e1; stroke-width: 1.8; rx: 16; ry: 16; }
+      .title { font: 700 22px Arial, Helvetica, sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 15px Arial, Helvetica, sans-serif; fill: #475569; }
+      .node { font: 700 20px Arial, Helvetica, sans-serif; fill: #0f172a; }
+      .subnode { font: 400 14px Arial, Helvetica, sans-serif; fill: #475569; }
+      .edge { stroke: #425466; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <text x="490" y="34" text-anchor="middle" class="title">Code Flow</text>
+  <text x="490" y="58" text-anchor="middle" class="subtitle">Library/Core and Library/Util support Library/Use; user scripts typically call Library/Use.</text>
+
+  <rect x="60" y="92" width="250" height="72" class="box"/>
+  <text x="185" y="121" text-anchor="middle" class="node">Library/Core</text>
+  <text x="185" y="144" text-anchor="middle" class="subnode">low-level physics engines</text>
+
+  <rect x="60" y="198" width="250" height="72" class="box"/>
+  <text x="185" y="227" text-anchor="middle" class="node">Library/Util</text>
+  <text x="185" y="250" text-anchor="middle" class="subnode">checks, wrappers, plotting helpers</text>
+
+  <rect x="368" y="145" width="250" height="72" class="box"/>
+  <text x="493" y="174" text-anchor="middle" class="node">Library/Use</text>
+  <text x="493" y="197" text-anchor="middle" class="subnode">user-facing interface</text>
+
+  <rect x="676" y="72" width="240" height="56" class="box"/>
+  <text x="796" y="107" text-anchor="middle" class="node">Example</text>
+
+  <rect x="676" y="144" width="240" height="56" class="box"/>
+  <text x="796" y="179" text-anchor="middle" class="node">Benchmarks</text>
+
+  <rect x="676" y="216" width="240" height="56" class="box"/>
+  <text x="796" y="251" text-anchor="middle" class="node">UserSandbox</text>
+
+  <path d="M 310 128 C 340 128, 338 162, 368 181" class="edge"/>
+  <path d="M 310 234 C 340 234, 338 200, 368 181" class="edge"/>
+  <path d="M 618 181 C 645 181, 648 100, 676 100" class="edge"/>
+  <path d="M 618 181 L 676 172" class="edge"/>
+  <path d="M 618 181 C 645 181, 648 244, 676 244" class="edge"/>
+</svg>
