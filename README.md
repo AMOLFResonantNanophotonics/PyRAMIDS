@@ -3,9 +3,7 @@
 <h3 align="center">A Python package for Radiation, Magnetoelectric Interactions, and Dipoles in Stratified Layers</h3>
 
 <p align="center">
-  <span style="display:inline-block; background:#ffffff; padding:16px 24px; border-radius:8px;">
-    <img src="Git_image.png" alt="PyRAMIDS logo" width="612">
-  </span>
+  <img src="Git_image_white.jpg" alt="PyRAMIDS logo" width="612">
 </p>
 
 
