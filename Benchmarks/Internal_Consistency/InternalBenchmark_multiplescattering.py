@@ -8,7 +8,7 @@
 #
 #Compares extinction/scattering consistency and checks that the coupled-dipole
 #solution obeys the expected energy-balance constraints.
-#
+
 @author: dpal,fkoenderink
 """
 

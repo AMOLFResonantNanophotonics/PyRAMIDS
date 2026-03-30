@@ -8,9 +8,7 @@
 #  - single-interface reflected contribution checks
 #  - symmetry/sign behavior under mirrored stack geometries
 #
-#The goal is to verify both amplitude/phase correctness and expected
-#tensor symmetries for the slab Green-function implementation.
-#
+
 @author: dpal,fkoenderink
 """
 

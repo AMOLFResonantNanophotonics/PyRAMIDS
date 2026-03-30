@@ -12,7 +12,7 @@
 #  - mixed dipoles with controlled phase offsets
 #
 #This is the main internal verification route for magnetoelectric LDOS terms.
-#
+
 @author: dpal,fkoenderink
 """
 

@@ -8,7 +8,7 @@
 #This script checks rotational consistency through Stokes S3 radiation maps:
 #the S3 pattern should remain invariant (within numerical tolerance) for
 #the rotated-equivalent dipoles in the same hemisphere.
-#
+
 @author: dpal,fkoenderink
 """
 

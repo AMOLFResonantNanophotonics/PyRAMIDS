@@ -10,7 +10,7 @@
 #
 #Agreement across these routes validates sign conventions, normalization,
 #and channel mapping for electric, magnetic, and crossed responses.
-#
+
 @author: dpal,fkoenderink
 """
 
