@@ -7,6 +7,8 @@ Runs:
 
 Each script is executed from its own folder so relative outputs
 (e.g., pdfimages/) are written locally to that benchmark folder.
+
+@author: dpal,fkoenderink
 """
 print("### UserSandbox Runner: All Benchmarks (Literature + Internal Consistency) ###")
 #%%
