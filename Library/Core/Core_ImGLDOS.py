@@ -1,6 +1,4 @@
 """
-
- 
 #All functions for calculating the LDOS in any (non-absorbing) layer in a stratified stack
 
 

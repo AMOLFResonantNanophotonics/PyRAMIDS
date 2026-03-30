@@ -11,7 +11,7 @@
 #
 #Main user functions
 #  - TotalRadiatedatanyPandM: integrated radiated power for arbitrary (p, m)
-#  - TotalRadiated: canonical decomposition (15 output channels)
+#  - TotalRadiated: canonical decomposition (15 output channels, p/m par/perp/cross, total/up/down)
 #  - RadiationpatternPandField: angle-resolved power and (Es, Ep)
 
 @author: dpal,fkoenderink
