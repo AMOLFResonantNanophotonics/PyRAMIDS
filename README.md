@@ -60,7 +60,7 @@ The implementation combines a stable S-matrix formalism with a rigorous 6x6 dyad
 - Stokes polarimetry ( $S_0$ - $S_3$ )
 
 > Applications:
-> Emitter calibration, high-NA objective benchmarking, COMSOL/FDTD validation, LED outcoupling analysis.
+> Emitter calibration, high-NA objective benchmarking, FEM/FDTD validation, LED outcoupling analysis.
 
 **Note:**
 - The superstrate and substrate must have real (non-absorbing) refractive indices to have energy conservation.
