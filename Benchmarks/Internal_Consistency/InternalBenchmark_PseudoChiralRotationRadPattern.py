@@ -8,6 +8,14 @@
 #This script checks rotational consistency through Stokes S3 radiation maps:
 #the S3 pattern should remain invariant (within numerical tolerance) for
 #the rotated-equivalent dipoles in the same hemisphere.
+#
+#Note:
+#For both spinning electric and spinning magnetic dipoles, the observed
+#sign of S3 depends on the observation hemisphere and changes with the
+#sign of kz. The corresponding handedness pattern for the magnetic case
+#appears in the opposite hemisphere relative to the electric case. The
+#present benchmark therefore compares rotated-equivalent pseudochiral
+#dipoles within the same hemisphere.
 
 @author: dpal,fkoenderink
 """
