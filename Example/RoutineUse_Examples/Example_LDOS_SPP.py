@@ -6,7 +6,7 @@
 #
 #Shows how the SPP branch and near-field contributions appear in electric
 #parallel/perpendicular LDOS channels as function of frequency and k_parallel.
-#
+
 @author: dpal,fkoenderink
 """
 

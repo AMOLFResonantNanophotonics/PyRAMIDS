@@ -8,7 +8,7 @@
 #maps using Stokes analysis in upper and lower hemispheres.
 #
 #Useful as a reference for polarization-resolved emission workflows.
-#
+
 @author: dpal,fkoenderink
 """
 

@@ -8,7 +8,7 @@
 #  - k_parallel-resolved integrand maps for modal interpretation
 #
 #Reference context: Amos and Barnes, Phys. Rev. B 55, 7249 (1997), Fig. 5.
-#
+
 @author: dpal,fkoenderink
 """
 

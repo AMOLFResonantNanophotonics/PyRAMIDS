@@ -7,7 +7,7 @@
 #
 #The script illustrates how electric-parallel and electric-perpendicular
 #channels expose coupled/plasmonic features in multilayer systems.
-#
+
 @author: dpal,fkoenderink
 """
 

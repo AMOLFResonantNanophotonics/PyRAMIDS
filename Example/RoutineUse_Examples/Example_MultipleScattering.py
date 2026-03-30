@@ -9,7 +9,7 @@
 #Demonstrates core coupled-dipole workflow:
 #polarizability -> dynamic inverse polarizability -> driving -> dipole moments
 #-> extracted optical cross-sections.
-#
+
 @author: dpal,fkoenderink
 """
 

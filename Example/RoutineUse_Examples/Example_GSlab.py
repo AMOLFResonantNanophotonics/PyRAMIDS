@@ -6,9 +6,8 @@
 #three-layer slab geometry and plots selected tensor elements along a
 #detector trajectory.
 #
-#This script is a practical reference for inspecting Green-function
-#amplitudes/phases and component-wise behavior in layered media.
-#
+#This script is a practical reference for inspecting Green-function and its component-wise behavior in layered media.
+
 @author: dpal,fkoenderink
 """
 #%%

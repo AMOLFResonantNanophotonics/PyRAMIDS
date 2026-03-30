@@ -10,7 +10,7 @@
 #  - air / glass interface
 #  - air / finite layer / glass
 #  - guided/leaky-mode behavior beyond the light line
-#
+
 @author: dpal,fkoenderink
 """
 

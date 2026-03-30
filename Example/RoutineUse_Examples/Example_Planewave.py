@@ -9,7 +9,7 @@
 #  - on-axis local fields and absorption profiles
 #
 #This is a compact reference for standard stack optical-response workflows.
-#
+
 @author: dpal,fkoenderink
 """
 
