@@ -141,10 +141,10 @@ flowchart LR
 
 PyRAMIDS follows a layered folder implementation architecture consisting of **Core**, **Util**, and **Use** modules.
 
-- The **Core** module contains low-level mathematical implementations (S-matrix, Green functions, LDOS integrands, radiation kernels) and provides direct access for advanced users who wish to inspect, modify, or extend the formalism.
-- The **Util** module contains argument checking, coordinate rewrapping, visualization, and optimization utilities used by high-level interfaces.
-- The **Use** module provides high-level, user-facing interfaces for standard simulation workflows, including coordinate handling, validation, and convenience wrappers.
-- The **Core** module uses a slab-centric representation; in the **Use** layer, users interact with global stack coordinates.
+- The **Core** module contains low-level mathematical implementations (S-matrix, Green functions, LDOS integrands, radiation kernels) and provides direct access for advanced users who wish to inspect, modify, or extend the formalism. However, for routine use these routines are not directly addressed.
+- The **Util** module contains routines for argument checking, coordinate rewrapping, visualization, and optimization utilities used by high-level interfaces.
+- The **Use** module provides high-level, user-facing interfaces for standard simulation workflows, including coordinate handling, validation, and convenient wrapper routines. For routine usecases, users interact with the **Core** routines only via the **Use** module wrappers. 
+- The **Core** module uses a slab-centric representation; via the **Use** layer, users interact with global stack coordinates.
 
 > **For a more detailed description of the code architecture, folder structure, and the roles of the different Python files, see [Manual.pdf](Manual.pdf).**
 
