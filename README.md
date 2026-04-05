@@ -1,6 +1,6 @@
 <h1>PyRAMIDS</h1>
 
-<h2 align="center">A <b><i>Py</i></b>thon package for <b><i>R</i></b>adiation, <b><i>M</i></b>agnetoelectric <b><i>I</i></b>nteractions, and <b><i>D</i></b>ipoles in <b><i>S</i></b>tratified Layers</h2>
+<h2 align="center">A <b><i>Py</i></b>thon package for <b><i>RA</i></b>diation, <b><i>M</i></b>agnetoelectric <b><i>I</i></b>nteractions, and <b><i>D</i></b>ipoles in <b><i>S</i></b>tratified Layers</h2>
 
 <p align="center">
   <img src="Git_image_white.jpg" alt="PyRAMIDS logo" width="612">
